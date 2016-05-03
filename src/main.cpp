@@ -1,6 +1,5 @@
 #include "game.h"
 #include "sdl_wrapper.h"
-
 sdlEngine engine;
 Game game;
 

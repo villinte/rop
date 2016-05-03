@@ -1,11 +1,9 @@
 #ifndef SDL_WRAPPER_H
 #define SDL_WRAPPER_H
-#include "globals.h"
 #include <string>
+#include "globals.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
-
 class sdlEngine{
  public:
   sdlEngine();

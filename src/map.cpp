@@ -1,6 +1,6 @@
 #include "map.h"
+#include <iostream>
 #include "sdl_wrapper.h"
-
 Map::Map(){
   genMap();
 }
@@ -18,8 +18,7 @@ void Map::Render(){
       ++y;
     }
     else{
-
-      engine.renderChar(tileVector[mapVector.at(i)].nCharacter, x, y,tileVector[mapVector.at(i)].color);
+      engine.renderChar(tileVector[mapVector.at(i)].nCharacter, x*globals::FONT_W, y*globals::FONT_H,tileVector[mapVector.at(i)].color);
       x++;
     }
   }

@@ -1,0 +1,1575 @@
+g++ -Wall -g -std=c++11 -lSDL2 -lSDL2_image -o rop src/map.cpp src/actor.cpp src/game.cpp src/feature_ai.cpp src/main.cpp src/sdl_wrapper.cpp -lncurses 
+In file included from src/actor.cpp:3:0:
+src/feature_ai.h:29:1: fel: expected unqualified-id before numeric constant
+ 1
+ ^
+src/actor.cpp: I destruerare ”Actor::~Actor()”:
+src/actor.cpp:10:20: varning: radering av objekt av den abstrakta klasstypen ”Ai” som har en ej virtuell destruerare kommer medföra odefinierat beteende [-Wdelete-non-virtual-dtor]
+   if ( ai ) delete ai;
+                    ^
+In file included from src/game.cpp:4:0:
+src/feature_ai.h:29:1: fel: expected unqualified-id before numeric constant
+ 1
+ ^
+In file included from src/feature_ai.cpp:1:0:
+src/feature_ai.h:29:1: fel: expected unqualified-id before numeric constant
+ 1
+ ^
+In file included from /usr/include/c++/5.3.0/bits/stl_algobase.h:62:0,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/type_traits.h:160:35: fel: ”__gnu_cxx::__is_null_pointer” deklarerad som en ”inline”-variabel
+   __is_null_pointer(std::nullptr_t)
+                                   ^
+/usr/include/c++/5.3.0/ext/type_traits.h:160:35: fel: ”bool __gnu_cxx::__is_null_pointer” omdeklarerad som en annan sorts symbol
+/usr/include/c++/5.3.0/ext/type_traits.h:155:5: anm: tidigare deklaration ”template<class _Type> bool __gnu_cxx::__is_null_pointer(_Type)”
+     __is_null_pointer(_Type)
+     ^
+/usr/include/c++/5.3.0/ext/type_traits.h:160:21: fel: ”nullptr_t” är inte en medlem av ”std”
+   __is_null_pointer(std::nullptr_t)
+                     ^
+In file included from /usr/include/c++/5.3.0/bits/move.h:57:0,
+                 from /usr/include/c++/5.3.0/bits/stl_pair.h:59,
+                 from /usr/include/c++/5.3.0/bits/stl_algobase.h:64,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/type_traits:326:31: fel: ”std::size_t” har inte deklarerats
+   template<typename _Tp, std::size_t _Size>
+                               ^
+/usr/include/c++/5.3.0/type_traits:525:37: fel: ”nullptr_t” är inte en medlem av ”std”
+     struct __is_null_pointer_helper<std::nullptr_t>
+                                     ^
+/usr/include/c++/5.3.0/type_traits:525:37: fel: ”nullptr_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:525:51: fel: mallargument 1 är ogiltigt
+     struct __is_null_pointer_helper<std::nullptr_t>
+                                                   ^
+/usr/include/c++/5.3.0/type_traits:1411:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t, __alignof__(_Tp)> { };
+                                ^
+/usr/include/c++/5.3.0/type_traits:1411:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1411:61: fel: mallargument 1 är ogiltigt
+     : public integral_constant<std::size_t, __alignof__(_Tp)> { };
+                                                             ^
+/usr/include/c++/5.3.0/type_traits:1411:61: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1416:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t, 0> { };
+                                ^
+/usr/include/c++/5.3.0/type_traits:1416:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1416:46: fel: mallargument 1 är ogiltigt
+     : public integral_constant<std::size_t, 0> { };
+                                              ^
+/usr/include/c++/5.3.0/type_traits:1416:46: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1418:31: fel: ”std::size_t” har inte deklarerats
+   template<typename _Tp, std::size_t _Size>
+                               ^
+/usr/include/c++/5.3.0/type_traits:1420:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t, 1 + rank<_Tp>::value> { };
+                                ^
+/usr/include/c++/5.3.0/type_traits:1420:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1420:65: fel: mallargument 1 är ogiltigt
+     : public integral_constant<std::size_t, 1 + rank<_Tp>::value> { };
+                                                                 ^
+/usr/include/c++/5.3.0/type_traits:1420:65: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1424:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t, 1 + rank<_Tp>::value> { };
+                                ^
+/usr/include/c++/5.3.0/type_traits:1424:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1424:65: fel: mallargument 1 är ogiltigt
+     : public integral_constant<std::size_t, 1 + rank<_Tp>::value> { };
+                                                                 ^
+/usr/include/c++/5.3.0/type_traits:1424:65: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1429:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t, 0> { };
+                                ^
+/usr/include/c++/5.3.0/type_traits:1429:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1429:46: fel: mallargument 1 är ogiltigt
+     : public integral_constant<std::size_t, 0> { };
+                                              ^
+/usr/include/c++/5.3.0/type_traits:1429:46: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1431:47: fel: ”std::size_t” har inte deklarerats
+   template<typename _Tp, unsigned _Uint, std::size_t _Size>
+                                               ^
+/usr/include/c++/5.3.0/type_traits:1433:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t,
+                                ^
+/usr/include/c++/5.3.0/type_traits:1433:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1435:28: fel: mallargument 1 är ogiltigt
+           _Uint - 1>::value>
+                            ^
+/usr/include/c++/5.3.0/type_traits:1435:28: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1440:32: fel: ”size_t” är inte en medlem av ”std”
+     : public integral_constant<std::size_t,
+                                ^
+/usr/include/c++/5.3.0/type_traits:1440:32: fel: ”size_t” är inte en medlem av ”std”
+/usr/include/c++/5.3.0/type_traits:1442:31: fel: mallargument 1 är ogiltigt
+              _Uint - 1>::value>
+                               ^
+/usr/include/c++/5.3.0/type_traits:1442:31: anm: ogiltig mallparameter som inte är en typ
+/usr/include/c++/5.3.0/type_traits:1892:31: fel: ”std::size_t” har inte deklarerats
+   template<typename _Tp, std::size_t _Size>
+                               ^
+/usr/include/c++/5.3.0/type_traits:1905:31: fel: ”std::size_t” har inte deklarerats
+   template<typename _Tp, std::size_t _Size>
+                               ^
+/usr/include/c++/5.3.0/type_traits:1964:17: fel: ”std::size_t” har inte deklarerats
+   template<std::size_t _Len>
+                 ^
+/usr/include/c++/5.3.0/type_traits:1984:17: fel: ”std::size_t” har inte deklarerats
+   template<std::size_t _Len, std::size_t _Align =
+                 ^
+/usr/include/c++/5.3.0/type_traits:1984:35: fel: ”std::size_t” har inte deklarerats
+   template<std::size_t _Len, std::size_t _Align =
+                                   ^
+/usr/include/c++/5.3.0/type_traits:1998:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t _S_alignment = 0;
+                    ^
+/usr/include/c++/5.3.0/type_traits:1999:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t _S_size = 0;
+                    ^
+/usr/include/c++/5.3.0/type_traits:2005:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t _S_alignment =
+                    ^
+/usr/include/c++/5.3.0/type_traits:2008:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t _S_size =
+                    ^
+/usr/include/c++/5.3.0/type_traits:2023:13: fel: ”size_t” har inte deklarerats
+   template <size_t _Len, typename... _Types>
+             ^
+/usr/include/c++/5.3.0/type_traits:2030:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t _S_len = _Len > __strictest::_S_size
+                    ^
+/usr/include/c++/5.3.0/type_traits:2034:20: fel: ”size_t” är inte namnet på en typ
+       static const size_t alignment_value = __strictest::_S_alignment;
+                    ^
+/usr/include/c++/5.3.0/type_traits:2036:40: fel: ”_S_len” deklarerades inte i detta definitionsområde
+       typedef typename aligned_storage<_S_len, alignment_value>::type type;
+                                        ^
+/usr/include/c++/5.3.0/type_traits:2036:48: fel: ”alignment_value” deklarerades inte i detta definitionsområde
+       typedef typename aligned_storage<_S_len, alignment_value>::type type;
+                                                ^
+/usr/include/c++/5.3.0/type_traits:2036:63: fel: mallargument 1 är ogiltigt
+       typedef typename aligned_storage<_S_len, alignment_value>::type type;
+                                                               ^
+/usr/include/c++/5.3.0/type_traits:2036:63: fel: mallargument 2 är ogiltigt
+/usr/include/c++/5.3.0/type_traits:2039:13: fel: ”size_t” har inte deklarerats
+   template <size_t _Len, typename... _Types>
+             ^
+/usr/include/c++/5.3.0/type_traits:2040:11: fel: ”size_t” är inte namnet på en typ
+     const size_t aligned_union<_Len, _Types...>::alignment_value;
+           ^
+In file included from /usr/include/c++/5.3.0/bits/stl_pair.h:59:0,
+                 from /usr/include/c++/5.3.0/bits/stl_algobase.h:64,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/move.h:193:26: fel: ”size_t” har inte deklarerats
+   template<typename _Tp, size_t _Nm>
+                          ^
+/usr/include/c++/5.3.0/bits/move.h: I funktion ”void std::swap(_Tp (&)[_Nm], _Tp (&)[_Nm])”:
+/usr/include/c++/5.3.0/bits/move.h:200:12: fel: ”size_t” deklarerades inte i detta definitionsområde
+       for (size_t __n = 0; __n < _Nm; ++__n)
+            ^
+/usr/include/c++/5.3.0/bits/move.h:200:28: fel: ”__n” deklarerades inte i detta definitionsområde
+       for (size_t __n = 0; __n < _Nm; ++__n)
+                            ^
+In file included from /usr/include/c++/5.3.0/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/stl_pair.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/stl_pair.h:85:17: fel: ”std::size_t” har inte deklarerats
+   template<std::size_t...>
+                 ^
+/usr/include/c++/5.3.0/bits/stl_pair.h:204:41: fel: ”std::size_t” har inte deklarerats
+       template<typename... _Args1, std::size_t... _Indexes1,
+                                         ^
+/usr/include/c++/5.3.0/bits/stl_pair.h:205:41: fel: ”std::size_t” har inte deklarerats
+                typename... _Args2, std::size_t... _Indexes2>
+                                         ^
+In file included from /usr/include/c++/5.3.0/bits/stl_algobase.h:65:0,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/stl_iterator_base_types.h:116:67: fel: ”ptrdiff_t” är inte namnet på en typ
+   template<typename _Category, typename _Tp, typename _Distance = ptrdiff_t,
+                                                                   ^
+/usr/include/c++/5.3.0/bits/stl_iterator_base_types.h:182:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t                   difference_type;
+               ^
+/usr/include/c++/5.3.0/bits/stl_iterator_base_types.h:193:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t                   difference_type;
+               ^
+In file included from /usr/include/c++/5.3.0/bits/stl_iterator.h:66:0,
+                 from /usr/include/c++/5.3.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/ptr_traits.h:69:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t __type;
+               ^
+/usr/include/c++/5.3.0/bits/ptr_traits.h:157:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t difference_type;
+               ^
+In file included from /usr/include/c++/5.3.0/bits/char_traits.h:39:0,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/stl_algobase.h: I statisk medlemsfunktion ”static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*)”:
+/usr/include/c++/5.3.0/bits/stl_algobase.h:380:10: fel: ”ptrdiff_t” är inte namnet på en typ
+    const ptrdiff_t _Num = __last - __first;
+          ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:381:8: fel: ”_Num” deklarerades inte i detta definitionsområde
+    if (_Num)
+        ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:383:22: fel: ”_Num” deklarerades inte i detta definitionsområde
+    return __result + _Num;
+                      ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h: I statisk medlemsfunktion ”static _Tp* std::__copy_move_backward<_IsMove, true, std::random_access_iterator_tag>::__copy_move_b(const _Tp*, const _Tp*, _Tp*)”:
+/usr/include/c++/5.3.0/bits/stl_algobase.h:580:10: fel: ”ptrdiff_t” är inte namnet på en typ
+    const ptrdiff_t _Num = __last - __first;
+          ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:581:8: fel: ”_Num” deklarerades inte i detta definitionsområde
+    if (_Num)
+        ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:583:22: fel: ”_Num” deklarerades inte i detta definitionsområde
+    return __result - _Num;
+                      ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h: I funktion ”typename __gnu_cxx::__enable_if<std::__is_byte<_Tp>::__value, void>::__type std::__fill_a(_Tp*, _Tp*, const _Tp&)”:
+/usr/include/c++/5.3.0/bits/stl_algobase.h:718:11: fel: expected primary-expression before ”const”
+       if (const size_t __len = __last - __first)
+           ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:718:11: fel: expected ”)” before ”const”
+/usr/include/c++/5.3.0/bits/stl_algobase.h:719:63: fel: ”__len” deklarerades inte i detta definitionsområde
+  __builtin_memset(__first, static_cast<unsigned char>(__tmp), __len);
+                                                               ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h: I statisk medlemsfunktion ”static bool std::__equal<true>::equal(const _Tp*, const _Tp*, const _Tp*)”:
+/usr/include/c++/5.3.0/bits/stl_algobase.h:825:8: fel: expected primary-expression before ”const”
+    if (const size_t __len = (__last1 - __first1))
+        ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:825:8: fel: expected ”)” before ”const”
+/usr/include/c++/5.3.0/bits/stl_algobase.h:826:65: fel: ”__len” deklarerades inte i detta definitionsområde
+      return !__builtin_memcmp(__first1, __first2, sizeof(_Tp) * __len);
+                                                                 ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h: I statisk medlemsfunktion ”static bool std::__lexicographical_compare<true>::__lc(const _Tp*, const _Tp*, const _Up*, const _Up*)”:
+/usr/include/c++/5.3.0/bits/stl_algobase.h:929:10: fel: ”size_t” är inte namnet på en typ
+    const size_t __len1 = __last1 - __first1;
+          ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:930:10: fel: ”size_t” är inte namnet på en typ
+    const size_t __len2 = __last2 - __first2;
+          ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:931:8: fel: expected primary-expression before ”const”
+    if (const size_t __len = std::min(__len1, __len2))
+        ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:931:8: fel: expected ”)” before ”const”
+/usr/include/c++/5.3.0/bits/stl_algobase.h:932:62: fel: ”__len” deklarerades inte i detta definitionsområde
+      if (int __result = __builtin_memcmp(__first1, __first2, __len))
+                                                              ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:934:11: fel: ”__len1” deklarerades inte i detta definitionsområde
+    return __len1 < __len2;
+           ^
+/usr/include/c++/5.3.0/bits/stl_algobase.h:934:20: fel: ”__len2” deklarerades inte i detta definitionsområde
+    return __len1 < __len2;
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/char_traits.h:40:0,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/postypes.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/postypes.h:98:11: fel: ”ptrdiff_t” är inte namnet på en typ
+   typedef ptrdiff_t streamsize; // Signed integral type
+           ^
+In file included from /usr/include/c++/5.3.0/string:40:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/char_traits.h:104:66: fel: ”std::size_t” har inte deklarerats
+       compare(const char_type* __s1, const char_type* __s2, std::size_t __n);
+                                                                  ^
+/usr/include/c++/5.3.0/bits/char_traits.h:106:19: fel: ”size_t” i namnrymden ”std” är inte namnet på en typ
+       static std::size_t
+                   ^
+/usr/include/c++/5.3.0/bits/char_traits.h:110:39: fel: ”std::size_t” har inte deklarerats
+       find(const char_type* __s, std::size_t __n, const char_type& __a);
+                                       ^
+/usr/include/c++/5.3.0/bits/char_traits.h:113:57: fel: ”std::size_t” har inte deklarerats
+       move(char_type* __s1, const char_type* __s2, std::size_t __n);
+                                                         ^
+/usr/include/c++/5.3.0/bits/char_traits.h:116:57: fel: ”std::size_t” har inte deklarerats
+       copy(char_type* __s1, const char_type* __s2, std::size_t __n);
+                                                         ^
+/usr/include/c++/5.3.0/bits/char_traits.h:119:35: fel: ”std::size_t” har inte deklarerats
+       assign(char_type* __s, std::size_t __n, char_type __a);
+                                   ^
+/usr/include/c++/5.3.0/bits/char_traits.h:145:64: fel: ”std::size_t” har inte deklarerats
+     compare(const char_type* __s1, const char_type* __s2, std::size_t __n)
+                                                                ^
+/usr/include/c++/5.3.0/bits/char_traits.h: I statisk medlemsfunktion ”static int __gnu_cxx::char_traits<_CharT>::compare(const char_type*, const char_type*, int)”:
+/usr/include/c++/5.3.0/bits/char_traits.h:147:12: fel: ”size_t” är inte en medlem av ”std”
+       for (std::size_t __i = 0; __i < __n; ++__i)
+            ^
+/usr/include/c++/5.3.0/bits/char_traits.h:147:12: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/string:40:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/char_traits.h:147:33: fel: ”__i” deklarerades inte i detta definitionsområde
+       for (std::size_t __i = 0; __i < __n; ++__i)
+                                 ^
+/usr/include/c++/5.3.0/bits/char_traits.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/char_traits.h:156:10: fel: ”size_t” i namnrymden ”std” är inte namnet på en typ
+     std::size_t
+          ^
+/usr/include/c++/5.3.0/bits/char_traits.h:169:37: fel: ”std::size_t” har inte deklarerats
+     find(const char_type* __s, std::size_t __n, const char_type& __a)
+                                     ^
+/usr/include/c++/5.3.0/bits/char_traits.h: I statisk medlemsfunktion ”static const char_type* __gnu_cxx::char_traits<_CharT>::find(const char_type*, int, const char_type&)”:
+/usr/include/c++/5.3.0/bits/char_traits.h:171:12: fel: ”size_t” är inte en medlem av ”std”
+       for (std::size_t __i = 0; __i < __n; ++__i)
+            ^
+/usr/include/c++/5.3.0/bits/char_traits.h:171:12: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/string:40:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/char_traits.h:171:33: fel: ”__i” deklarerades inte i detta definitionsområde
+       for (std::size_t __i = 0; __i < __n; ++__i)
+                                 ^
+/usr/include/c++/5.3.0/bits/char_traits.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/char_traits.h:180:55: fel: ”std::size_t” har inte deklarerats
+     move(char_type* __s1, const char_type* __s2, std::size_t __n)
+                                                       ^
+/usr/include/c++/5.3.0/bits/char_traits.h:189:55: fel: ”std::size_t” har inte deklarerats
+     copy(char_type* __s1, const char_type* __s2, std::size_t __n)
+                                                       ^
+/usr/include/c++/5.3.0/bits/char_traits.h:199:33: fel: ”std::size_t” har inte deklarerats
+     assign(char_type* __s, std::size_t __n, char_type __a)
+                                 ^
+In file included from /usr/include/c++/5.3.0/exception:162:0,
+                 from /usr/include/c++/5.3.0/new:40,
+                 from /usr/include/c++/5.3.0/ext/new_allocator.h:33,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/exception_ptr.h:95:30: fel: fältet ”nullptr_t” har den ofullständiga typen ”std::__exception_ptr::exception_ptr”
+       exception_ptr(nullptr_t) noexcept
+                              ^
+/usr/include/c++/5.3.0/bits/exception_ptr.h:75:11: anm: definitionen av ”class std::__exception_ptr::exception_ptr” är inte fullständig före den avlutande klammern
+     class exception_ptr
+           ^
+/usr/include/c++/5.3.0/bits/exception_ptr.h:95:30: fel: ”;” förväntades vid slutet av medlemsdeklaration
+       exception_ptr(nullptr_t) noexcept
+                              ^
+/usr/include/c++/5.3.0/bits/exception_ptr.h:95:32: fel: expected unqualified-id before ”noexcept”
+       exception_ptr(nullptr_t) noexcept
+                                ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:111:31: fel: deklaration av ”operator new” som en icke-funktion
+ void* operator new(std::size_t) _GLIBCXX_THROW (std::bad_alloc)
+                               ^
+/usr/include/c++/5.3.0/new:111:20: fel: ”size_t” är inte en medlem av ”std”
+ void* operator new(std::size_t) _GLIBCXX_THROW (std::bad_alloc)
+                    ^
+/usr/include/c++/5.3.0/new:111:20: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:113:33: fel: deklaration av ”operator new []” som en icke-funktion
+ void* operator new[](std::size_t) _GLIBCXX_THROW (std::bad_alloc)
+                                 ^
+/usr/include/c++/5.3.0/new:113:22: fel: ”size_t” är inte en medlem av ”std”
+ void* operator new[](std::size_t) _GLIBCXX_THROW (std::bad_alloc)
+                      ^
+/usr/include/c++/5.3.0/new:113:22: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:119:25: fel: deklaration av ”operator new” som en icke-funktion
+ void* operator new(std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                         ^
+/usr/include/c++/5.3.0/new:119:20: fel: ”size_t” är inte en medlem av ”std”
+ void* operator new(std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                    ^
+/usr/include/c++/5.3.0/new:119:20: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:119:33: fel: expected primary-expression before ”const”
+ void* operator new(std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                                 ^
+/usr/include/c++/5.3.0/new:121:27: fel: deklaration av ”operator new []” som en icke-funktion
+ void* operator new[](std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                           ^
+/usr/include/c++/5.3.0/new:121:22: fel: ”size_t” är inte en medlem av ”std”
+ void* operator new[](std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                      ^
+/usr/include/c++/5.3.0/new:121:22: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:121:35: fel: expected primary-expression before ”const”
+ void* operator new[](std::size_t, const std::nothrow_t&) _GLIBCXX_USE_NOEXCEPT
+                                   ^
+/usr/include/c++/5.3.0/new:129:32: fel: deklaration av ”operator new” som en icke-funktion
+ inline void* operator new(std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                                ^
+/usr/include/c++/5.3.0/new:129:27: fel: ”size_t” är inte en medlem av ”std”
+ inline void* operator new(std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                           ^
+/usr/include/c++/5.3.0/new:129:27: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:129:40: fel: expected primary-expression before ”void”
+ inline void* operator new(std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                                        ^
+/usr/include/c++/5.3.0/new:131:34: fel: deklaration av ”operator new []” som en icke-funktion
+ inline void* operator new[](std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                                  ^
+/usr/include/c++/5.3.0/new:131:29: fel: ”size_t” är inte en medlem av ”std”
+ inline void* operator new[](std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                             ^
+/usr/include/c++/5.3.0/new:131:29: anm: föreslaget alternativ:
+In file included from /usr/include/wchar.h:51:0,
+                 from /usr/include/c++/5.3.0/cwchar:44,
+                 from /usr/include/c++/5.3.0/bits/postypes.h:40,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:40,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include/stddef.h:216:23: anm:   ”size_t”
+ typedef __SIZE_TYPE__ size_t;
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/new_allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/new:131:42: fel: expected primary-expression before ”void”
+ inline void* operator new[](std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+                                          ^
+In file included from /usr/include/c++/5.3.0/x86_64-unknown-linux-gnu/bits/c++allocator.h:33:0,
+                 from /usr/include/c++/5.3.0/bits/allocator.h:46,
+                 from /usr/include/c++/5.3.0/string:41,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/new_allocator.h:44:14: fel: ”std::size_t” har inte deklarerats
+   using std::size_t;
+              ^
+/usr/include/c++/5.3.0/ext/new_allocator.h:45:14: fel: ”std::ptrdiff_t” har inte deklarerats
+   using std::ptrdiff_t;
+              ^
+/usr/include/c++/5.3.0/ext/new_allocator.h:62:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t  difference_type;
+               ^
+In file included from /usr/include/c++/5.3.0/string:41:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/allocator.h:67:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t   difference_type;
+               ^
+/usr/include/c++/5.3.0/bits/allocator.h:96:15: fel: ”ptrdiff_t” är inte namnet på en typ
+       typedef ptrdiff_t  difference_type;
+               ^
+In file included from /usr/include/c++/5.3.0/string:44:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/ostream_insert.h:45:26: fel: ”streamsize” har inte deklarerats
+       const _CharT* __s, streamsize __n)
+                          ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h: I funktion ”void std::__ostream_write(std::basic_ostream<_CharT, _Traits>&, const _CharT*, int)”:
+/usr/include/c++/5.3.0/bits/ostream_insert.h:50:13: fel: ”streamsize” är inte namnet på en typ
+       const streamsize __put = __out.rdbuf()->sputn(__s, __n);
+             ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h:51:11: fel: ”__put” deklarerades inte i detta definitionsområde
+       if (__put != __n)
+           ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/ostream_insert.h:57:59: fel: ”streamsize” har inte deklarerats
+     __ostream_fill(basic_ostream<_CharT, _Traits>& __out, streamsize __n)
+                                                           ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h:77:27: fel: ”streamsize” har inte deklarerats
+        const _CharT* __s, streamsize __n)
+                           ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h: I funktion ”std::basic_ostream<_CharT, _Traits>& std::__ostream_insert(std::basic_ostream<_CharT, _Traits>&, const _CharT*, int)”:
+/usr/include/c++/5.3.0/bits/ostream_insert.h:87:14: fel: ”streamsize” är inte namnet på en typ
+        const streamsize __w = __out.width();
+              ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h:88:12: fel: ”__w” deklarerades inte i detta definitionsområde
+        if (__w > __n)
+            ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/ostream_insert.h:118:68: fel: ”streamsize” har inte deklarerats
+   extern template ostream& __ostream_insert(ostream&, const char*, streamsize);
+                                                                    ^
+/usr/include/c++/5.3.0/bits/ostream_insert.h:122:11: fel: ”streamsize” har inte deklarerats
+           streamsize);
+           ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:55:51: fel: ”std::size_t” har inte deklarerats
+     const char* __name, const _CharT* __str, std::size_t* __idx,
+                                                   ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:48: fel: ”std::size_t” har inte deklarerats
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+                                                ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:84:31: fel: ”std::size_t” har inte deklarerats
+      __builtin_va_list), std::size_t __n,
+                               ^
+In file included from /usr/include/c++/5.3.0/ext/alloc_traits.h:36:0,
+                 from /usr/include/c++/5.3.0/bits/basic_string.h:40,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5259:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”struct std::pointer_traits<char*>”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char> >::_S_difference_type_helper(std::allocator<char>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5259:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5259:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char> >::_S_difference_type_helper(std::allocator<char>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5259:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char>”
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”int std::__cxx11::stoi(const string&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5260:19: fel: ingen funktion som stämmer för anrop av ”__stoa(long int (*)(const char*, char**, int) throw (), const char [5], const char*, size_t*&, int&)”
+      __idx, __base); }
+                   ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5260:19: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+      __idx, __base); }
+                   ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long int std::__cxx11::stol(const string&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5265:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long int (*)(const char*, char**, int) throw (), const char [5], const char*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5265:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long unsigned int std::__cxx11::stoul(const string&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5270:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long unsigned int (*)(const char*, char**, int) throw (), const char [6], const char*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5270:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long long int std::__cxx11::stoll(const string&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5275:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long long int (*)(const char*, char**, int) throw (), const char [6], const char*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5275:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long long unsigned int std::__cxx11::stoull(const string&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5280:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long long unsigned int (*)(const char*, char**, int) throw (), const char [7], const char*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5280:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”float std::__cxx11::stof(const string&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5285:72: fel: ingen funktion som stämmer för anrop av ”__stoa(float (*)(const char*, char**) throw (), const char [5], const char*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::strtof, "stof", __str.c_str(), __idx); }
+                                                                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5285:72: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::strtof, "stof", __str.c_str(), __idx); }
+                                                                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”double std::__cxx11::stod(const string&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5289:72: fel: ingen funktion som stämmer för anrop av ”__stoa(double (*)(const char*, char**) throw (), const char [5], const char*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::strtod, "stod", __str.c_str(), __idx); }
+                                                                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5289:72: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::strtod, "stod", __str.c_str(), __idx); }
+                                                                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long double std::__cxx11::stold(const string&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5293:74: fel: ingen funktion som stämmer för anrop av ”__stoa(long double (*)(const char*, char**) throw (), const char [6], const char*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::strtold, "stold", __str.c_str(), __idx); }
+                                                                          ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5293:74: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::strtold, "stold", __str.c_str(), __idx); }
+                                                                          ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5301:20: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [3], int&)”
+         "%d", __val); }
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5301:20: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%d", __val); }
+                    ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5307:20: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [3], unsigned int&)”
+         "%u", __val); }
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5307:20: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%u", __val); }
+                    ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(long int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5312:21: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [4], long int&)”
+         "%ld", __val); }
+                     ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5312:21: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%ld", __val); }
+                     ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(long unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5318:21: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [4], long unsigned int&)”
+         "%lu", __val); }
+                     ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5318:21: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%lu", __val); }
+                     ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(long long int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5324:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [5], long long int&)”
+         "%lld", __val); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5324:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%lld", __val); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(long long unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5330:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), long unsigned int, const char [5], long long unsigned int&)”
+         "%llu", __val); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5330:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%llu", __val); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(float)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5338:20: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), const int&, const char [3], float&)”
+         "%f", __val);
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5338:20: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%f", __val);
+                    ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(double)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5347:20: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), const int&, const char [3], double&)”
+         "%f", __val);
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5347:20: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%f", __val);
+                    ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::string std::__cxx11::to_string(long double)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5356:21: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(char*, size_t, const char*, __va_list_tag*) throw (), const int&, const char [4], long double&)”
+         "%Lf", __val);
+                     ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5356:21: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+         "%Lf", __val);
+                     ^
+In file included from /usr/include/c++/5.3.0/ext/alloc_traits.h:36:0,
+                 from /usr/include/c++/5.3.0/bits/basic_string.h:40,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<wchar_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<wchar_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5362:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”struct std::pointer_traits<wchar_t*>”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<wchar_t> >::_S_difference_type_helper(std::allocator<wchar_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<wchar_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<wchar_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<wchar_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5362:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<wchar_t>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<wchar_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<wchar_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5362:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<wchar_t> >::_S_difference_type_helper(std::allocator<wchar_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<wchar_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<wchar_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<wchar_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<wchar_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5362:68:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<wchar_t>”
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”int std::__cxx11::stoi(const wstring&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5363:19: fel: ingen funktion som stämmer för anrop av ”__stoa(long int (*)(const wchar_t*, wchar_t**, int) throw (), const char [5], const wchar_t*, size_t*&, int&)”
+      __idx, __base); }
+                   ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5363:19: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+      __idx, __base); }
+                   ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long int std::__cxx11::stol(const wstring&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5368:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long int (*)(const wchar_t*, wchar_t**, int) throw (), const char [5], const wchar_t*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5368:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long unsigned int std::__cxx11::stoul(const wstring&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5373:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long unsigned int (*)(const wchar_t*, wchar_t**, int) throw (), const char [6], const wchar_t*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5373:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long long int std::__cxx11::stoll(const wstring&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5378:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long long int (*)(const wchar_t*, wchar_t**, int) throw (), const char [6], const wchar_t*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5378:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long long unsigned int std::__cxx11::stoull(const wstring&, size_t*, int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5383:22: fel: ingen funktion som stämmer för anrop av ”__stoa(long long unsigned int (*)(const wchar_t*, wchar_t**, int) throw (), const char [7], const wchar_t*, size_t*&, int&)”
+         __idx, __base); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5383:22: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+         __idx, __base); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”float std::__cxx11::stof(const wstring&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5388:72: fel: ingen funktion som stämmer för anrop av ”__stoa(float (*)(const wchar_t*, wchar_t**) throw (), const char [5], const wchar_t*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::wcstof, "stof", __str.c_str(), __idx); }
+                                                                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5388:72: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::wcstof, "stof", __str.c_str(), __idx); }
+                                                                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”double std::__cxx11::stod(const wstring&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5392:72: fel: ingen funktion som stämmer för anrop av ”__stoa(double (*)(const wchar_t*, wchar_t**) throw (), const char [5], const wchar_t*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::wcstod, "stod", __str.c_str(), __idx); }
+                                                                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5392:72: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::wcstod, "stod", __str.c_str(), __idx); }
+                                                                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”long double std::__cxx11::stold(const wstring&, size_t*)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5396:74: fel: ingen funktion som stämmer för anrop av ”__stoa(long double (*)(const wchar_t*, wchar_t**) throw (), const char [6], const wchar_t*, size_t*&)”
+   { return __gnu_cxx::__stoa(&std::wcstold, "stold", __str.c_str(), __idx); }
+                                                                          ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm: candidate: template<class _TRet, class _Ret, class _CharT, class ... _Base> _Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT*, _CharT**, _Base ...), const char*, const _CharT*, int*, _Base ...)
+     __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:54:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5396:74: anm:   kan inte konvertera ”__idx” (typen ”size_t* {aka long unsigned int*}”) till typ ”int*”
+   { return __gnu_cxx::__stoa(&std::wcstold, "stold", __str.c_str(), __idx); }
+                                                                          ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5403:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [3], int&)”
+          L"%d", __val); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5403:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%d", __val); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5409:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [3], unsigned int&)”
+          L"%u", __val); }
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5409:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%u", __val); }
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(long int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5414:23: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [4], long int&)”
+          L"%ld", __val); }
+                       ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5414:23: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%ld", __val); }
+                       ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(long unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5420:23: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [4], long unsigned int&)”
+          L"%lu", __val); }
+                       ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5420:23: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%lu", __val); }
+                       ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(long long int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5426:24: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [5], long long int&)”
+          L"%lld", __val); }
+                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5426:24: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%lld", __val); }
+                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(long long unsigned int)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5432:24: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), long unsigned int, const wchar_t [5], long long unsigned int&)”
+          L"%llu", __val); }
+                        ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5432:24: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%llu", __val); }
+                        ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(float)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5440:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), const int&, const wchar_t [3], float&)”
+          L"%f", __val);
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5440:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%f", __val);
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(double)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5449:22: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), const int&, const wchar_t [3], double&)”
+          L"%f", __val);
+                      ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5449:22: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%f", __val);
+                      ^
+/usr/include/c++/5.3.0/bits/basic_string.h: I funktion ”std::__cxx11::wstring std::__cxx11::to_wstring(long double)”:
+/usr/include/c++/5.3.0/bits/basic_string.h:5458:23: fel: ingen funktion som stämmer för anrop av ”__to_xstring(int (*)(wchar_t*, size_t, const wchar_t*, __va_list_tag*) throw (), const int&, const wchar_t [4], long double&)”
+          L"%Lf", __val);
+                       ^
+In file included from /usr/include/c++/5.3.0/bits/basic_string.h:5249:0,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm: candidate: template<class _String, class _CharT> _String __gnu_cxx::__to_xstring(int (*)(_CharT*, int, const _CharT*, __va_list_tag*), int, const _CharT*, ...)
+     __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+     ^
+/usr/include/c++/5.3.0/ext/string_conversions.h:83:5: anm:   mallargumentshärledning/-substitution misslyckades:
+In file included from /usr/include/c++/5.3.0/string:52:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.h:5458:23: anm:   typerna ”int” och ”size_t {aka long unsigned int}” stämmer inte överens
+          L"%Lf", __val);
+                       ^
+In file included from /usr/include/c++/5.3.0/ext/alloc_traits.h:36:0,
+                 from /usr/include/c++/5.3.0/bits/basic_string.h:40,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char16_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char16_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5520:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”struct std::pointer_traits<char16_t*>”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char16_t> >::_S_difference_type_helper(std::allocator<char16_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char16_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char16_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char16_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5520:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char16_t>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char16_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char16_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5520:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char16_t> >::_S_difference_type_helper(std::allocator<char16_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char16_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char16_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char16_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char16_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5520:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char16_t>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char32_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char32_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5535:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”struct std::pointer_traits<char32_t*>”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char32_t> >::_S_difference_type_helper(std::allocator<char32_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char32_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char32_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char32_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5535:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char32_t>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<char32_t> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char32_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5535:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<char32_t> >::_S_difference_type_helper(std::allocator<char32_t>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<char32_t>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<char32_t>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<char32_t> >”
+/usr/include/c++/5.3.0/bits/basic_string.h:74:24:   begärs från ”class std::__cxx11::basic_string<char32_t>”
+/usr/include/c++/5.3.0/bits/basic_string.h:5535:41:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<char32_t>”
+In file included from /usr/include/c++/5.3.0/string:53:0,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/basic_string.tcc: I funktion ”std::basic_istream<_CharT, _Traits>& std::operator>>(std::basic_istream<_CharT, _Traits>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)”:
+/usr/include/c++/5.3.0/bits/basic_string.tcc:1463:14: fel: ”streamsize” är inte namnet på en typ
+        const streamsize __w = __in.width();
+              ^
+/usr/include/c++/5.3.0/bits/basic_string.tcc:1464:32: fel: ”__w” deklarerades inte i detta definitionsområde
+        const __size_type __n = __w > 0 ? static_cast<__size_type>(__w)
+                                ^
+In file included from /usr/include/c++/5.3.0/vector:65:0,
+                 from src/game.h:3,
+                 from src/feature_ai.cpp:4:
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:137:63: fel: mallargument 3 är ogiltigt
+   : public std::iterator<std::random_access_iterator_tag, bool>
+                                                               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I medlemsfunktion ”void std::_Bit_iterator_base::_M_incr(ptrdiff_t)”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:168:7: fel: ”difference_type” deklarerades inte i detta definitionsområde
+       difference_type __n = __i + _M_offset;
+       ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:169:15: fel: ”__n” deklarerades inte i detta definitionsområde
+       _M_p += __n / int(_S_word_bit);
+               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:264:16: fel: deklaration av ”operator+=” som en icke-funktion
+     operator+=(difference_type __i)
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:264:13: fel: ”;” förväntades vid slutet av medlemsdeklaration
+     operator+=(difference_type __i)
+             ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:264:32: fel: expected ”)” before ”__i”
+     operator+=(difference_type __i)
+                                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:271:16: fel: deklaration av ”operator-=” som en icke-funktion
+     operator-=(difference_type __i)
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:271:13: fel: ”;” förväntades vid slutet av medlemsdeklaration
+     operator-=(difference_type __i)
+             ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:271:32: fel: expected ”)” before ”__i”
+     operator-=(difference_type __i)
+                                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:278:15: fel: ”difference_type” har inte deklarerats
+     operator+(difference_type __i) const
+               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:285:15: fel: ”difference_type” har inte deklarerats
+     operator-(difference_type __i) const
+               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:292:16: fel: ”difference_type” har inte deklarerats
+     operator[](difference_type __i) const
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I medlemsfunktion ”std::_Bit_iterator::iterator std::_Bit_iterator::operator+(int) const”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:281:20: fel: no match for ”operator+=” (operand types are ”std::_Bit_iterator::iterator {aka std::_Bit_iterator}” and ”int”)
+       return __tmp += __i;
+                    ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I medlemsfunktion ”std::_Bit_iterator::iterator std::_Bit_iterator::operator-(int) const”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:288:20: fel: no match for ”operator-=” (operand types are ”std::_Bit_iterator::iterator {aka std::_Bit_iterator}” and ”int”)
+       return __tmp -= __i;
+                    ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I global räckvidd:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:354:16: fel: deklaration av ”operator+=” som en icke-funktion
+     operator+=(difference_type __i)
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:354:13: fel: ”;” förväntades vid slutet av medlemsdeklaration
+     operator+=(difference_type __i)
+             ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:354:32: fel: expected ”)” before ”__i”
+     operator+=(difference_type __i)
+                                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:361:16: fel: deklaration av ”operator-=” som en icke-funktion
+     operator-=(difference_type __i)
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:361:13: fel: ”;” förväntades vid slutet av medlemsdeklaration
+     operator-=(difference_type __i)
+             ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:361:32: fel: expected ”)” before ”__i”
+     operator-=(difference_type __i)
+                                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:368:15: fel: ”difference_type” har inte deklarerats
+     operator+(difference_type __i) const
+               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:375:15: fel: ”difference_type” har inte deklarerats
+     operator-(difference_type __i) const
+               ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h:382:16: fel: ”difference_type” har inte deklarerats
+     operator[](difference_type __i) const
+                ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I medlemsfunktion ”std::_Bit_const_iterator::const_iterator std::_Bit_const_iterator::operator+(int) const”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:371:20: fel: no match for ”operator+=” (operand types are ”std::_Bit_const_iterator::const_iterator {aka std::_Bit_const_iterator}” and ”int”)
+       return __tmp += __i;
+                    ^
+/usr/include/c++/5.3.0/bits/stl_bvector.h: I medlemsfunktion ”std::_Bit_const_iterator::const_iterator std::_Bit_const_iterator::operator-(int) const”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:378:20: fel: no match for ”operator-=” (operand types are ”std::_Bit_const_iterator::const_iterator {aka std::_Bit_const_iterator}” and ”int”)
+       return __tmp -= __i;
+                    ^
+In file included from /usr/include/c++/5.3.0/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/5.3.0/bits/char_traits.h:39,
+                 from /usr/include/c++/5.3.0/string:40,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/stl_iterator.h: Vid instansiering av ”class std::reverse_iterator<std::_Bit_iterator>”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:796:5:   begärd härifrån
+/usr/include/c++/5.3.0/bits/stl_iterator.h:97:11: fel: ingen typ med namnet ”iterator_category” i ”struct std::iterator_traits<std::_Bit_iterator>”
+     class reverse_iterator
+           ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:111:55: fel: ingen typ med namnet ”difference_type” i ”struct std::iterator_traits<std::_Bit_iterator>”
+       typedef typename __traits_type::difference_type difference_type;
+                                                       ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:112:48: fel: ingen typ med namnet ”pointer” i ”struct std::iterator_traits<std::_Bit_iterator>”
+       typedef typename __traits_type::pointer  pointer;
+                                                ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:113:50: fel: ingen typ med namnet ”reference” i ”struct std::iterator_traits<std::_Bit_iterator>”
+       typedef typename __traits_type::reference  reference;
+                                                  ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h: Vid instansiering av ”class std::reverse_iterator<std::_Bit_const_iterator>”:
+/usr/include/c++/5.3.0/bits/stl_bvector.h:800:5:   begärd härifrån
+/usr/include/c++/5.3.0/bits/stl_iterator.h:97:11: fel: ingen typ med namnet ”iterator_category” i ”struct std::iterator_traits<std::_Bit_const_iterator>”
+     class reverse_iterator
+           ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:111:55: fel: ingen typ med namnet ”difference_type” i ”struct std::iterator_traits<std::_Bit_const_iterator>”
+       typedef typename __traits_type::difference_type difference_type;
+                                                       ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:112:48: fel: ingen typ med namnet ”pointer” i ”struct std::iterator_traits<std::_Bit_const_iterator>”
+       typedef typename __traits_type::pointer  pointer;
+                                                ^
+/usr/include/c++/5.3.0/bits/stl_iterator.h:113:50: fel: ingen typ med namnet ”reference” i ”struct std::iterator_traits<std::_Bit_const_iterator>”
+       typedef typename __traits_type::reference  reference;
+                                                  ^
+In file included from /usr/include/c++/5.3.0/ext/alloc_traits.h:36:0,
+                 from /usr/include/c++/5.3.0/bits/basic_string.h:40,
+                 from /usr/include/c++/5.3.0/string:52,
+                 from src/sdl_wrapper.h:3,
+                 from src/feature_ai.cpp:2:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<Actor*> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:75:28:   begärs från ”struct std::_Vector_base<Actor*, std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:214:11:   begärs från ”class std::vector<Actor*>”
+src/game.h:20:23:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”struct std::pointer_traits<Actor**>”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<Actor*> >::_S_difference_type_helper(std::allocator<Actor*>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<Actor*>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<Actor*>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:75:28:   begärs från ”struct std::_Vector_base<Actor*, std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:214:11:   begärs från ”class std::vector<Actor*>”
+src/game.h:20:23:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<Actor*>”
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid instansiering av ”struct std::allocator_traits<std::allocator<Actor*> >”:
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:75:28:   begärs från ”struct std::_Vector_base<Actor*, std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:214:11:   begärs från ”class std::vector<Actor*>”
+src/game.h:20:23:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen matchande funktion för anrop av ”std::allocator_traits<std::allocator<Actor*> >::_S_difference_type_helper(std::allocator<Actor*>*)”
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm: candidate: template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = _Tp; _Alloc = std::allocator<Actor*>]
+ _GLIBCXX_ALLOC_TR_NESTED_TYPE(difference_type,
+ ^
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: anm:   mallargumentshärledning/-substitution misslyckades:
+/usr/include/c++/5.3.0/bits/alloc_traits.h: Vid substituering av ”template<class _Tp> static typename _Tp::difference_type std::allocator_traits<_Alloc>::_S_difference_type_helper(_Tp*) [with _Tp = std::allocator<Actor*>]”:
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1:   begärs från ”struct std::allocator_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/ext/alloc_traits.h:95:10:   begärs från ”struct __gnu_cxx::__alloc_traits<std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:75:28:   begärs från ”struct std::_Vector_base<Actor*, std::allocator<Actor*> >”
+/usr/include/c++/5.3.0/bits/stl_vector.h:214:11:   begärs från ”class std::vector<Actor*>”
+src/game.h:20:23:   begärd härifrån
+/usr/include/c++/5.3.0/bits/alloc_traits.h:140:1: fel: ingen typ med namnet ”difference_type” i ”class std::allocator<Actor*>”
+Makefile:10: receptet för målet ”rop” misslyckades
+make: *** [rop] Fel 1

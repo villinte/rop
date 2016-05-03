@@ -1,10 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
-#include <string>
-#include <iostream>
 #include <vector>
-#include "sdl_wrapper.h"
 #include "map.h"
+class Actor;
+
+class PlayerAi;
+
 class Game{
 
  public:
@@ -16,13 +17,10 @@ class Game{
   
   bool isRunning;
 
-  
- private:
-
   Map map;
-  int x;
-  int y;
-  
+  std::vector<Actor*> actors;
+  Actor *player;
 };
+extern Game game;
 
 #endif
