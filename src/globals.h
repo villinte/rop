@@ -12,11 +12,6 @@ namespace globals {
   const int MAP_HEIGHT = SCREEN_WIDTH/TILE_H;
 }
 
-struct Pos{
-  int x;
-  int y;
-};
-
 struct cColor{
   short int r;
   short int g;

@@ -1,7 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 #include <vector>
+#include <deque>
 #include "map.h"
+#include "globals.h"
+
 class Actor;
 
 class PlayerAi;
@@ -16,10 +19,11 @@ class Game{
   void Update();
   
   bool isRunning;
+  
 
-  Map map;
-  std::vector<Actor*> actors;
+  std::deque<Actor*> actors;
   Actor *player;
+  
 };
 extern Game game;
 

@@ -79,8 +79,8 @@ void sdlEngine::renderChar(char c, int x, int y, cColor cC){
     srcRct.h = globals::FONT_H;
   }
   SDL_Rect dstRct;
-  dstRct.x = x;
-  dstRct.y = y;
+  dstRct.x = x*globals::FONT_W;
+  dstRct.y = y*globals::FONT_H;
   dstRct.w = globals::FONT_W;
   dstRct.h = globals::FONT_H;
   

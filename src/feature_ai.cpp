@@ -29,23 +29,25 @@ void PlayerAi::Input(Actor *a){
 	  game.isRunning = false;
 	  break;
 	case SDLK_RIGHT:
-	  dx = 16;
+	  dx = 1;
 	  break;	
 	case SDLK_LEFT:
-	  dx = -16;
+	  dx = -1;
 	  break;
 	case SDLK_UP:
-	  dy = -24;
+	  dy = -1;
 	  break;
 	case SDLK_DOWN:
-	  dy = 24;
+	  dy = 1;
 	  break;
 	}
       break;
     }
 
   if(dx != 0 || dy != 0){
-    Move(a, a->getX()+dx, a->getY()+dy);
+    if(Move(a, a->pos.x+dx, a->pos.y+dy)){
+      Map::computeFov();
+    }
   }
   
 }
@@ -55,7 +57,9 @@ void PlayerAi::Update(Actor *a) {
 }
 
 bool PlayerAi::Move(Actor *a, int targetX, int targetY){
-  a->setX(targetX);
-  a->setY(targetY);
-  return true;
+  if(!Map::cells[targetX][targetY].isBlocking && targetX < globals::MAP_WIDTH && targetY < globals::MAP_HEIGHT && targetX >= 0 && targetY >= 0){
+    a->pos.set(P(targetX, targetY));
+    return true;
+  }
+  return false;
 }

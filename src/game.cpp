@@ -7,15 +7,17 @@
 
 
 Game::Game(){
-  player = new Actor(16,24, "Player",'@', White);
+  player = new Actor(1,1, "Player",'@', White);
   player->ai = new PlayerAi();
   actors.push_back(player);
+  Map::cleanMap();
+  Map::createMap();
   
   isRunning = true;
 }
 
 Game::~Game(){
-  for (std::vector< Actor* >::iterator it = actors.begin() ; it != actors.end(); ++it){
+  for (std::deque< Actor* >::iterator it = actors.begin() ; it != actors.end(); ++it){
     delete (*it);
   } 
   actors.clear();
@@ -24,8 +26,7 @@ Game::~Game(){
 void Game::Render(){
   engine.clear();
   
-  map.Render();
-
+  Map::renderMap();
   player->Render();
   
   engine.flip();

@@ -1,21 +1,35 @@
 #ifndef MAP_H
 #define MAP_H
-#include <string>
-#include <vector>
-#include "object.h"
-class Map{
+#include "globals.h"
+#include "helper.h"
 
- public:
-  Map();
-  ~Map();
+struct Cell{
+  Cell();
+  ~Cell();
+  void Reset();
+  
+  P pos;
+  char _glyph;
+  cColor _color;
+  
+  bool isBlocking;
 
-  void Render();
-  void genMap();
-  
- private:
-  std::string mapStr;
-  std::vector<OBJ_TYPE> tileVector;
-  std::vector<int> mapVector;
-  
+  bool isExplored;
+  bool isSeen;
+  int playerLos;
 };
+namespace Map{
+  extern Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
+  
+  void createMap();
+  void cleanMap();
+  void clearVision();
+  void computeFov();
+  void doFov(float x, float y);
+  void renderMap();
+  
+  int spawnMonsters();
+  
+} //namespace Map
+
 #endif

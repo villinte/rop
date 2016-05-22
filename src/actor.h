@@ -2,7 +2,8 @@
 #define ACTOR_H
 #include <string>
 #include "globals.h"
-
+#include "helper.h"
+class P;
 class Ai;
 class Actor {
  public:
@@ -12,13 +13,8 @@ class Actor {
   void Update();
   void Render();
 
-  void setX(int x) { _x = x; }
-  void setY(int y) { _y = y; }
-  int getX() { return _x; }
-  int getY() { return _y; }
-
   Ai *ai;
-  
+  P pos;
  private:
   int _x;
   int _y;
