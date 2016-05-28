@@ -23,18 +23,17 @@ sdlEngine::~sdlEngine(){
   SDL_Quit();
 }
 
-void sdlEngine::printMsg(std::string str, int x, int y, int w){
-  int yD = y;
-  int xD = x;
+void sdlEngine::printMsg(std::string str, int x, int y, int w, cColor cC){
+  int tX = x, tY = y;
   int cnt = 0;
+  int maxW = w-x;
   for(unsigned int i = 0; i < str.length(); ++i){
-    renderChar(str.at(i), xD, yD,White);
-    xD = xD + 16;
-    ++cnt;
-    if(cnt == w){
-      xD = x;
-      yD = yD + 24;
-      cnt = 0;
+    renderChar(str.at(i), tX, tY, cC);
+    tX++;
+    cnt++;
+    if(cnt == maxW){
+      tX = x;
+      tY++;
     }
   }
 }
@@ -89,4 +88,46 @@ void sdlEngine::renderChar(char c, int x, int y, cColor cC){
   SDL_RenderFillRect(_renderer, &rect);
   SDL_RenderCopy(_renderer, _texture, &srcRct, &dstRct);
 
+}
+
+void sdlEngine::DrawLine(P p1, P p2, cColor cC){
+  SDL_SetRenderDrawColor(_renderer, cC.r, cC.g, cC.b, 255);
+  SDL_RenderDrawLine(_renderer, p1.x, p1.y, p2.x, p2.y);
+}
+
+Keys sdlEngine::Input(){
+
+  SDL_Event event;
+  SDL_WaitEvent(&event);
+  switch(event.type)
+    {
+    case SDL_QUIT:
+      return E_QUIT;
+      break;
+    case SDL_KEYDOWN:
+      switch(event.key.keysym.sym)
+	{
+	case SDLK_q:
+	  return K_q;
+	  break;
+	case SDLK_RIGHT:
+	  return K_RIGHT;
+	  break;	
+	case SDLK_LEFT:
+	  return K_LEFT;
+	  break;
+	case SDLK_UP:
+	  return K_UP;
+	  break;
+	case SDLK_DOWN:
+	  return K_DOWN;
+	  break;
+	case SDLK_c:
+	  return K_c;
+	  break;
+	}
+      break;
+    }
+
+  return K_UNKNOWN;
 }

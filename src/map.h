@@ -17,6 +17,7 @@ struct Cell{
   bool isExplored;
   bool isSeen;
   int playerLos;
+
 };
 namespace Map{
   extern Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
@@ -29,6 +30,11 @@ namespace Map{
   void renderMap();
   
   int spawnMonsters();
+
+  
+  // map interaction
+  void openDoor(P pos);
+  void closeDoor(P pos);
   
 } //namespace Map
 

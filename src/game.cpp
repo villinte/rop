@@ -4,7 +4,7 @@
 #include "actor.h"
 #include "feature_ai.h"
 #include "map.h"
-
+#include "gui.h"
 
 Game::Game(){
   player = new Actor(1,1, "Player",'@', White);
@@ -12,7 +12,8 @@ Game::Game(){
   actors.push_back(player);
   Map::cleanMap();
   Map::createMap();
-  
+  Gui::LogMsg("hej");
+
   isRunning = true;
 }
 
@@ -28,7 +29,7 @@ void Game::Render(){
   
   Map::renderMap();
   player->Render();
-  
+  Gui::RenderGui();
   engine.flip();
 }
 
