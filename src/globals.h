@@ -5,7 +5,9 @@ namespace globals {
   const int TILE_W = 16;
   const int TILE_H = 24;
   const int FONT_W = 16;
-  const int FONT_H = 24;
+  const int FONT_H = 16;
+  const int GLYPH_W = 16;
+  const int GLYPH_H = 24;
   const int SCREEN_WIDTH = 1280;
   const int SCREEN_HEIGHT = 720;
   const int MAP_WIDTH = 80;

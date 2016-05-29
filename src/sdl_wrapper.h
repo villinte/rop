@@ -6,7 +6,7 @@
 #include <SDL2/SDL_image.h>
 #include "helper.h"
 
-
+// K - keys,  E - events
 enum Keys{
   K_UP, K_DOWN, K_LEFT, K_RIGHT,
   K_a,K_b,K_c,K_d,K_e,K_f,K_g,K_h,K_i,K_j,K_k,K_l,K_m,K_n,K_o,K_p,K_q,
@@ -24,6 +24,7 @@ class sdlEngine{
 
   void printMsg(std::string str, int x, int y, int w, cColor cC);
   void renderChar(char c, int x, int y, cColor cC);
+  void renderGlyph(char c, int x, int y, cColor cC);
   void DrawLine(P p1, P p2, cColor cC);
   Keys Input();
   void clear(){
@@ -35,7 +36,7 @@ class sdlEngine{
  private:
   SDL_Window* _window;
   SDL_Renderer* _renderer;
-  SDL_Surface* _font;
+  SDL_Texture* _font;
   SDL_Texture* _texture;
   
 };

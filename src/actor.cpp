@@ -14,7 +14,7 @@ Actor::~Actor(){
 }
 
 void Actor::Render(){
-  engine.renderChar(_glyph, pos.x, pos.y, _color);
+  engine.renderGlyph(_glyph, pos.x, pos.y, _color);
 }
 
 void Actor::Update(){

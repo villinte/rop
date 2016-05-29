@@ -4,6 +4,7 @@
 #include "game.h"
 #include "actor.h"
 #include <cmath>
+#include "gui.h"
 
 Cell::Cell(){
   pos = P(-1,-1);
@@ -34,7 +35,7 @@ namespace Map{
   void createMap(){
     std::string str =
       "1###############################################################################;"
-      "########################......@..............###################################;"
+      "########################.....................###################################;"
       "#############################................###################################;"
       "####################################.........###################################;"
       "###########################..................###################################;"
@@ -204,7 +205,7 @@ namespace Map{
 	  temp.g = cells[x][y]._color.g/4;
 	  temp.b = cells[x][y]._color.b/4;
 	}
-	engine.renderChar(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
+	engine.renderGlyph(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
       }
     }
 
@@ -223,26 +224,46 @@ namespace Map{
   }
 
   void closeDoor(P pos){
-    // south
-    if(cells[pos.x][pos.y+1]._glyph == '/'){
-      cells[pos.x][pos.y+1]._glyph = '+';
-      cells[pos.x][pos.y+1].isBlocking = true;
+    Gui::AddCmdMsg("Which direction?");
+    Gui::RenderGui();
+    Keys dir = K_UNKNOWN;
+    while(dir == K_UNKNOWN){
+      dir = engine.Input();
+      if(dir == K_DOWN){
+	// south
+	if(cells[pos.x][pos.y+1]._glyph == '/'){
+	  cells[pos.x][pos.y+1]._glyph = '+';
+	  cells[pos.x][pos.y+1].isBlocking = true;
+	}
+      }
+      else if(dir == K_UP){
+	// North
+	if(cells[pos.x][pos.y-1]._glyph == '/'){
+	  cells[pos.x][pos.y-1]._glyph = '+';
+	  cells[pos.x][pos.y-1].isBlocking = true;
+	}
+      }
+      else if(dir == K_RIGHT){
+	// east
+	if(cells[pos.x+1][pos.y]._glyph == '/'){
+	  cells[pos.x+1][pos.y]._glyph = '+';
+	  cells[pos.x+1][pos.y].isBlocking = true;
+	}
+      }
+      else if(dir == K_LEFT){
+	// west
+	if(cells[pos.x-1][pos.y]._glyph == '/'){
+	  cells[pos.x-1][pos.y]._glyph = '+';
+	  cells[pos.x-1][pos.y].isBlocking = true;
+	}
+      }
+      else{
+	dir = K_UNKNOWN;
+      }
     }
-    // North
-    else if(cells[pos.x][pos.y-1]._glyph == '/'){
-      cells[pos.x][pos.y-1]._glyph = '+';
-      cells[pos.x][pos.y-1].isBlocking = true;
-    }
-    // east
-    else if(cells[pos.x+1][pos.y]._glyph == '/'){
-      cells[pos.x+1][pos.y]._glyph = '+';
-      cells[pos.x+1][pos.y].isBlocking = true;
-    }
-    // west
-    else if(cells[pos.x-1][pos.y]._glyph == '/'){
-      cells[pos.x-1][pos.y]._glyph = '+';
-      cells[pos.x-1][pos.y].isBlocking = true;
-    }
+    Gui::ClearCmdMsg();
+
+
   }
   
 } //namespace Map
