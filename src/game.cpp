@@ -19,7 +19,7 @@ namespace Game{
     std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
     player = std::move(pEntity);
     
-    std::unique_ptr<Ai> pAi(new PlayerAi());
+    std::unique_ptr<Ai> pAi(new PlayerAi(10));
     player->ai = std::move(pAi);
     
     Map::cleanMap();
@@ -72,14 +72,30 @@ namespace Game{
 
   }
   
-  void Tick(){
-    player->Update();
-
+  void Tick(){  
+    
+    //if(player->ai->energy >= 10){
+      player->Update();
+      //}
+    
     for(auto& a : actors){
-      a->Update();
+      if(a->ai){
+	if(a->ai->energy >= 10){
+	  a->Update();
+	}
+      }
     }
   }
 
+  void newTurn(){
+    // New Turn, add more energy to each actor
+    player->ai->newTurn();
+    for(auto& a : actors){
+      if(a->ai)
+	a->ai->newTurn();
+    }
+  }
+  
   void menuState(){
 
   }

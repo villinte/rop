@@ -7,8 +7,9 @@
 #include "f_mortal.h"
 
 
-PlayerAi::PlayerAi(){
-
+PlayerAi::PlayerAi(int speed) {
+  this->speed = speed;
+  this->energy = 10;
 }
 
 PlayerAi::~PlayerAi(){
@@ -48,7 +49,7 @@ void PlayerAi::Input(Entity *a){
 
   if(dx != 0 || dy != 0){
     if(Move(a, P(a->pos.x+dx, a->pos.y+dy))){
-   
+      Game::newTurn();
     }
   }   
 }
@@ -57,6 +58,7 @@ void PlayerAi::Act(Entity *a) {
   Input(a);
   Map::computeFov();
   // end of turn
+  energy -= 10;
 }
 
 bool PlayerAi::Move(Entity *a, P p){
@@ -74,9 +76,13 @@ bool PlayerAi::Move(Entity *a, P p){
   return false;
 }
 
+void PlayerAi::newTurn(){
+  energy += speed;
+}
 
-MonsterAi::MonsterAi() {
-
+MonsterAi::MonsterAi(int speed){
+  this->energy = 0;
+  this->speed = speed;
 }
 
 void MonsterAi::Act(Entity *a) {
@@ -88,11 +94,12 @@ void MonsterAi::Act(Entity *a) {
   // If player is in field of view
   if(Map::cells[a->pos.x][a->pos.y].isSeen){
     //attack or move
-      
+    
   }
   else{ // wander
     Wander(a);
   }
+  energy -= 10;
 }
 
 void MonsterAi::Wander(Entity *a){
@@ -126,3 +133,11 @@ void MonsterAi::Move(Entity *a, P p) {
   }
   
 }
+
+void MonsterAi::newTurn(){
+  energy += speed;
+}
+
+					
+
+				       

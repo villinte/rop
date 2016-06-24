@@ -106,7 +106,7 @@ namespace Map{
 	else if(str.at(i) == 'L'){
 	  std::unique_ptr<Entity> horribleMonster(new Entity(P(x,y), "Munster", str.at(i), Pink));
 
-	  std::unique_ptr<Ai> mAi(new MonsterAi());
+	  std::unique_ptr<Ai> mAi(new MonsterAi(5));
 	  horribleMonster->ai = std::move(mAi);
 	  
 	  std::unique_ptr<Mortal> mMortal(new MonsterMortal(10, 1, "Human Corpse", 10));

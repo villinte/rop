@@ -29,6 +29,8 @@ namespace Game{
   
   void Tick();
 
+  void newTurn();
+
   void menuState();
   
 }

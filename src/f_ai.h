@@ -14,13 +14,18 @@ class Ai{
  public:
   virtual void Act(Entity *a) = 0;
   virtual ~Ai() {}
+  virtual void newTurn() = 0;
+  int energy;
+  int speed;
  protected:
 };
 
 class MonsterAi : public Ai {
  public:
-  MonsterAi();
+  MonsterAi(int speed);
+  
   void Act(Entity *a);
+  void newTurn();
  protected:
   void Wander(Entity *a);
   void Move(Entity *a, P p);
@@ -29,9 +34,10 @@ class MonsterAi : public Ai {
 class PlayerAi : public Ai{
  public:
   int Level;
-  PlayerAi();
+  PlayerAi(int speed);
   ~PlayerAi();
-
+  
+  void newTurn();
   void Act(Entity *a);
  protected:
   void Input(Entity *a);
