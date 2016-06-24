@@ -1,30 +1,34 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include <vector>
-#include <deque>
-#include "map.h"
-#include "globals.h"
+#include <memory>
 
-class Actor;
+class sdlEngine;
+class Entity;
+class Ai;
 
-class PlayerAi;
+namespace Game{
+  
+  extern bool isRunning;
+  extern sdlEngine sdl;
 
-class Game{
-
- public:
-  Game();
-  ~Game();
+  extern std::unique_ptr<Entity> player;
+  void Init();
+  
+  // -- Handles player creation etc.
+  void runStartMenu();   
+  
+  void runGame();
 
   void Render();
-  void Update();
   
-  bool isRunning;
+  void Input();
   
+  void Tick();
 
-  std::deque<Actor*> actors;
-  Actor *player;
+  void menuState();
   
-};
-extern Game game;
+}
 
 #endif

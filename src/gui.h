@@ -3,19 +3,21 @@
 #include <string>
 #include <vector>
 
+
 namespace Gui{
 
   extern std::vector<std::string > msgLog;
   extern std::string cmdStr;
 
   void AddCmdMsg(std::string str);
+  void AddCmdMsg(std::string str1, std::string str2);
   void ClearCmdMsg();
   
   void LogMsg(std::string str);
   
   void RenderGui();
   
-};
+}
 
 
 #endif

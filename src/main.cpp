@@ -1,14 +1,11 @@
 #include "game.h"
-#include "sdl_wrapper.h"
-sdlEngine engine;
-Game game;
 
-int main(int argc, char* argv[]){
+int main(){
   
-  while(game.isRunning){
-    game.Render();
-    game.Update();    
-  }  
-  
-  return 0;
+  Game::Init();
+
+  Game::runStartMenu();
+
+  Game::runGame();
+
 }

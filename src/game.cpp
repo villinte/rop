@@ -1,38 +1,79 @@
 #include "game.h"
-#include <iostream>
+#include "globals.h"
 #include "sdl_wrapper.h"
-#include "actor.h"
-#include "feature_ai.h"
+#include "entity.h"
 #include "map.h"
+#include "f_ai.h"
+#include "f_mortal.h"
 #include "gui.h"
 
-Game::Game(){
-  player = new Actor(1,1, "Player",'@', White);
-  player->ai = new PlayerAi();
-  actors.push_back(player);
-  Map::cleanMap();
-  Map::createMap();
-  Gui::LogMsg("hej");
+namespace Game{
 
-  isRunning = true;
-}
+  bool isRunning = false;
+  sdlEngine sdl;
 
-Game::~Game(){
-  for (std::deque< Actor* >::iterator it = actors.begin() ; it != actors.end(); ++it){
-    delete (*it);
-  } 
-  actors.clear();
-}
-
-void Game::Render(){
-  engine.clear();
+  std::unique_ptr<Entity> player = nullptr;
   
-  Map::renderMap();
-  player->Render();
-  Gui::RenderGui();
-  engine.flip();
-}
+  void Init(){
+    // Init player + player components
+    std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
+    player = std::move(pEntity);
+    
+    std::unique_ptr<Ai> pAi(new PlayerAi());
+    player->ai = std::move(pAi);
 
-void Game::Update(){
-  player->Update();
+    
+    Map::cleanMap();
+    Map::createMap();
+    
+    isRunning = true;
+  }
+
+  void runStartMenu(){
+    // Do important stuff here.
+  }
+
+  void runGame(){
+    
+    while(isRunning){
+      /* Handle Rendering
+	 renderMap
+	 renderGui
+	 renderMonsters
+	 renderPlayer	 
+      */
+      Render();
+           
+      
+      /* Handle Game Logic
+	 handleFov
+	 handleCollisions
+	 handleCombat
+      */
+      Tick();
+    }
+    
+  }
+
+  void Render(){
+    sdl.clear();
+    Map::renderMap();
+
+    player->Render();
+    Gui::RenderGui();
+    sdl.flip();
+  }
+
+  void Input(){
+
+  }
+  
+  void Tick(){
+    player->Update();
+  }
+
+  void menuState(){
+
+  }
+  
 }

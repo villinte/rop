@@ -1,37 +1,69 @@
 #include "map.h"
+#include "entity.h"
 #include "sdl_wrapper.h"
-#include <iostream>
-#include "game.h"
-#include "actor.h"
-#include <cmath>
 #include "gui.h"
 
 Cell::Cell(){
   pos = P(-1,-1);
   _glyph = ' ';
+  _description = " ";
   _color = White;
-  isBlocking = false;
+  _block = false;
   isExplored = false;
   isSeen = false;
-  playerLos = false;
+  lightLevel = 0;  
 }
 
 Cell::~Cell(){
-
 }
 
 void Cell::Reset(){
   pos.set(-1,-1);
   _glyph = ' ';
-  isBlocking = false;
+  _description = " ";
+  _block = false;
   isExplored = false;
   isSeen = false;
-  playerLos = false;
+  lightLevel = 0;
 }
 
+void Cell::Replace(Cell c){
+  this->pos = c.pos;
+  this->_glyph = c._glyph;
+  this->_description = c._description;
+  this->_block = c._block;
+  this->isExplored = c.isExplored;
+  this->isSeen = c.isSeen;
+  this->lightLevel = c.lightLevel;
+  this->_color = c._color;
+}
+
+Door::Door(bool open){
+  _open = open;
+  pos = P(-1,-1);
+  if(!_open){
+    _glyph = '+';
+    _block = true;
+  }
+  else{
+    _glyph = '/';
+    _block = false;
+  }
+  _color = Brown;
+  isExplored = false;
+  isSeen = false;
+  lightLevel = 0;
+}
+
+Door::~Door(){
+}
+
+
+
 namespace Map{
-  Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
   
+  Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
+
   void createMap(){
     std::string str =
       "1###############################################################################;"
@@ -42,17 +74,17 @@ namespace Map{
       "###################################................#############################;"
       "##################################.................#############################;"
       "#####################..............................#############################;"
-      "#.........................................................######################;"
-      "#######...................................................######################;"
-      "#######..................................@................######################;"
-      "#######...................................................######################;"
+      "#.....................................######..............######################;"
+      "#######...............................#....#..............######################;"
+      "#######...............................#..@.#..............######################;"
+      "#######...............................##+###..............######################;"
       "#######........................................................................#;"
-      "##################/#############................############################.###;"
+      "##################+#############................############################.###;"
       "#################..############................#############################.###;"
       "################..#############................#############################.###;"
       "################.########################+##################################.###;"
-      "##############...####################.........................................##;"
-      "#########......#..###################.......####################################;"
+      "##############..L####################.........................................##;"
+      "#########......#..###################..L....####################################;"
       "###########.......###################.......####################################;"
       "########################################.#######################################;"
       "########################################.#######################################;";
@@ -65,24 +97,41 @@ namespace Map{
 	cells[x][y]._color = Black; // temp;
 
 	if(str.at(i) == '@'){
-	  game.player->pos = P(x,y); // set player position
+	  Game::player->pos = P(x,y); // set player position
 	  cells[x][y]._glyph = '.';
+	  cells[x][y]._description = "Floor";
+	}
+	else if(str.at(i) == 'L'){
+	  /*
+	    Actor *liv = new Actor(x,y, "Liv", str.at(i), Pink, 5);
+	    liv->ai = new MonsterAi();
+	    liv->destructible = new MonsterDestructible(10, 1, "Human Corpse", 10);
+	    liv->attacker = new Attacker(5);
+	    game.actors.push_back(liv);
+	  */
+	  cells[x][y]._glyph = '.';
+	  cells[x][y]._description = "Floor";
 	}
 	else{
 	  cells[x][y]._glyph = str.at(i);
 	}
 	
 	if(str.at(i) == '+'){
-	  cells[x][y]._color = Brown;
-	  cells[x][y].isBlocking = true;
+	  Door temp(false);
+	  temp.pos.set(x,y);
+	  temp._description = "Door";
+	  cells[x][y].Replace(temp);
 	}
 	if(str.at(i) == '/'){
-	  cells[x][y]._color = Brown;
-	  cells[x][y].isBlocking = false;
+	  Door temp(true);
+	  temp._description = "Door";
+	  temp.pos.set(x,y);
+	  cells[x][y].Replace(temp);
 	}
-
+	
 	if(str.at(i) == '#'){
-	  cells[x][y].isBlocking = true;
+	  cells[x][y]._block = true;
+	  cells[x][y]._description = "Wall";
 	}
 	x++;
       }
@@ -109,7 +158,8 @@ namespace Map{
   void clearVision(){
     for(int x = 0; x < globals::MAP_WIDTH; ++x){
       for(int y = 0; y < globals::MAP_HEIGHT; ++y){
-	cells[x][y].playerLos = 0;
+	cells[x][y].isSeen = false;
+	cells[x][y].lightLevel = 0;
       }
     }
   }
@@ -117,7 +167,7 @@ namespace Map{
   int VIEW_RADIUS_2 = 7;
   int VIEW_RADIUS_3 = 9;
   void computeFov(){
-    P p(game.player->pos.x, game.player->pos.y);
+    P p(Game::player->pos.x, Game::player->pos.y);
     float x = p.x;
     float y = p.y;
     int i;
@@ -132,13 +182,13 @@ namespace Map{
   void doFov(float x, float y){
     int i;
     float ox, oy;
-    ox = (float)game.player->pos.x+0.5f;
-    oy = (float)game.player->pos.y+0.5f;
+    ox = (float)Game::player->pos.x+0.5f;
+    oy = (float)Game::player->pos.y+0.5f;
     // radius 1
     for(i=0;i<VIEW_RADIUS_1;i++){
-      cells[(int)ox][(int)oy].playerLos = 1;
+      cells[(int)ox][(int)oy].lightLevel = 1;
       cells[(int)ox][(int)oy].isExplored = true;
-      if(cells[(int)ox][(int)oy].isBlocking)
+      if(cells[(int)ox][(int)oy]._block)
 	return;
       if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1)
 	return;
@@ -147,9 +197,9 @@ namespace Map{
     };
     // radius 2
     for(i=VIEW_RADIUS_1;i<VIEW_RADIUS_2;i++){
-      cells[(int)ox][(int)oy].playerLos = 2;
+      cells[(int)ox][(int)oy].lightLevel = 2;
       cells[(int)ox][(int)oy].isExplored = true;
-      if(cells[(int)ox][(int)oy].isBlocking)
+      if(cells[(int)ox][(int)oy]._block)
 	return;
       if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1)
 	return;
@@ -158,9 +208,9 @@ namespace Map{
     };
     // radius 3
     for(i=VIEW_RADIUS_2;i<VIEW_RADIUS_3;i++){
-      cells[(int)ox][(int)oy].playerLos = 3;
+      cells[(int)ox][(int)oy].lightLevel = 3;
       cells[(int)ox][(int)oy].isExplored = true;
-      if(cells[(int)ox][(int)oy].isBlocking)
+      if(cells[(int)ox][(int)oy]._block)
 	return;
 
       if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1)
@@ -180,19 +230,19 @@ namespace Map{
 	temp.r = 0;
 	temp.g = 0;
 	temp.b = 0;
-	if(cells[x][y].playerLos == 1){
+	if(cells[x][y].lightLevel == 1){
 
 	  temp.r = cells[x][y]._color.r;
 	  temp.g = cells[x][y]._color.g;
 	  temp.b = cells[x][y]._color.b;
 	}
-	else if(cells[x][y].playerLos == 2){
+	else if(cells[x][y].lightLevel == 2){
 
 	  temp.r = cells[x][y]._color.r/2;
 	  temp.g = cells[x][y]._color.g/2;
 	  temp.b = cells[x][y]._color.b/2;;
 	}
-	else if(cells[x][y].playerLos == 3){
+	else if(cells[x][y].lightLevel == 3){
 
 	  temp.r = cells[x][y]._color.r/3;
 	  temp.g = cells[x][y]._color.g/3;
@@ -205,65 +255,91 @@ namespace Map{
 	  temp.g = cells[x][y]._color.g/4;
 	  temp.b = cells[x][y]._color.b/4;
 	}
-	engine.renderGlyph(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
+	Game::sdl.renderGlyph(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
       }
     }
 
   }
-  
-  int spawnMonsters(){
-    return 0;
-  }
-
 
   void openDoor(P pos){
     if(cells[pos.x][pos.y]._glyph == '+'){
       cells[pos.x][pos.y]._glyph = '/';
-      cells[pos.x][pos.y].isBlocking = false;
+      cells[pos.x][pos.y]._block = false;
+      Gui::LogMsg("Opened a door to the south.");
     }
   }
 
   void closeDoor(P pos){
+    _DIR dir = pickDir();
+    if(dir == SOUTH){
+      // south
+      if(cells[pos.x][pos.y+1]._glyph == '/'){
+	cells[pos.x][pos.y+1]._glyph = '+';
+	cells[pos.x][pos.y+1]._block = true;
+	Gui::LogMsg("Closed a door to the south.");
+      }
+    }
+    else if(dir == NORTH){
+      // North
+      if(cells[pos.x][pos.y-1]._glyph == '/'){
+	cells[pos.x][pos.y-1]._glyph = '+';
+	cells[pos.x][pos.y-1]._block = true;
+	Gui::LogMsg("Closed a door to the north.");
+      }
+    }
+    else if(dir == EAST){
+      // east
+      if(cells[pos.x+1][pos.y]._glyph == '/'){
+	cells[pos.x+1][pos.y]._glyph = '+';
+	cells[pos.x+1][pos.y]._block = true;
+      	Gui::LogMsg("Closed a door to the east.");
+      }
+    }
+    else if(dir == WEST){
+      // west
+      if(cells[pos.x-1][pos.y]._glyph == '/'){
+	cells[pos.x-1][pos.y]._glyph = '+';
+	cells[pos.x-1][pos.y]._block = true;
+      	Gui::LogMsg("Closed a door to the west.");
+      }
+
+    }
+    computeFov();
+  }
+
+   _DIR pickDir(){
     Gui::AddCmdMsg("Which direction?");
     Gui::RenderGui();
+    _DIR direction;
     Keys dir = K_UNKNOWN;
     while(dir == K_UNKNOWN){
-      dir = engine.Input();
+      dir = Game::sdl.Input();
       if(dir == K_DOWN){
 	// south
-	if(cells[pos.x][pos.y+1]._glyph == '/'){
-	  cells[pos.x][pos.y+1]._glyph = '+';
-	  cells[pos.x][pos.y+1].isBlocking = true;
-	}
+	direction = SOUTH;
       }
       else if(dir == K_UP){
 	// North
-	if(cells[pos.x][pos.y-1]._glyph == '/'){
-	  cells[pos.x][pos.y-1]._glyph = '+';
-	  cells[pos.x][pos.y-1].isBlocking = true;
-	}
+	direction = NORTH;
       }
       else if(dir == K_RIGHT){
 	// east
-	if(cells[pos.x+1][pos.y]._glyph == '/'){
-	  cells[pos.x+1][pos.y]._glyph = '+';
-	  cells[pos.x+1][pos.y].isBlocking = true;
-	}
+	direction = EAST;
       }
       else if(dir == K_LEFT){
 	// west
-	if(cells[pos.x-1][pos.y]._glyph == '/'){
-	  cells[pos.x-1][pos.y]._glyph = '+';
-	  cells[pos.x-1][pos.y].isBlocking = true;
-	}
+	direction =WEST;
       }
+      else if(dir == K_ESC)
+	break;
       else{
 	dir = K_UNKNOWN;
+	direction = UNKNOWN;
       }
     }
     Gui::ClearCmdMsg();
+    return direction;
+  }	 
 
-
-  }
   
 } //namespace Map

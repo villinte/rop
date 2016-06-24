@@ -3,22 +3,32 @@
 
 sdlEngine::sdlEngine(){
   SDL_Init(SDL_INIT_VIDEO);
+  
   _window = SDL_CreateWindow("RoP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0);
+  
   _renderer = SDL_CreateRenderer(_window, -1, 0);
+  
   SDL_Surface* loadedSurface = IMG_Load("gfx/16x24.png");
+  
   if(loadedSurface == NULL)
     std::cout << "Could not open " << "16x24.png" << std::endl;
 
   SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 255, 255 ) );
+  
   _texture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
+  
   SDL_FreeSurface(loadedSurface);
 
+  
   loadedSurface = IMG_Load("gfx/16x16.png");
+  
   if(loadedSurface == NULL)
     std::cout << "Could not open " << "16x16.png" << std::endl;
 
   SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 255, 255));
+  
   _font = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
+  
   SDL_FreeSurface(loadedSurface);
   
   
@@ -186,6 +196,15 @@ Keys sdlEngine::Input(){
 	  break;
 	case SDLK_c:
 	  return K_c;
+	  break;
+	case SDLK_v:
+	  return K_v;
+	  break;
+	case SDLK_s:
+	  return K_s;
+	  break;
+	case SDLK_ESCAPE:
+	  return K_ESC;
 	  break;
 	}
       break;

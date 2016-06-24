@@ -1,6 +1,12 @@
 #ifndef HELPER_H
 #define HELPER_H
 #include <vector>
+#include <random>
+namespace Rng{
+  extern std::random_device rd;
+  extern std::mt19937 mt;
+  int randInt(int ll, int ul);
+}
 
 //-----------------------------------------------------------------------------
 // Geometry
@@ -266,34 +272,5 @@ public:
     P p0;
     P p1;
 };
-
-enum class Dir
-{
-    down_left   = 1,
-    down        = 2,
-    down_right  = 3,
-    left        = 4,
-    center      = 5,
-    right       = 6,
-    up_left     = 7,
-    up          = 8,
-    up_right    = 9,
-    END
-};
-
-const std::vector<P> dir_list
-{
-    P(-1,  0),
-    P( 1,  0),
-    P( 0, -1),
-    P( 0,  1),
-    P(-1, -1),
-    P(-1,  1),
-    P( 1, -1),
-    P( 1,  1)
-};
-
-
-
 
 #endif
