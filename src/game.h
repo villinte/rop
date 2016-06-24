@@ -14,6 +14,8 @@ namespace Game{
   extern sdlEngine sdl;
 
   extern std::unique_ptr<Entity> player;
+  
+  extern std::vector<std::unique_ptr<Entity>> actors;
   void Init();
   
   // -- Handles player creation etc.

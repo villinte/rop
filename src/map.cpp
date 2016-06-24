@@ -2,6 +2,8 @@
 #include "entity.h"
 #include "sdl_wrapper.h"
 #include "gui.h"
+#include "f_mortal.h"
+#include "f_ai.h"
 
 Cell::Cell(){
   pos = P(-1,-1);
@@ -102,13 +104,16 @@ namespace Map{
 	  cells[x][y]._description = "Floor";
 	}
 	else if(str.at(i) == 'L'){
-	  /*
-	    Actor *liv = new Actor(x,y, "Liv", str.at(i), Pink, 5);
-	    liv->ai = new MonsterAi();
-	    liv->destructible = new MonsterDestructible(10, 1, "Human Corpse", 10);
-	    liv->attacker = new Attacker(5);
-	    game.actors.push_back(liv);
-	  */
+	  std::unique_ptr<Entity> horribleMonster(new Entity(P(x,y), "Munster", str.at(i), Pink));
+
+	  std::unique_ptr<Ai> mAi(new MonsterAi());
+	  horribleMonster->ai = std::move(mAi);
+	  
+	  std::unique_ptr<Mortal> mMortal(new MonsterMortal(10, 1, "Human Corpse", 10));
+	  horribleMonster->mortal = std::move(mMortal);
+
+	  Game::actors.emplace_back(std::move(horribleMonster));
+	  
 	  cells[x][y]._glyph = '.';
 	  cells[x][y]._description = "Floor";
 	}
@@ -186,6 +191,7 @@ namespace Map{
     oy = (float)Game::player->pos.y+0.5f;
     // radius 1
     for(i=0;i<VIEW_RADIUS_1;i++){
+      cells[(int)ox][(int)oy].isSeen = true;
       cells[(int)ox][(int)oy].lightLevel = 1;
       cells[(int)ox][(int)oy].isExplored = true;
       if(cells[(int)ox][(int)oy]._block)
@@ -197,6 +203,7 @@ namespace Map{
     };
     // radius 2
     for(i=VIEW_RADIUS_1;i<VIEW_RADIUS_2;i++){
+      cells[(int)ox][(int)oy].isSeen = true;
       cells[(int)ox][(int)oy].lightLevel = 2;
       cells[(int)ox][(int)oy].isExplored = true;
       if(cells[(int)ox][(int)oy]._block)
@@ -208,6 +215,7 @@ namespace Map{
     };
     // radius 3
     for(i=VIEW_RADIUS_2;i<VIEW_RADIUS_3;i++){
+      cells[(int)ox][(int)oy].isSeen = true;
       cells[(int)ox][(int)oy].lightLevel = 3;
       cells[(int)ox][(int)oy].isExplored = true;
       if(cells[(int)ox][(int)oy]._block)

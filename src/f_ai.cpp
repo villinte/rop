@@ -85,7 +85,7 @@ void MonsterAi::Act(Entity *a) {
     return;
   }
   
-  // If player is not in field of view
+  // If player is in field of view
   if(Map::cells[a->pos.x][a->pos.y].isSeen){
     //attack or move
       

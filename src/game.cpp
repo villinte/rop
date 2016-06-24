@@ -13,7 +13,7 @@ namespace Game{
   sdlEngine sdl;
 
   std::unique_ptr<Entity> player = nullptr;
-  
+  std::vector<std::unique_ptr<Entity>> actors;
   void Init(){
     // Init player + player components
     std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
@@ -21,7 +21,6 @@ namespace Game{
     
     std::unique_ptr<Ai> pAi(new PlayerAi());
     player->ai = std::move(pAi);
-
     
     Map::cleanMap();
     Map::createMap();
@@ -59,6 +58,11 @@ namespace Game{
     sdl.clear();
     Map::renderMap();
 
+    // Render actors
+    for(auto& a : actors){
+      a->Render();
+    }
+    
     player->Render();
     Gui::RenderGui();
     sdl.flip();
@@ -70,6 +74,10 @@ namespace Game{
   
   void Tick(){
     player->Update();
+
+    for(auto& a : actors){
+      a->Update();
+    }
   }
 
   void menuState(){
