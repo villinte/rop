@@ -277,7 +277,8 @@ namespace Map{
     }
   }
 
-  void closeDoor(P pos){
+  bool closeDoor(P pos){
+    bool success = false;
     _DIR dir = pickDir();
     if(dir == SOUTH){
       // south
@@ -285,6 +286,7 @@ namespace Map{
 	cells[pos.x][pos.y+1]._glyph = '+';
 	cells[pos.x][pos.y+1]._block = true;
 	Gui::LogMsg("Closed a door to the south.");
+	success = true;
       }
     }
     else if(dir == NORTH){
@@ -293,6 +295,7 @@ namespace Map{
 	cells[pos.x][pos.y-1]._glyph = '+';
 	cells[pos.x][pos.y-1]._block = true;
 	Gui::LogMsg("Closed a door to the north.");
+	success = true;
       }
     }
     else if(dir == EAST){
@@ -301,6 +304,7 @@ namespace Map{
 	cells[pos.x+1][pos.y]._glyph = '+';
 	cells[pos.x+1][pos.y]._block = true;
       	Gui::LogMsg("Closed a door to the east.");
+	success = true;
       }
     }
     else if(dir == WEST){
@@ -309,13 +313,17 @@ namespace Map{
 	cells[pos.x-1][pos.y]._glyph = '+';
 	cells[pos.x-1][pos.y]._block = true;
       	Gui::LogMsg("Closed a door to the west.");
+	success = true;
       }
-
     }
-    computeFov();
+    if(success == true){
+      computeFov();
+      return true;
+    }
+    return false;
   }
 
-   _DIR pickDir(){
+  _DIR pickDir(){
     Gui::AddCmdMsg("Which direction?");
     Gui::RenderGui();
     _DIR direction;

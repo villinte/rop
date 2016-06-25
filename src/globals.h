@@ -54,5 +54,6 @@ const cColor Green = {0, 255, 0};
 const cColor Red   = {255,0,0};
 const cColor Brown = {139,69,19};
 const cColor Pink  = {255,105,180};
-const cColor BloodRed = {138,7,7}; 
+const cColor BloodRed = {138,7,7};
+const cColor Orange = {255,140,0};
 #endif

@@ -5,7 +5,7 @@
 #include "helper.h"
 #include "map.h"
 #include "f_mortal.h"
-
+#include "gui.h"
 
 PlayerAi::PlayerAi(int speed) {
   this->speed = speed;
@@ -41,7 +41,11 @@ void PlayerAi::Input(Entity *a){
     Game::isRunning = false;
     break;
   case K_c:
-    Map::closeDoor(a->pos);
+    if(Map::closeDoor(a->pos))
+      Game::newTurn();
+    break;
+  case K_l:
+    Gui::showMsgLog();
     break;
   default:
     break;
@@ -58,7 +62,7 @@ void PlayerAi::Act(Entity *a) {
   Input(a);
   Map::computeFov();
   // end of turn
-  energy -= 10;
+  energy -= globals::TURN_COST;
 }
 
 bool PlayerAi::Move(Entity *a, P p){
@@ -99,7 +103,7 @@ void MonsterAi::Act(Entity *a) {
   else{ // wander
     Wander(a);
   }
-  energy -= 10;
+  energy -= globals::TURN_COST;
 }
 
 void MonsterAi::Wander(Entity *a){

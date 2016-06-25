@@ -5,7 +5,7 @@
 
 
 namespace Gui{
-
+  extern int logUpdate;
   extern std::vector<std::string > msgLog;
   extern std::string cmdStr;
 
@@ -14,6 +14,8 @@ namespace Gui{
   void ClearCmdMsg();
   
   void LogMsg(std::string str);
+
+  void showMsgLog();
   
   void RenderGui();
   

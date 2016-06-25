@@ -48,7 +48,7 @@ namespace Map{
   
   // map interaction
   void openDoor(P pos);
-  void closeDoor(P pos);
+  bool closeDoor(P pos);
 
   _DIR pickDir();  
   

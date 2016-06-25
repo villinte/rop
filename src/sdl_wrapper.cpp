@@ -203,6 +203,9 @@ Keys sdlEngine::Input(){
 	case SDLK_s:
 	  return K_s;
 	  break;
+	case SDLK_l:
+	  return K_l;
+	    break;
 	case SDLK_ESCAPE:
 	  return K_ESC;
 	  break;

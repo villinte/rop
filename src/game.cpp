@@ -55,6 +55,8 @@ namespace Game{
   }
 
   void Render(){
+
+
     sdl.clear();
     Map::renderMap();
 
@@ -65,7 +67,9 @@ namespace Game{
     
     player->Render();
     Gui::RenderGui();
+
     sdl.flip();
+
   }
 
   void Input(){
@@ -80,7 +84,7 @@ namespace Game{
     
     for(auto& a : actors){
       if(a->ai){
-	if(a->ai->energy >= 10){
+	while(a->ai->energy >= globals::TURN_COST){
 	  a->Update();
 	}
       }
@@ -88,12 +92,14 @@ namespace Game{
   }
 
   void newTurn(){
+
     // New Turn, add more energy to each actor
     player->ai->newTurn();
     for(auto& a : actors){
       if(a->ai)
 	a->ai->newTurn();
     }
+    
   }
   
   void menuState(){
