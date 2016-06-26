@@ -6,6 +6,8 @@
 
 class sdlEngine;
 class Entity;
+class Mortal;
+class Fighter;
 class Ai;
 
 namespace Game{

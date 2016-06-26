@@ -6,6 +6,7 @@
 #include "f_ai.h"
 #include "f_mortal.h"
 #include "gui.h"
+#include "f_fighter.h"
 
 namespace Game{
 
@@ -21,6 +22,12 @@ namespace Game{
     
     std::unique_ptr<Ai> pAi(new PlayerAi(10));
     player->ai = std::move(pAi);
+
+    std::unique_ptr<Fighter> pFight(new Fighter(10));
+    player->fighter = std::move(pFight);
+
+    std::unique_ptr<Mortal> pMortal(new PlayerMortal(20, 0, "Dead Player"));
+    player->mortal = std::move(pMortal);
     
     Map::cleanMap();
     Map::createMap();
@@ -62,7 +69,8 @@ namespace Game{
 
     // Render actors
     for(auto& a : actors){
-      a->Render();
+      if(Map::cells[a->pos.x][a->pos.y].isSeen)
+	a->Render();
     }
     
     player->Render();
@@ -84,7 +92,7 @@ namespace Game{
     
     for(auto& a : actors){
       if(a->ai){
-	while(a->ai->energy >= globals::TURN_COST){
+	while(a->ai->energy >= globals::TURN_COST && !a->mortal->isDead()){
 	  a->Update();
 	}
       }

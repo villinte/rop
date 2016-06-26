@@ -6,6 +6,7 @@
 #include "map.h"
 #include "f_mortal.h"
 #include "gui.h"
+#include "f_fighter.h"
 
 PlayerAi::PlayerAi(int speed) {
   this->speed = speed;
@@ -71,9 +72,20 @@ bool PlayerAi::Move(Entity *a, P p){
     Map::openDoor(p);
     return true;
   }
+
+   
+  //Check for monsters to attack
+  for(auto const& t : Game::actors){
+
+    if(t.get()->pos == p && t.get()->mortal && !(t.get()->mortal->isDead())){
+      a->fighter->Attack(a, t.get());
+      return true;
+    }
+    
+  }
   
   // Check collision with walls
-  else if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
+  if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
     a->pos.set(p);
     return true;
   }

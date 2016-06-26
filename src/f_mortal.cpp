@@ -1,10 +1,12 @@
 #include "f_mortal.h"
 #include "entity.h"
 #include "game.h"
+#include "gui.h"
+#include "f_ai.h"
 
 Mortal::Mortal(int maxHp, int armor, std::string corpseName, int xp) :
   maxHp(maxHp), armor(armor), corpseName(corpseName), xp(xp) {
-
+  hp = maxHp;
 }
 
 int Mortal::takeDmg(Entity *a, int dmg){
@@ -35,6 +37,7 @@ void Mortal::die(Entity *a){
   a->_color = BloodRed;
   a->_name = corpseName;
   a->_block = false;
+  a->ai->energy = 0;
   
 }
 
@@ -45,6 +48,8 @@ MonsterMortal::MonsterMortal(int maxHp, int armor, std::string corpseName, int x
 
 void MonsterMortal::die(Entity *a) {
   // Send msg to log
+  std::string tempMsg = a->_name + " has died.";
+  Gui::LogMsg(tempMsg);
   Game::player->mortal->xp += xp;
   Mortal::die(a);
 }
@@ -55,6 +60,7 @@ PlayerMortal::PlayerMortal(int maxHp, int armor, std::string corpseName) :
 
 void PlayerMortal::die(Entity *a) {
   // send msg to log
+  Gui::LogMsg("You died.");
   Mortal::die(a);
   // kill game.
 }

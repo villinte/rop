@@ -8,6 +8,7 @@
 
 class sdlEngine;
 class Mortal;
+class Fighter;
 class Ai;
 
 class Entity{
@@ -22,7 +23,7 @@ class Entity{
   std::unique_ptr<Ai> ai;
   std::unique_ptr<Mortal> mortal;
 
-  //std::unique_ptr<Fighter> fighter;
+  std::unique_ptr<Fighter> fighter;
 
   P pos;
   std::string _name;

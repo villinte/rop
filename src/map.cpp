@@ -109,7 +109,7 @@ namespace Map{
 	  std::unique_ptr<Ai> mAi(new MonsterAi(5));
 	  horribleMonster->ai = std::move(mAi);
 	  
-	  std::unique_ptr<Mortal> mMortal(new MonsterMortal(10, 1, "Human Corpse", 10));
+	  std::unique_ptr<Mortal> mMortal(new MonsterMortal(15, 0, "Human Corpse", 10));
 	  horribleMonster->mortal = std::move(mMortal);
 
 	  Game::actors.emplace_back(std::move(horribleMonster));

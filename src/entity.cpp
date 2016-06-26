@@ -3,9 +3,10 @@
 #include "sdl_wrapper.h"
 #include "f_mortal.h"
 #include "f_ai.h"
+#include "f_fighter.h"
 
 Entity::Entity(P p, std::string name, char glyph, cColor c) :
-  /* ai(nullptr),*/ mortal(nullptr),/* fighter(NULL),*/ pos(p), _name(name), _glyph(glyph),
+  pos(p), _name(name), _glyph(glyph),
   _color(c) {
   
 }

@@ -6,6 +6,7 @@
 
 class Entity;
 class Mortal;
+class Fighter;
 
 class P;
 
