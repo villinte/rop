@@ -20,5 +20,5 @@ void Entity::Render(){
 }
 
 void Entity::Update(){
-  if(ai) ai->Act(this);
+  if(ai) ai->Act(*this);
 }

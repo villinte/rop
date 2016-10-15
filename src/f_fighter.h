@@ -9,7 +9,7 @@ class Fighter{
   int atkPower;
   Fighter(int atkP);
   virtual ~Fighter() {}
-  void Attack(Entity *a, Entity *target);
+  void Attack(Entity &a, Entity &target);
 };
 
 #endif

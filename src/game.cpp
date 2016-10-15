@@ -12,6 +12,8 @@ namespace Game{
 
   bool isRunning = false;
   sdlEngine sdl;
+  unsigned int turnCounter = 0;
+  unsigned int healCounter = 0;
 
   std::unique_ptr<Entity> player = nullptr;
   std::vector<std::unique_ptr<Entity>> actors;
@@ -38,6 +40,9 @@ namespace Game{
   void runStartMenu(){
     // Do important stuff here.
   }
+
+
+    
 
   void runGame(){
     
@@ -85,10 +90,7 @@ namespace Game{
   }
   
   void Tick(){  
-    
-    //if(player->ai->energy >= 10){
-      player->Update();
-      //}
+    player->Update();
     
     for(auto& a : actors){
       if(a->ai){
@@ -107,11 +109,21 @@ namespace Game{
       if(a->ai)
 	a->ai->newTurn();
     }
+    turnCounter++;
+    healCounter++;
+    if(healCounter >= 20){
+      player->mortal->Heal(1);
+      healCounter = 0;
+    }
     
   }
   
   void menuState(){
 
+  }
+  
+  void clearActors(){
+    actors.clear();
   }
   
 }

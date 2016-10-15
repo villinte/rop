@@ -7,6 +7,7 @@
 #include "f_mortal.h"
 #include "gui.h"
 #include "f_fighter.h"
+#include <cmath>
 
 PlayerAi::PlayerAi(int speed) {
   this->speed = speed;
@@ -17,7 +18,7 @@ PlayerAi::~PlayerAi(){
 
 }
 
-void PlayerAi::Input(Entity *a){
+void PlayerAi::Input(Entity &a){
   int dx = 0;
   int dy = 0;
   // Handle Inputs
@@ -42,7 +43,7 @@ void PlayerAi::Input(Entity *a){
     Game::isRunning = false;
     break;
   case K_c:
-    if(Map::closeDoor(a->pos))
+    if(Map::closeDoor(a.pos))
       Game::newTurn();
     break;
   case K_l:
@@ -53,20 +54,20 @@ void PlayerAi::Input(Entity *a){
   }
 
   if(dx != 0 || dy != 0){
-    if(Move(a, P(a->pos.x+dx, a->pos.y+dy))){
+    if(Move(a, P(a.pos.x+dx, a.pos.y+dy))){
       Game::newTurn();
     }
   }   
 }
 
-void PlayerAi::Act(Entity *a) {
+void PlayerAi::Act(Entity &a) {
   Input(a);
   Map::computeFov();
   // end of turn
   energy -= globals::TURN_COST;
 }
 
-bool PlayerAi::Move(Entity *a, P p){
+bool PlayerAi::Move(Entity &a, P p){
   // check for door
   if(Map::cells[p.x][p.y]._glyph == '+'){
     Map::openDoor(p);
@@ -78,7 +79,7 @@ bool PlayerAi::Move(Entity *a, P p){
   for(auto const& t : Game::actors){
 
     if(t.get()->pos == p && t.get()->mortal && !(t.get()->mortal->isDead())){
-      a->fighter->Attack(a, t.get());
+      a.fighter->Attack(a, *t);
       return true;
     }
     
@@ -86,7 +87,7 @@ bool PlayerAi::Move(Entity *a, P p){
   
   // Check collision with walls
   if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
-    a->pos.set(p);
+    a.pos.set(p);
     return true;
   }
   return false;
@@ -101,15 +102,29 @@ MonsterAi::MonsterAi(int speed){
   this->speed = speed;
 }
 
-void MonsterAi::Act(Entity *a) {
+void MonsterAi::Act(Entity &a) {
   //if Dead
-  if(a->mortal && a->mortal->isDead()){
+  if(a.mortal && a.mortal->isDead()){
     return;
   }
   
   // If player is in field of view
-  if(Map::cells[a->pos.x][a->pos.y].isSeen){
+  if(Map::cells[a.pos.x][a.pos.y].isSeen){
     //attack or move
+    //is player next too monster?
+    int dx = Game::player->pos.x - a.pos.x;
+    int dy = Game::player->pos.y - a.pos.y;
+    int stepdx = (dx > 0 ? 1:-1);
+    int stepdy = (dy > 0 ? 1:-1);
+    float distance=sqrtf(dx*dx+dy*dy);
+    if ( distance >= 2 ) {
+      dx = (int)(round(dx/distance));
+      dy = (int)(round(dy/distance));
+      Move(a, P(a.pos.x + stepdx, a.pos.y + stepdy));
+    }
+    else if ( a.fighter ) {
+      a.fighter->Attack(a,*Game::player);
+    }
     
   }
   else{ // wander
@@ -118,7 +133,7 @@ void MonsterAi::Act(Entity *a) {
   energy -= globals::TURN_COST;
 }
 
-void MonsterAi::Wander(Entity *a){
+void MonsterAi::Wander(Entity &a){
   int dir = Rng::randInt(0,4);
   int dx = 0;
   int dy = 0;
@@ -137,15 +152,15 @@ void MonsterAi::Wander(Entity *a){
     break;
   }
   
-  Move(a, P(a->pos.x+dx, a->pos.y+dy));    
+  Move(a, P(a.pos.x+dx, a.pos.y+dy));    
 
 }
 
-void MonsterAi::Move(Entity *a, P p) {
+void MonsterAi::Move(Entity &a, P p) {
 
   // Check collision with walls
   if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
-    a->pos.set(p);
+    a.pos.set(p);
   }
   
 }

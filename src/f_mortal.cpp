@@ -9,7 +9,7 @@ Mortal::Mortal(int maxHp, int armor, std::string corpseName, int xp) :
   hp = maxHp;
 }
 
-int Mortal::takeDmg(Entity *a, int dmg){
+int Mortal::takeDmg(Entity &a, int dmg){
   dmg -= armor;
   if(dmg > 0){
     hp -= dmg;
@@ -32,12 +32,12 @@ int Mortal::Heal(int amount){
   return amount;
 }
 
-void Mortal::die(Entity *a){
-  a->_glyph = '%';
-  a->_color = BloodRed;
-  a->_name = corpseName;
-  a->_block = false;
-  a->ai->energy = 0;
+void Mortal::die(Entity &a){
+  a._glyph = '%';
+  a._color = BloodRed;
+  a._name = corpseName;
+  a._block = false;
+  a.ai->energy = 0;
   
 }
 
@@ -46,9 +46,9 @@ MonsterMortal::MonsterMortal(int maxHp, int armor, std::string corpseName, int x
   
 }
 
-void MonsterMortal::die(Entity *a) {
+void MonsterMortal::die(Entity &a) {
   // Send msg to log
-  std::string tempMsg = a->_name + " has died.";
+  std::string tempMsg = a._name + " has died.";
   Gui::LogMsg(tempMsg);
   Game::player->mortal->xp += xp;
   Mortal::die(a);
@@ -58,9 +58,10 @@ PlayerMortal::PlayerMortal(int maxHp, int armor, std::string corpseName) :
   Mortal(maxHp,armor,corpseName,0) {
 }
 
-void PlayerMortal::die(Entity *a) {
+void PlayerMortal::die(Entity &a) {
   // send msg to log
   Gui::LogMsg("You died.");
   Mortal::die(a);
   // kill game.
+  Gui::showKillScreen();
 }

@@ -14,6 +14,8 @@ namespace Game{
   
   extern bool isRunning;
   extern sdlEngine sdl;
+  extern unsigned int turnCounter;
+  extern unsigned int healCounter;
 
   extern std::unique_ptr<Entity> player;
   
@@ -21,7 +23,7 @@ namespace Game{
   void Init();
   
   // -- Handles player creation etc.
-  void runStartMenu();   
+  void runStartMenu();  
   
   void runGame();
 
@@ -34,6 +36,8 @@ namespace Game{
   void newTurn();
 
   void menuState();
+
+  void clearActors();
   
 }
 

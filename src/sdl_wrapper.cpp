@@ -44,6 +44,7 @@ sdlEngine::~sdlEngine(){
 
 
 void sdlEngine::printMsg(std::string str, int x, int y, int w, cColor cC){
+  
   int tX = x, tY = y;
   int cnt = 0;
   int maxW = w-x;
@@ -56,6 +57,7 @@ void sdlEngine::printMsg(std::string str, int x, int y, int w, cColor cC){
       tY++;
     }
   }
+ 
 }
 
 void sdlEngine::renderGlyph(char c, int x, int y, cColor cC){
