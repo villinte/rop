@@ -13,6 +13,7 @@
 
 #include "gui.h"
 #include "inventory.h"
+#include "menustate.h"
 
 namespace Game{
 
@@ -107,7 +108,7 @@ namespace Game{
     p_dy = 0;
 
     std::unique_ptr<State> inventoryState(new InventoryState());
-    
+    std::unique_ptr<State> menuState(new MenuState());
     Keys key = io::Input();
     switch(key){
     case K_UP:
@@ -133,6 +134,7 @@ namespace Game{
 	newTurn();
       break;
     case K_ESC:
+      states::push(std::move(menuState));
       break;
     case K_l:
       break;

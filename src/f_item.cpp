@@ -2,17 +2,18 @@
 #include "entity.h"
 #include "f_container.h"
 #include "f_mortal.h"
-
+#include "gui.h"
 
 bool Item::Use(Entity &item_entity, Entity &using_entity) {
 	if ( using_entity.container ) {
-		using_entity.container->removeItem(item_entity);
-		//delete &item_entity;
-		return true;
+	  Gui::LogMsg(item_entity.item->getMsg());
+	  using_entity.container->removeItem(item_entity);
+	  return true;
 	}
 	return false;
 }
-Healing::Healing(int amount) : amount(amount){
+Healing::Healing(int amount, std::string _use_msg)
+  : amount(amount), _use_msg(_use_msg){
 
 }
 

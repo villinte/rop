@@ -10,7 +10,6 @@
 #include <string>
 #include "f_item.h"
 
-
 InventoryState::InventoryState(){
 
 }
@@ -25,7 +24,7 @@ void InventoryState::Draw(){
   std::string temp = "Browsing Inventory";
   io::printMsg(temp, globals::MAP_WIDTH/2+1, 1, temp.length(), Green);
 
-  for(int i = 0; i < Game::player->container->inv.size(); ++i){
+  for(unsigned i = 0; i < Game::player->container->inv.size(); ++i){
     std::string name = Game::player->container->inv[i]->_name;
     io::printMsg(name, globals::MAP_WIDTH/2+2, 3+i, name.length(), Pink);
   }
@@ -40,8 +39,14 @@ void InventoryState::Update(){
     states::pop();
     break;
   case K_RETURN:
-    //Game::player->container->inv.back()->item->Use(Game::player->container->inv.back(),Game::player);
-    Game::player->container->inv.back()->item->Use(*Game::player->container->inv.back(), *Game::player);
+    if(!Game::player->container->inv.empty()){
+      // if item is usable, new turn and pop state.
+      if(Game::player->container->inv.back()->item->Use
+	 (*Game::player->container->inv.back(), *Game::player)){
+	Game::newTurn();
+	states::pop();
+      }
+    }
     break;
   default:
     break;

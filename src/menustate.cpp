@@ -23,6 +23,9 @@ void MenuState::Update(){
     Game::isRunning = false;
     states::pop();
     break;
+  case K_ESC:
+    states::pop();
+    break;
   default:
     break;
   }

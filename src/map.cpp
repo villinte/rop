@@ -130,7 +130,7 @@ namespace Map{
 	  std::unique_ptr<Entity> potion(new Entity(P(x,y), "Healing Potion",
 						    str.at(i), Red));
 	  
-	  Item* pHealing(new Healing(10));
+	  Item* pHealing(new Healing(10, "You drank a healing potion."));
 	  
 	  potion->item = pHealing;
 	  
