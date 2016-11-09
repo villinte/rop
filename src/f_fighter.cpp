@@ -1,8 +1,8 @@
 #include "f_fighter.h"
 #include "entity.h"
 #include "f_mortal.h"
-#include "gui.h"
 #include <string>
+#include "gui.h"
 
 Fighter::Fighter(int atkP) : atkPower(atkP){
 }

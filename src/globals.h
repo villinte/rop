@@ -31,6 +31,7 @@ enum Keys{
   K_A,K_B,K_C,K_D,K_E,K_F,K_G,K_H,K_I,K_J,K_K,K_L,K_M,K_N,K_O,K_P,K_Q,
   K_R,K_S,K_T,K_U,K_V,K_W,K_X,K_Y,K_Z,
   K_ESC,
+  K_RETURN,
   E_QUIT,
   K_UNKNOWN
 };
@@ -49,11 +50,12 @@ enum _DIR{
 
 const cColor Blue  = {0,0,255};
 const cColor White = {255,255,255};
-const cColor Black = {139,137,137};
+const cColor Black = {0,0,0};
 const cColor Green = {0, 255, 0};
 const cColor Red   = {255,0,0};
 const cColor Brown = {139,69,19};
 const cColor Pink  = {255,105,180};
 const cColor BloodRed = {138,7,7};
 const cColor Orange = {255,140,0};
+const cColor Grey   = {139,137,137};
 #endif

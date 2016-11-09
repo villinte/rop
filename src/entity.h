@@ -3,33 +3,37 @@
 
 #include "helper.h"
 #include "globals.h"
-
 #include <memory>
+#include "f_actor.h"
+#include "f_item.h"
 
-class sdlEngine;
+class Actor;
 class Mortal;
 class Fighter;
-class Ai;
+class Container;
+class Item;
 
 class Entity{
  public:
   Entity(P p, std::string name, char glyph, cColor c);
   ~Entity();
-
+  
   void Render();
   void Update();
   
   //Components
-  std::unique_ptr<Ai> ai;
-  std::unique_ptr<Mortal> mortal;
-
-  std::unique_ptr<Fighter> fighter;
-
+  Actor *act;
+  Mortal *mortal;
+  Fighter *fighter;
+  Container *container;
+  Item *item;
+  
   P pos;
   std::string _name;
   char _glyph;
   cColor _color;
   bool _block;
+  bool _visible;
   
  private:
   

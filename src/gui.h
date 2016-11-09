@@ -24,6 +24,8 @@ namespace Gui{
   void renderComparedValue(P p, int v1, int v2, std::string str, cColor c);
 
   void renderStringAndInt(P p, std::string str, int num, cColor c);
+
+  void viewMode();
 }
 
 

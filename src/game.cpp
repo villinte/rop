@@ -1,75 +1,55 @@
 #include "game.h"
+
 #include "globals.h"
 #include "sdl_wrapper.h"
-#include "entity.h"
+
 #include "map.h"
-#include "f_ai.h"
-#include "f_mortal.h"
-#include "gui.h"
+
+#include "entity.h"
 #include "f_fighter.h"
+#include "f_mortal.h"
+#include "f_actor.h"
+#include "f_container.h"
+
+#include "gui.h"
+#include "inventory.h"
 
 namespace Game{
 
   bool isRunning = false;
-  sdlEngine sdl;
   unsigned int turnCounter = 0;
   unsigned int healCounter = 0;
 
+  
+  
+  // player movement
+  int p_dx = 0;
+  int p_dy = 0;
+
   std::unique_ptr<Entity> player = nullptr;
   std::vector<std::unique_ptr<Entity>> actors;
+
   void Init(){
-    // Init player + player components
+    
     std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
     player = std::move(pEntity);
-    
-    std::unique_ptr<Ai> pAi(new PlayerAi(10));
-    player->ai = std::move(pAi);
 
-    std::unique_ptr<Fighter> pFight(new Fighter(10));
-    player->fighter = std::move(pFight);
-
-    std::unique_ptr<Mortal> pMortal(new PlayerMortal(20, 0, "Dead Player"));
-    player->mortal = std::move(pMortal);
-    
+    player->act = new PlayerActor(10);
+    player->mortal = new PlayerMortal(20, 0, "dead player");
+    player->fighter = new Fighter(10);
+    player->container = new Container(4);
     Map::cleanMap();
     Map::createMap();
     
     isRunning = true;
   }
 
-  void runStartMenu(){
-    // Do important stuff here.
-  }
+  void Cleanup(){
 
-
-    
-
-  void runGame(){
-    
-    while(isRunning){
-      /* Handle Rendering
-	 renderMap
-	 renderGui
-	 renderMonsters
-	 renderPlayer	 
-      */
-      Render();
-           
-      
-      /* Handle Game Logic
-	 handleFov
-	 handleCollisions
-	 handleCombat
-      */
-      Tick();
-    }
-    
   }
 
   void Render(){
-
-
-    sdl.clear();
+    
     Map::renderMap();
 
     // Render actors
@@ -79,35 +59,38 @@ namespace Game{
     }
     
     player->Render();
+
     Gui::RenderGui();
-
-    sdl.flip();
-
+    
   }
 
-  void Input(){
+  void Tick(){
+    // if death, pop all states.
+    // Fix this, some kind of death state is needed
 
-  }
-  
-  void Tick(){  
+    if(!isRunning){
+      states::popAll();
+    }
+
+    handleInput();
     player->Update();
     
     for(auto& a : actors){
-      if(a->ai){
-	while(a->ai->energy >= globals::TURN_COST && !a->mortal->isDead()){
+      if(a->act){
+	while(a->act->energy >= globals::TURN_COST && !a->mortal->isDead()){
 	  a->Update();
 	}
       }
     }
+    
+    
   }
 
   void newTurn(){
-
-    // New Turn, add more energy to each actor
-    player->ai->newTurn();
+    player->act->newTurn();
     for(auto& a : actors){
-      if(a->ai)
-	a->ai->newTurn();
+      if(a->act)
+	a->act->newTurn();
     }
     turnCounter++;
     healCounter++;
@@ -115,15 +98,89 @@ namespace Game{
       player->mortal->Heal(1);
       healCounter = 0;
     }
-    
   }
+
+  void handleInput(){
+
+    // Player movement varibles.
+    p_dx = 0;
+    p_dy = 0;
+
+    std::unique_ptr<State> inventoryState(new InventoryState());
+    
+    Keys key = io::Input();
+    switch(key){
+    case K_UP:
+      p_dy = -1;
+      break;
+    case K_DOWN:
+      p_dy = 1;
+      break;
+    case K_RIGHT:
+      p_dx = 1;
+      break;
+    case K_LEFT:
+      p_dx = -1;
+      break;
+    case E_QUIT:
+      isRunning = false;
+      break;
+    case K_q:
+      isRunning = false;
+      break;
+    case K_c:
+      if(Map::closeDoor(player->pos))
+	newTurn();
+      break;
+    case K_ESC:
+      break;
+    case K_l:
+      break;
+    case K_i:
+      states::push(std::move(inventoryState));
+      break;
+    case K_v:
+      break;
+    case K_g:
+      {
+	for(auto &e : Game::actors){
+	  if(e->item && e->pos.x == player->pos.x && e->pos.y == player->pos.y){
+	    if(player->container->pickUpItem(*e,*player)){
+
+	      break;// Needed, don't want to iterate over changed vector
+	    }
+	  
+	  }
+	}
+      }
+	break;
+	default:
+	  break;
+      }
+
   
-  void menuState(){
+    
+    } // handleInput
+
+    void clearActors(){
+      actors.clear();
+    } // clearActors
+
+  
+  } //namespace game
+
+  GameState::GameState(){
 
   }
-  
-  void clearActors(){
-    actors.clear();
+
+  void GameState::Init(){
+    Game::Init();
   }
-  
-}
+
+  void GameState::Draw(){
+    Game::Render();
+  }
+
+  void GameState::Update(){
+    Game::Tick();
+  }

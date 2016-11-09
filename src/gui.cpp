@@ -10,6 +10,7 @@
 #include "game.h"
 #include "entity.h"
 #include "f_mortal.h"
+#include "map.h"
 
 namespace Gui{
   int logUpdate = 0;
@@ -31,30 +32,30 @@ namespace Gui{
 
   
   void showMsgLog(){
-    Game::sdl.clear();
+    io::clear();
 
-    Game::sdl.printMsg("Message Log. ESC will return you to the game.", 1, 0, globals::SCREEN_WIDTH-1, Green);
+    io::printMsg("Message Log. ESC will return you to the game.", 1, 0, globals::SCREEN_WIDTH-1, Green);
     
     for(unsigned int i = 0; i < msgLog.size(); ++i){
-      Game::sdl.printMsg(msgLog[i], 1, 1+i, globals::SCREEN_WIDTH-1, White);
+      io::printMsg(msgLog[i], 1, 1+i, globals::SCREEN_WIDTH-1, White);
     }
-    Game::sdl.flip();
+    io::flip();
     while(true){
-      Keys key = Game::sdl.Input();
+      Keys key = io::Input();
       if(key == K_ESC)
 	break;
     }
   }
 
   void showKillScreen(){
-    Game::sdl.clear();
+    io::clear();
 
-    Game::sdl.printMsg("You Died!", 30, 20, 20, Red);
-    Game::sdl.printMsg("Press Escape To... Escape", 30, 22, 30, Red);
+    io::printMsg("You Died!", 30, 20, 20, Red);
+    io::printMsg("Press Escape To... Escape", 30, 22, 30, Red);
 
-    Game::sdl.flip();
+    io::flip();
     while(true){
-      Keys key = Game::sdl.Input();
+      Keys key = io::Input();
       if(key == K_ESC){
 	Game::isRunning = false;
 	break;
@@ -66,24 +67,24 @@ namespace Gui{
   void RenderGui(){
     // Draw lines, indicate GUI
     // top line
-    Game::sdl.DrawLine(P(globals::FONT_W,globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), White);
+    io::DrawLine(P(globals::FONT_W,globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), White);
     // Left line
-    Game::sdl.DrawLine(P(globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::FONT_W, globals::SCREEN_HEIGHT), White);
+    io::DrawLine(P(globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::FONT_W, globals::SCREEN_HEIGHT), White);
     // right line
-    Game::sdl.DrawLine(P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::SCREEN_HEIGHT), White);
+    io::DrawLine(P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::SCREEN_HEIGHT), White);
 
     // CMD msg Separator
     int cmdSepx = globals::MAP_WIDTH*globals::FONT_W/2-5*globals::FONT_W;
     int cmdSepy = globals::MAP_HEIGHT*globals::GLYPH_H+1;
-    Game::sdl.DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,globals::SCREEN_HEIGHT), White);
+    io::DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,globals::SCREEN_HEIGHT), White);
 
     // Draw cmd msg
-    Game::sdl.printMsg(cmdStr, 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+4, globals::SCREEN_WIDTH/globals::FONT_W, Green);
+    io::printMsg(cmdStr, 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+4, globals::SCREEN_WIDTH/globals::FONT_W, Green);
     
 
     // Render latest log msg
     if(logUpdate > 0){
-      Game::sdl.printMsg(msgLog.back(), 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+6, globals::MAP_WIDTH*globals::FONT_W/2-5*globals::FONT_W, Orange);
+      io::printMsg(msgLog.back(), 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+6, globals::MAP_WIDTH*globals::FONT_W/2-5*globals::FONT_W, Orange);
       logUpdate--;
     }
     if(logUpdate <= 0)
@@ -93,23 +94,67 @@ namespace Gui{
     // Render Player Stats
     // HP
     
-    renderComparedValue(P(36,34), Game::player->mortal->hp, Game::player->mortal->maxHp,
+        renderComparedValue(P(36,34), Game::player->mortal->hp, Game::player->mortal->maxHp,
     			"HP: ", White);
 
     renderStringAndInt(P(36, 36), "Turn:",Game::turnCounter, White);
     
-    Game::sdl.flip();
+    io::flip();
   }
 
   void renderStringAndInt(P p, std::string str, int num, cColor c){
     std::string temp = str + std::to_string(num);
-    Game::sdl.printMsg(temp, p.x, p.y, temp.length(), c);
+    io::printMsg(temp, p.x, p.y, temp.length(), c);
   }
   
   void renderComparedValue(P p, int v1, int v2, std::string str, cColor c){
     std::string temp = str + std::to_string(v1) + "/" + std::to_string(v2);
-    Game::sdl.printMsg(temp,p.x,p.y,temp.length(),c );
+    io::printMsg(temp,p.x,p.y,temp.length(),c );
     
+  }
+
+  void viewMode(){
+
+    P crosshair;
+    crosshair.x = Game::player->pos.x;
+    crosshair.y = Game::player->pos.y;
+    while(true){
+      io::clear();
+      Keys key = io::Input();
+      if(key == K_ESC)
+	break;
+
+      if(key == K_LEFT){
+	crosshair.x--;
+      }
+      else if(key == K_RIGHT){
+	crosshair.x++;
+      }
+      else if(key == K_UP){
+	crosshair.y--;
+      }
+      else if(key == K_DOWN){
+	crosshair.y++;
+      }
+
+      Map::renderMap();
+      // Render actors
+      for(auto& a : Game::actors){
+	if(Map::cells[a->pos.x][a->pos.y].isSeen)
+	  a->Render();
+      }
+      Game::player->Render();
+      RenderGui();
+      io::drawClearRect(crosshair, Green);
+
+      if(Map::cells[crosshair.x][crosshair.y].isSeen){
+	// Draw look msg
+	std::string msg = "You see " + Map::cells[crosshair.x][crosshair.y]._description;
+	io::printMsg(msg, 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+4, globals::SCREEN_WIDTH/globals::FONT_W, Green);
+      }
+      
+      io::flip();
+    }
   }
 
 }

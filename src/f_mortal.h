@@ -1,6 +1,7 @@
 #include <string>
 class Entity;
-class Ai;
+class Actor;
+class Fighter;
 
 class Mortal{
 
@@ -12,7 +13,7 @@ class Mortal{
   unsigned int xp;
 
   Mortal(int maxHp, int armor, std::string corpseName, int xp);
-  virtual ~Mortal() {};
+  virtual  ~Mortal() {};
   inline bool isDead() {return hp <= 0; }
   int takeDmg(Entity &a, int dmg);
   int Heal(int amount);

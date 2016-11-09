@@ -1,44 +1,54 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
-#include <memory>
+#include "state.h"
 
-class sdlEngine;
 class Entity;
-class Mortal;
 class Fighter;
-class Ai;
+class Mortal;
+class Actor;
 
 namespace Game{
-  
+
   extern bool isRunning;
-  extern sdlEngine sdl;
   extern unsigned int turnCounter;
   extern unsigned int healCounter;
 
+  // player movement
+  extern int p_dx;
+  extern int p_dy;
+
+    
   extern std::unique_ptr<Entity> player;
-  
   extern std::vector<std::unique_ptr<Entity>> actors;
+
+
   void Init();
-  
-  // -- Handles player creation etc.
-  void runStartMenu();  
-  
-  void runGame();
+
+  void Cleanup();
 
   void Render();
-  
-  void Input();
-  
+
   void Tick();
 
+  void handleInput();
+  
   void newTurn();
-
-  void menuState();
 
   void clearActors();
   
 }
+
+
+class GameState : public State{
+
+ public:
+  GameState();
+  void Init() override;
+  void Draw() override;
+  void Update() override;
+  
+};
+
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "globals.h"
 #include "helper.h"
-#include "game.h"
+#include <memory>
 
 class Entity;
 
@@ -36,8 +36,9 @@ public:
 };
 
 namespace Map{
+
   extern Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
-  
+    
   void createMap();
   void cleanMap();
   void clearVision();

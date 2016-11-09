@@ -1,29 +1,27 @@
-/*
-  Feature_AI -- Component that handles entity's acting, fightning, movement etc.
- */
-#ifndef F_AI_H
-#define F_AI_H
+#ifndef F_ACTOR_H
+#define F_ACTOR_H
+
+#include <memory>
 
 class Entity;
 class Mortal;
 class Fighter;
-
 class P;
 
 
-class Ai{
+class Actor{
  public:
   virtual void Act(Entity &a) = 0;
-  virtual ~Ai() {}
+  virtual ~Actor() {}
   virtual void newTurn() = 0;
   int energy;
   int speed;
  protected:
 };
 
-class MonsterAi : public Ai {
+class MonsterActor : public Actor {
  public:
-  MonsterAi(int speed);
+  MonsterActor(int speed);
   
   void Act(Entity &a);
   void newTurn();
@@ -32,11 +30,11 @@ class MonsterAi : public Ai {
   void Move(Entity &a, P p);
 };
 
-class PlayerAi : public Ai{
+class PlayerActor : public Actor{
  public:
   int Level;
-  PlayerAi(int speed);
-  ~PlayerAi();
+  PlayerActor(int speed);
+  ~PlayerActor();
   
   void newTurn();
   void Act(Entity &a);
@@ -45,8 +43,5 @@ class PlayerAi : public Ai{
   bool Move(Entity &a, P p);
  
 };
-
-
-
 
 #endif

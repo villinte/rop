@@ -1,11 +1,13 @@
 #include "map.h"
-#include "entity.h"
+#include "game.h"
 #include "sdl_wrapper.h"
-#include "gui.h"
+#include "entity.h"
 #include "f_mortal.h"
-#include "f_ai.h"
+#include "f_actor.h"
 #include "f_fighter.h"
-#include "map_generate.h"
+#include "f_item.h"
+
+#include "gui.h"
 
 Cell::Cell(){
   pos = P(-1,-1);
@@ -47,10 +49,12 @@ Door::Door(bool open){
   pos = P(-1,-1);
   if(!_open){
     _glyph = '+';
+    _description = "a closed door.";
     _block = true;
   }
   else{
     _glyph = '/';
+    _description = "an open door.";
     _block = false;
   }
   _color = Brown;
@@ -67,7 +71,7 @@ Door::~Door(){
 namespace Map{
   
   Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
-
+  
   void createMap(){
     std::string str =
       "1###############################################################################;"
@@ -76,18 +80,18 @@ namespace Map{
       "####################################.........###################################;"
       "###########################...............L...##################################;"
       "###################################................#############################;"
-      "##################################............L..L.#############################;"
+      "##################################.................#############################;"
       "#####################..............................#############################;"
       "#.....................................######...........L..######################;"
-      "#######...............................#....#..............######################;"
+      "#######.................!.............#..!.#..............######################;"
       "#######...............................#..@.#..............######################;"
       "#######...............................##+###..............######################;"
-      "#######..........................................L.............................#;"
+      "#######........................................................................#;"
       "##################+#############...............############################L.###;"
       "#################..############...............#############################L.###;"
       "################..#############................#############################.###;"
       "################.########################+##################################.###;"
-      "##############.L.L####################...........L............L...............##;"
+      "##############...L####################...........L............L...............##;"
       "#########......#..###################..L....####################################;"
       "###########.......###################.......####################################;"
       "########################################.#######################################;"
@@ -98,30 +102,44 @@ namespace Map{
     for(unsigned int i = 0; i < str.length() ;++i){
       if(str.at(i) != ';'){
 	cells[x][y].pos = P(x,y);
-	cells[x][y]._color = Black; // temp;
+	cells[x][y]._color = Grey; // temp;
 
 	if(str.at(i) == '@'){
 	  Game::player->pos = P(x,y); // set player position
 	  cells[x][y]._glyph = '.';
-	  cells[x][y]._description = "Floor";
+	  cells[x][y]._description = "a floor tile.";
 	}
 	else if(str.at(i) == 'L'){
 	  std::unique_ptr<Entity> horribleMonster(new Entity(P(x,y), "Munster", str.at(i), Pink));
-
-	  std::unique_ptr<Ai> mAi(new MonsterAi(5));
-	  horribleMonster->ai = std::move(mAi);
+	  Actor* mActor(new MonsterActor(5));
+	  horribleMonster->act = mActor;
 	  
-	  std::unique_ptr<Mortal> mMortal(new MonsterMortal(15, 0, "Human Corpse", 10));
-	  horribleMonster->mortal = std::move(mMortal);
+	  Mortal* mMortal(new MonsterMortal(15, 0, "Human Corpse", 10));
+	  horribleMonster->mortal = mMortal;
 
-	  std::unique_ptr<Fighter> mFighter(new Fighter(5));
-	  horribleMonster->fighter = std::move(mFighter);
-
+	  Fighter* mFighter(new Fighter(5));
+	  horribleMonster->fighter = mFighter;
+	  
 	  Game::actors.emplace_back(std::move(horribleMonster));
 	  
 	  cells[x][y]._glyph = '.';
-	  cells[x][y]._description = "Floor";
+	  cells[x][y]._description = "a floor tile.";
 	}
+
+	else if(str.at(i) == '!'){
+	  std::unique_ptr<Entity> potion(new Entity(P(x,y), "Healing Potion",
+						    str.at(i), Red));
+	  
+	  Item* pHealing(new Healing(10));
+	  
+	  potion->item = pHealing;
+	  
+	  Game::actors.emplace_back(std::move(potion));
+	  
+	  cells[x][y]._glyph = '.';
+	  cells[x][y]._description = "a floor tile.";
+	}
+	
 	else{
 	  cells[x][y]._glyph = str.at(i);
 	}
@@ -129,19 +147,25 @@ namespace Map{
 	if(str.at(i) == '+'){
 	  Door temp(false);
 	  temp.pos.set(x,y);
-	  temp._description = "Door";
+	  temp._description = "a closed door.";
 	  cells[x][y].Replace(temp);
+	  
 	}
 	if(str.at(i) == '/'){
 	  Door temp(true);
-	  temp._description = "Door";
+	  temp._description = "an open door.";
 	  temp.pos.set(x,y);
 	  cells[x][y].Replace(temp);
+	  	
 	}
 	
 	if(str.at(i) == '#'){
 	  cells[x][y]._block = true;
-	  cells[x][y]._description = "Wall";
+	  cells[x][y]._description = "a wall.";
+	}
+	if(str.at(i) == '.'){
+	  cells[x][y]._block = false;
+	  cells[x][y]._description = "a floor tile.";
 	}
 	x++;
       }
@@ -151,10 +175,10 @@ namespace Map{
       }
       
     }
-
-    Map_Generator::Generate();
+    
     computeFov();
-  }
+  } // createMap
+
 
   void cleanMap(){
     
@@ -274,7 +298,7 @@ namespace Map{
 	  temp.g = cells[x][y]._color.g/4;
 	  temp.b = cells[x][y]._color.b/4;
 	}
-	Game::sdl.renderGlyph(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
+	io::renderGlyph(cells[x][y]._glyph, cells[x][y].pos.x, cells[x][y].pos.y, temp);
       }
     }
 
@@ -340,7 +364,7 @@ namespace Map{
     _DIR direction;
     Keys dir = K_UNKNOWN;
     while(dir == K_UNKNOWN){
-      dir = Game::sdl.Input();
+      dir = io::Input();
       if(dir == K_DOWN){
 	// south
 	direction = SOUTH;
@@ -367,6 +391,5 @@ namespace Map{
     Gui::ClearCmdMsg();
     return direction;
   }	 
-
   
-} //namespace Map
+}
