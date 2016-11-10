@@ -1,7 +1,7 @@
 SRC_DIR = src
 CC=g++
-CFLAGS= -Wall -g -std=c++11 -lSDL2 -lSDL2_image
-LDFLAGS=-lncurses
+CFLAGS= -Wall -g -std=c++11 $(shell sdl2-config --cflags)
+LDFLAGS=-lncurses $(shell sdl2-config --libs) -lSDL2_image
 SOURCES =$(wildcard $(SRC_DIR)/*.cpp)
 TARGET = rop
 OBJS = $(SOURCES:.cpp=.o)
