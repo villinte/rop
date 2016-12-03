@@ -17,18 +17,11 @@ Entity::Entity(P p, std::string name, char glyph, cColor c) :
   }
 
 Entity::~Entity(){
-  if(act)
-    delete act;
   
-  if(mortal)
-    delete mortal;
-  
-  if(fighter)
-    delete fighter;
-  
-  if(container)
-    delete container;
-  
+  delete act;
+  delete mortal;
+  delete fighter;
+  delete container;
 }
 
 void Entity::Render(){

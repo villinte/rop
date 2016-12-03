@@ -8,6 +8,15 @@
 #include <memory.h>
 #include "state.h"
 
+
+const int _CONTINUE = 0;
+const int _QUIT     = 1;
+
+enum Active{
+  CONTINUE,
+  QUIT  
+};
+
 class MenuState : public State{
 
  public:
@@ -17,7 +26,9 @@ class MenuState : public State{
   bool draw_overlayed() const{
     return true;
   }
-  
+
+  int current;
+  Active currentActive;
   
 };
 

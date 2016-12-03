@@ -9,24 +9,44 @@
 #include "sdl_wrapper.h"
 #include <string>
 #include "f_item.h"
+#include "gui.h"
+
+/*
+ * Boundaries for inventory window
+ */
+const int start_x = globals::SCREEN_WIDTH/2;
+const int start_y = 0;
+const int end_x   = globals::SCREEN_WIDTH;
+const int end_y   = globals::SCREEN_HEIGHT;
+
+/*
+ * Boundaries for text within window
+ */
+const int t_x = globals::MAP_WIDTH/2+2;
+const int t_y = 3;
+
 
 InventoryState::InventoryState(){
 
 }
 
 void InventoryState::Init(){
-  
+  Game::player->container->inv.shrink_to_fit();
+  selected = 0;
+  amountItems = Game::player->container->inv.size();
 }
 
 void InventoryState::Draw(){
-  SDL_Rect rect = {globals::SCREEN_WIDTH/2, 0, globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT};
+  SDL_Rect rect = {start_x, start_y, end_x, end_y};
   io::drawSquare(rect, Black);
   std::string temp = "Browsing Inventory";
-  io::printMsg(temp, globals::MAP_WIDTH/2+1, 1, temp.length(), Green);
+  io::printMsg(temp, t_x+1, 1, temp.length(), Green);
 
   for(unsigned i = 0; i < Game::player->container->inv.size(); ++i){
     std::string name = Game::player->container->inv[i]->_name;
-    io::printMsg(name, globals::MAP_WIDTH/2+2, 3+i, name.length(), Pink);
+    
+    io::printMsg(name, t_x+2, t_y+i, name.length(), Pink);
+    
   }
   
 }
@@ -43,7 +63,7 @@ void InventoryState::Update(){
       // if item is usable, new turn and pop state.
       if(Game::player->container->inv.back()->item->Use
 	 (*Game::player->container->inv.back(), *Game::player)){
-	Game::newTurn();
+       	Game::newTurn();
 	states::pop();
       }
     }

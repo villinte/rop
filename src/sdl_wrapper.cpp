@@ -194,7 +194,6 @@ namespace io{
     SDL_RenderFillRect(_renderer, &r);
   } // drawSquare
 
-
   Keys Input(){
 
     SDL_Event event;

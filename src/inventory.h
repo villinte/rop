@@ -20,6 +20,8 @@ class InventoryState : public State{
   }
 
  private:
+  unsigned int selected;
+  unsigned int amountItems;
 
 };
 

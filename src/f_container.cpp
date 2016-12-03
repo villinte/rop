@@ -8,6 +8,7 @@ bool Container::addItem(Entity &a){
     return false;
   }
   inv.emplace_back(&a);
+  std::sort(inv.begin(), inv.end());
   return true;
 }
 

@@ -20,6 +20,13 @@ class Entity{
   
   void Render();
   void Update();
+
+  bool operator == (const Entity& str) const{
+    return (_name == str._name);
+  }
+  bool operator < (const Entity& str) const{
+    return (_name < str._name);
+  }
   
   //Components
   Actor *act;

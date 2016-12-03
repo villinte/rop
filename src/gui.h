@@ -9,6 +9,8 @@ namespace Gui{
   extern int logUpdate;
   extern std::vector<std::string > msgLog;
   extern std::string cmdStr;
+    
+  void Init();
 
   void AddCmdMsg(std::string str);
   void ClearCmdMsg();

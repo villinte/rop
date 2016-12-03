@@ -5,7 +5,6 @@
 
 #include "gui.h"
 #include "sdl_wrapper.h"
-#include "globals.h"
 #include "helper.h"
 #include "game.h"
 #include "entity.h"
@@ -13,8 +12,17 @@
 #include "map.h"
 
 namespace Gui{
+
   int logUpdate = 0;
   std::vector<std::string > msgLog;
+
+
+  void Init(){
+    // Setup grid
+
+    
+  }
+
   
   std::string cmdStr;
   void LogMsg(std::string str){
@@ -158,4 +166,3 @@ namespace Gui{
   }
 
 }
-
