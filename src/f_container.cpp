@@ -7,7 +7,7 @@ bool Container::addItem(Entity &a){
   if(size > 0 && inv.size() >= size){
     return false;
   }
-  inv.emplace_back(&a);
+  inv.push_back(&a);
   std::sort(inv.begin(), inv.end());
   return true;
 }
@@ -32,6 +32,7 @@ bool Container::removeItem(Entity &a){
   for(unsigned i = 0; i < inv.size(); ++i){
     if(inv[i] == &a){
       inv.erase(inv.begin()+i);
+      std::sort(inv.begin(), inv.end());
       return true;
     }
   }

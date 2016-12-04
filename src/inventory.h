@@ -20,9 +20,8 @@ class InventoryState : public State{
   }
 
  private:
-  unsigned int selected;
-  unsigned int amountItems;
-
+  unsigned selected;
+  unsigned amountItems;
 };
 
 namespace Inventory{

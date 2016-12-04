@@ -20,8 +20,6 @@ namespace Game{
   bool isRunning = false;
   unsigned int turnCounter = 0;
   unsigned int healCounter = 0;
-
-  
   
   // player movement
   int p_dx = 0;
@@ -31,7 +29,7 @@ namespace Game{
   std::vector<std::unique_ptr<Entity>> actors;
 
   void Init(){
-    
+
     std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
     player = std::move(pEntity);
 
@@ -43,6 +41,9 @@ namespace Game{
     Map::createMap();
     
     isRunning = true;
+
+ 
+    
   }
 
   void Cleanup(){
@@ -109,6 +110,7 @@ namespace Game{
 
     std::unique_ptr<State> inventoryState(new InventoryState());
     std::unique_ptr<State> menuState(new MenuState());
+ 
     Keys key = io::Input();
     switch(key){
     case K_UP:

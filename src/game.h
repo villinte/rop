@@ -21,8 +21,7 @@ namespace Game{
     
   extern std::unique_ptr<Entity> player;
   extern std::vector<std::unique_ptr<Entity>> actors;
-
-
+  
   void Init();
 
   void Cleanup();

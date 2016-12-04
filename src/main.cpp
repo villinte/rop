@@ -12,14 +12,15 @@ int main(){
   states::push(std::move(playState));
 
   while(!states::is_empty()){
-
+    
     states::start();
 
     if(states::is_empty()){
       break;
     }
-    
+
     states::draw();
+    
     states::update();
     
   } //while

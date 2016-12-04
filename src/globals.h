@@ -15,6 +15,7 @@ namespace globals {
   const int SCREEN_WIDTH_TILE = SCREEN_WIDTH/TILE_W;
   const int SCREEN_HEIGHT_TILE = SCREEN_WIDTH/TILE_H;
   const int TURN_COST = 10;
+  const int MAX_STR_LEN = 100;
 }
 
 struct cColor{

@@ -20,7 +20,8 @@ namespace io{
 			       globals::SCREEN_HEIGHT,
 			       0);
     
-    _renderer = SDL_CreateRenderer(_window, -1, 0);
+    _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+   
     
     SDL_Surface* loadedSurface = IMG_Load("gfx/16x24.png");
     

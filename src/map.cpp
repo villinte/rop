@@ -9,6 +9,10 @@
 
 #include "gui.h"
 
+/*
+ * Cell should be derived from entity... do smth about this.
+ */
+
 Cell::Cell(){
   pos = P(-1,-1);
   _glyph = ' ';
@@ -32,7 +36,7 @@ void Cell::Reset(){
   isSeen = false;
   lightLevel = 0;
 }
-
+ 
 void Cell::Replace(Cell c){
   this->pos = c.pos;
   this->_glyph = c._glyph;
