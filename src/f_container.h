@@ -6,17 +6,20 @@
 
 class Entity;
 
+
 class Container{
 
  public:
-  bool removeItem(Entity &a);
-  bool pickUpItem(Entity &item_entity, Entity &using_entity);
-  bool addItem(Entity &a);
+
+  bool removeItem(std::unique_ptr<Entity> &a);
+  bool pickUpItem(std::unique_ptr<Entity> &item_entity, std::unique_ptr<Entity> &using_entity);
+  bool addItem(std::unique_ptr<Entity> &a);
+
   Container(unsigned size);
   ~Container() {}
 
-  //  std::vector<std::unique_ptr<Entity>> inv;
-  std::vector<Entity*> inv;
+  std::vector<std::unique_ptr<Entity>> inv;
+  //std::vector<Entity*> inv;
   unsigned size;
 
  private:

@@ -99,8 +99,7 @@ void InventoryState::Update(){
     if(!Game::player->container->inv.empty()){
       // if item is usable, new turn and pop state.
       if(Game::player->container->inv[selected]->item->Use
-	 (*Game::player->container->inv[selected], *Game::player)){
-	//	Game::player->container->inv.shrink_to_fit();
+	 (Game::player->container->inv[selected], Game::player)){
 	amountItems = Game::player->container->inv.size();
 	selected = 0;
 	Game::newTurn();

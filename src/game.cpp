@@ -149,7 +149,7 @@ namespace Game{
       {
 	for(auto &e : Game::actors){
 	  if(e->item && e->pos.x == player->pos.x && e->pos.y == player->pos.y){
-	    if(player->container->pickUpItem(*e,*player)){
+	    if(player->container->pickUpItem(e,player)){
 
 	      break;// Needed, don't want to iterate over changed vector
 	    }
