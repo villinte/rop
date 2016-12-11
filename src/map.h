@@ -40,6 +40,7 @@ namespace Map{
   extern Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
     
   void createMap();
+  void createRandomMap();
   void cleanMap();
   void clearVision();
   void computeFov();
