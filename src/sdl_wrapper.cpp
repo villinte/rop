@@ -254,6 +254,7 @@ namespace io{
     
   } // Input
 
+  
   void clear(){
     SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
     SDL_RenderClear(_renderer);

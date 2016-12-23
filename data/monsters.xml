@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monsters>
+  
+  <monster name="Orc">
+    <info description="an orc" experience="15" energy="5"/>
+    <health now="10" max="10" armor="0"/>
+    <look glyph="O" corpse="%" color="Green"/>
+    <attack name="melee" power="3"/>
+    <flags actor="1" mortal="1" fighter="1" container="1" item="0"/>
+  </monster>
+  
+  <monster name="Troll">
+    <info description="a troll" experience="12" energy="6"/>
+    <health now="12" max="12" armor="2"/>
+    <look glyph="T" corpse="%" color="Brown"/>
+    <attack name="melee" power="4"/>
+    <flags actor="1" mortal="1" fighter="1" container="1" item="0"/>
+  </monster>
+</monsters>

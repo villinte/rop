@@ -6,7 +6,7 @@
 #include "f_actor.h"
 #include "f_fighter.h"
 #include "f_item.h"
-
+#include "actor_factory.h"
 #include "gui.h"
 #include "map_gen.h"
 
@@ -116,17 +116,9 @@ namespace Map{
 	  cells[x][y]._description = "a floor tile.";
 	}
 	else if(str.at(i) == 'L'){
-	  std::unique_ptr<Entity> horribleMonster(new Entity(P(x,y), "Munster", str.at(i), Pink));
-	  Actor* mActor(new MonsterActor(5));
-	  horribleMonster->act = mActor;
-	  
-	  Mortal* mMortal(new MonsterMortal(15, 0, "Human Corpse", 10));
-	  horribleMonster->mortal = mMortal;
-
-	  Fighter* mFighter(new Fighter(5));
-	  horribleMonster->fighter = mFighter;
-	  
-	  Game::actors.emplace_back(std::move(horribleMonster));
+	  int randNr = Rng::randInt(0,100);
+	  std::unique_ptr<Entity> a = actor_factory::make((randNr > 50) ? "Troll" : "Orc", P(x,y));
+	  Game::actors.emplace_back(std::move(a));
 	  
 	  cells[x][y]._glyph = '.';
 	  cells[x][y]._description = "a floor tile.";

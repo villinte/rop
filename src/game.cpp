@@ -29,14 +29,7 @@ namespace Game{
   std::vector<std::unique_ptr<Entity>> actors;
 
   void Init(){
-
-    std::unique_ptr<Entity> pEntity(new Entity(P(0,0), "Player", '@', White));
-    player = std::move(pEntity);
-
-    player->act = new PlayerActor(10);
-    player->mortal = new PlayerMortal(20, 0, "dead player");
-    player->fighter = new Fighter(10);
-    player->container = new Container(4);
+    
     Map::cleanMap();
     Map::createMap();
     

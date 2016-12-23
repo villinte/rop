@@ -1,5 +1,6 @@
-#ifndef MENUSTATE_H
-#define MENUSTATE_H
+#ifndef MAINMENU_H
+#define MAINMENU_H
+
 #include "sdl_wrapper.h"
 #include "globals.h"
 #include "helper.h"
@@ -8,21 +9,18 @@
 #include <memory.h>
 #include "state.h"
 
-
-const int _CONTINUE = 0;
-const int _QUIT     = 1;
-
 enum MENUITEMS{
-  CONTINUE,
+  LOAD_GAME,
+  CREATE_NEW,
   HELP,
   QUIT,
   LAST_ENUM
 };
 
-class MenuState : public State{
+class MainMenu : public State{
 
  public:
-  MenuState();
+  MainMenu();
   void Update();
   void Draw();
   bool draw_overlayed() const{
@@ -30,7 +28,7 @@ class MenuState : public State{
   }
 
   MENUITEMS current;
-  
+    
 };
 
 #endif

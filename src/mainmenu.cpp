@@ -1,53 +1,65 @@
-#include "menustate.h"
+#include "mainmenu.h"
 #include "state.h"
+#include "player.h"
 
-MenuState::MenuState(){
-  current = CONTINUE;
+MainMenu::MainMenu(){
+  current = LOAD_GAME;
 }
 
-void MenuState::Draw(){
-  io::printMsg("Continue", 32, 18, 30, (current == CONTINUE) ? Green: Grey);
+void MainMenu::Draw(){
+  io::printMsg("Load Game", 32, 16, 15, (current == LOAD_GAME) ? Green : Grey);
+  io::printMsg("Create New Character", 32, 18, 30, (current == CREATE_NEW) ? Green: Grey);
   io::printMsg("Help", 32, 20, 30, (current == HELP) ? Green: Grey);
   io::printMsg("Quit", 32, 22, 30, (current == QUIT) ? Green: Grey);
   
   io::flip();
 }
 
-void MenuState::Update(){
+void MainMenu::Update(){
+  // newPlayerState
+
+  std::unique_ptr<State> CreatePlayerState(new newPlayer());
+  
   // Handle menu navigation
   Keys key = io::Input();
   switch(key){
   case E_QUIT:
-    Game::isRunning = false;
     states::pop();
     break;
 
   case K_UP:
     switch(current){
-    case CONTINUE:
+    case LOAD_GAME:
       current = QUIT;
       break;
+    case CREATE_NEW:
+      current = LOAD_GAME;
+      break;
     case HELP:
-      current = CONTINUE;
+      current = CREATE_NEW;
       break;
     case QUIT:
       current = HELP;
       break;
     default:
       break;
-    }    
+     }    
     break;
     
   case K_DOWN:
     switch(current){
-    case CONTINUE:
+    case LOAD_GAME:
+      current = CREATE_NEW;
+      break;
+    case CREATE_NEW:
       current = HELP;
       break;
     case HELP:
       current = QUIT;
       break;
     case QUIT:
-      current = CONTINUE;
+      current = LOAD_GAME;
+      break;
     default:
       break;
     }
@@ -55,13 +67,17 @@ void MenuState::Update(){
     
   case K_RETURN:
     switch(current){
-    case CONTINUE:
-      states::pop();
+    case LOAD_GAME:
+      
+      break;
+    case CREATE_NEW:
+ 
+      states::push(std::move(CreatePlayerState));    
       break;
     case HELP:
+      
       break;
     case QUIT:
-      Game::isRunning = false;
       states::pop();
       break;
     default:
@@ -71,4 +87,5 @@ void MenuState::Update(){
   default:
     break;
   }
+    
 }
