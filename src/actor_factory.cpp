@@ -74,10 +74,13 @@ namespace actor_factory{
     std::string s_fighter = dataLoad::getAttribute(mon_type, "flags", "fighter");
     if(s_fighter == "1"){
       std::string s_power = dataLoad::getAttribute(mon_type, "attack", "power");
+      std::string s_hit   = dataLoad::getAttribute(mon_type, "attack", "hit");
       if(s_power == "UnknownAttribute")
 	return nullptr;
+      if(s_hit == "UnknownAttribute")
+	return nullptr;
 
-      Fighter* mFighter(new Fighter(std::stoi(s_power)));
+      Fighter* mFighter(new Fighter(std::stoi(s_power), std::stoi(s_hit)));
       e->fighter = mFighter;
     }
 

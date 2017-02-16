@@ -92,7 +92,7 @@ namespace Gui{
 
     // Render latest log msg
     if(logUpdate > 0){
-      io::printMsg(msgLog.back(), 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+6, globals::MAP_WIDTH*globals::FONT_W/2-5*globals::FONT_W, Orange);
+      io::printMsg(msgLog.back(), 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+6, 33, Orange);
       logUpdate--;
     }
     if(logUpdate <= 0)

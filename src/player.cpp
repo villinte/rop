@@ -22,7 +22,7 @@ void newPlayer::Update(){
     std::string corpseName = "dead " + nick;
     Game::player->act = new PlayerActor(10);
     Game::player->mortal = new PlayerMortal(20, 0, corpseName);
-    Game::player->fighter = new Fighter(10);
+    Game::player->fighter = new Fighter(10,0);
     Game::player->container = new Container(4);
     
     std::unique_ptr<State> playState(new GameState());

@@ -8,6 +8,7 @@
 Mortal::Mortal(int maxHp, int armor, std::string corpseName, int xp) :
   maxHp(maxHp), armor(armor), corpseName(corpseName), xp(xp) {
   hp = maxHp;
+  dodgeRating = 0; // this is a modifier from gear.
 }
 
 int Mortal::takeDmg(Entity &a, int dmg){

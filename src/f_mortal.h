@@ -9,6 +9,7 @@ class Mortal{
   int maxHp;
   int hp;
   int armor;
+  int dodgeRating;
   std::string corpseName;
   unsigned int xp;
 

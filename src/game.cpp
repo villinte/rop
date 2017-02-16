@@ -132,6 +132,7 @@ namespace Game{
       states::push(std::move(menuState));
       break;
     case K_l:
+      Gui::showMsgLog();
       break;
     case K_i:
       states::push(std::move(inventoryState));
