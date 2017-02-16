@@ -16,8 +16,8 @@ namespace io{
     _window = SDL_CreateWindow("RoP",
 			       SDL_WINDOWPOS_UNDEFINED,
 			       SDL_WINDOWPOS_UNDEFINED,
-			       globals::SCREEN_WIDTH,
-			       globals::SCREEN_HEIGHT,
+			       g::SCREEN_WIDTH,
+			       g::SCREEN_HEIGHT,
 			       0);
     
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
@@ -77,46 +77,46 @@ namespace io{
     SDL_Rect srcRct;
     if(c >= ' ' && c <= '/'){
       srcRct.y = 0;
-      srcRct.x = ((int)c-32)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.x = ((int)c-32)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
     }
     else if(c >= '0' && c <= '?'){
-      srcRct.y = 1*globals::FONT_H;
-      srcRct.x = ((int)c-48)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.y = 1*g::FONT_H;
+      srcRct.x = ((int)c-48)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
 
     }
     else if(c >= '@' && c <= 'O'){
-      srcRct.y = 2*globals::FONT_H;
-      srcRct.x = ((int)c-64)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.y = 2*g::FONT_H;
+      srcRct.x = ((int)c-64)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
     }
     else if(c >= 'P' && c <= '_'){
-      srcRct.y = 3*globals::FONT_H;
-      srcRct.x = ((int)c-80)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.y = 3*g::FONT_H;
+      srcRct.x = ((int)c-80)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
     }
     else if(c >= '\'' && c <= 'o'){
-      srcRct.y = 4*globals::FONT_H;
-      srcRct.x = ((int)c-96)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.y = 4*g::FONT_H;
+      srcRct.x = ((int)c-96)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
     }
     else if(c >= 'p' && c <= '~'){
-      srcRct.y = 5*globals::FONT_H;
-      srcRct.x = ((int)c-112)*globals::FONT_W;
-      srcRct.w = globals::FONT_W;
-      srcRct.h = globals::FONT_H;
+      srcRct.y = 5*g::FONT_H;
+      srcRct.x = ((int)c-112)*g::FONT_W;
+      srcRct.w = g::FONT_W;
+      srcRct.h = g::FONT_H;
     }
     SDL_Rect dstRct;
-    dstRct.x = x*globals::FONT_W;
-    dstRct.y = y*globals::FONT_H;
-    dstRct.w = globals::FONT_W;
-    dstRct.h = globals::FONT_H;
+    dstRct.x = x*g::FONT_W;
+    dstRct.y = y*g::FONT_H;
+    dstRct.w = g::FONT_W;
+    dstRct.h = g::FONT_H;
   
     SDL_Rect rect = {dstRct.x, dstRct.y, dstRct.w, dstRct.h};
     SDL_SetRenderDrawColor(_renderer, cC.r, cC.g, cC.b, 255);
@@ -129,46 +129,46 @@ namespace io{
     SDL_Rect srcRct;
     if(c >= ' ' && c <= '/'){
       srcRct.y = 0;
-      srcRct.x = ((int)c-32)*globals::FONT_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.x = ((int)c-32)*g::FONT_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
     }
     else if(c >= '0' && c <= '?'){
-      srcRct.y = 1*globals::GLYPH_H;
-      srcRct.x = ((int)c-48)*globals::GLYPH_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.y = 1*g::GLYPH_H;
+      srcRct.x = ((int)c-48)*g::GLYPH_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
 
     }
     else if(c >= '@' && c <= 'O'){
-      srcRct.y = 2*globals::GLYPH_H;
-      srcRct.x = ((int)c-64)*globals::GLYPH_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.y = 2*g::GLYPH_H;
+      srcRct.x = ((int)c-64)*g::GLYPH_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
     }
     else if(c >= 'P' && c <= '_'){
-      srcRct.y = 3*globals::GLYPH_H;
-      srcRct.x = ((int)c-80)*globals::GLYPH_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.y = 3*g::GLYPH_H;
+      srcRct.x = ((int)c-80)*g::GLYPH_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
     }
     else if(c >= '\'' && c <= 'o'){
-      srcRct.y = 4*globals::GLYPH_H;
-      srcRct.x = ((int)c-96)*globals::GLYPH_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.y = 4*g::GLYPH_H;
+      srcRct.x = ((int)c-96)*g::GLYPH_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
     }
     else if(c >= 'p' && c <= '~'){
-      srcRct.y = 5*globals::GLYPH_H;
-      srcRct.x = ((int)c-112)*globals::GLYPH_W;
-      srcRct.w = globals::GLYPH_W;
-      srcRct.h = globals::GLYPH_H;
+      srcRct.y = 5*g::GLYPH_H;
+      srcRct.x = ((int)c-112)*g::GLYPH_W;
+      srcRct.w = g::GLYPH_W;
+      srcRct.h = g::GLYPH_H;
     }
     SDL_Rect dstRct;
-    dstRct.x = x*globals::GLYPH_W;
-    dstRct.y = y*globals::GLYPH_H;
-    dstRct.w = globals::GLYPH_W;
-    dstRct.h = globals::GLYPH_H;
+    dstRct.x = x*g::GLYPH_W;
+    dstRct.y = y*g::GLYPH_H;
+    dstRct.w = g::GLYPH_W;
+    dstRct.h = g::GLYPH_H;
   
     SDL_Rect rect = {dstRct.x, dstRct.y, dstRct.w, dstRct.h};
     SDL_SetRenderDrawColor(_renderer, cC.r, cC.g, cC.b, 255);
@@ -184,7 +184,7 @@ namespace io{
   } // DrawLine
 
   void drawClearRect(P p, cColor cC){
-    SDL_Rect rect = {p.x*globals::GLYPH_W, p.y*globals::GLYPH_H, globals::GLYPH_W, globals::GLYPH_H};
+    SDL_Rect rect = {p.x*g::GLYPH_W, p.y*g::GLYPH_H, g::GLYPH_W, g::GLYPH_H};
     SDL_SetRenderDrawColor(_renderer, cC.r, cC.g, cC.b, 100);
 
     SDL_RenderDrawRect(_renderer, &rect);

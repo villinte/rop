@@ -42,10 +42,10 @@ namespace Gui{
   void showMsgLog(){
     io::clear();
 
-    io::printMsg("Message Log. ESC will return you to the game.", 1, 0, globals::SCREEN_WIDTH-1, Green);
+    io::printMsg("Message Log. ESC will return you to the game.", 1, 0, g::SCREEN_WIDTH-1, Green);
     
     for(unsigned int i = 0; i < msgLog.size(); ++i){
-      io::printMsg(msgLog[i], 1, 1+i, globals::SCREEN_WIDTH-1, White);
+      io::printMsg(msgLog[i], 1, 1+i, g::SCREEN_WIDTH-1, White);
     }
     io::flip();
     while(true){
@@ -75,24 +75,24 @@ namespace Gui{
   void RenderGui(){
     // Draw lines, indicate GUI
     // top line
-    io::DrawLine(P(globals::FONT_W,globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), White);
+    io::DrawLine(P(g::FONT_W,g::MAP_HEIGHT*g::GLYPH_H+1), P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), White);
     // Left line
-    io::DrawLine(P(globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::FONT_W, globals::SCREEN_HEIGHT), White);
+    io::DrawLine(P(g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), P(g::FONT_W, g::SCREEN_HEIGHT), White);
     // right line
-    io::DrawLine(P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::MAP_HEIGHT*globals::GLYPH_H+1), P(globals::MAP_WIDTH*globals::FONT_W-globals::FONT_W, globals::SCREEN_HEIGHT), White);
+    io::DrawLine(P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::SCREEN_HEIGHT), White);
 
     // CMD msg Separator
-    int cmdSepx = globals::MAP_WIDTH*globals::FONT_W/2-5*globals::FONT_W;
-    int cmdSepy = globals::MAP_HEIGHT*globals::GLYPH_H+1;
-    io::DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,globals::SCREEN_HEIGHT), White);
+    int cmdSepx = g::MAP_WIDTH*g::FONT_W/2-5*g::FONT_W;
+    int cmdSepy = g::MAP_HEIGHT*g::GLYPH_H+1;
+    io::DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,g::SCREEN_HEIGHT), White);
 
     // Draw cmd msg
-    io::printMsg(cmdStr, 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+4, globals::SCREEN_WIDTH/globals::FONT_W, Green);
+    io::printMsg(cmdStr, 2, g::SCREEN_HEIGHT/g::GLYPH_H+4, g::SCREEN_WIDTH/g::FONT_W, Green);
     
 
     // Render latest log msg
     if(logUpdate > 0){
-      io::printMsg(msgLog.back(), 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+6, 33, Orange);
+      io::printMsg(msgLog.back(), 2, g::SCREEN_HEIGHT/g::GLYPH_H+6, 33, Orange);
       logUpdate--;
     }
     if(logUpdate <= 0)
@@ -158,7 +158,7 @@ namespace Gui{
       if(Map::cells[crosshair.x][crosshair.y].isSeen){
 	// Draw look msg
 	std::string msg = "You see " + Map::cells[crosshair.x][crosshair.y]._description;
-	io::printMsg(msg, 2, globals::SCREEN_HEIGHT/globals::GLYPH_H+4, globals::SCREEN_WIDTH/globals::FONT_W, Green);
+	io::printMsg(msg, 2, g::SCREEN_HEIGHT/g::GLYPH_H+4, g::SCREEN_WIDTH/g::FONT_W, Green);
       }
       
       io::flip();

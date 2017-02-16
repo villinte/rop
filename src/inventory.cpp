@@ -16,15 +16,15 @@
 /*
  * Boundaries for inventory window
  */
-const int start_x = globals::SCREEN_WIDTH/2;
+const int start_x = g::SCREEN_WIDTH/2;
 const int start_y = 0;
-const int end_x   = globals::SCREEN_WIDTH;
-const int end_y   = globals::SCREEN_HEIGHT;
+const int end_x   = g::SCREEN_WIDTH;
+const int end_y   = g::SCREEN_HEIGHT;
 
 /*
  * Boundaries for text within window
  */
-const int t_x = globals::MAP_WIDTH/2+2;
+const int t_x = g::MAP_WIDTH/2+2;
 const int t_y = 3;
 
 

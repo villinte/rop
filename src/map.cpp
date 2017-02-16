@@ -74,7 +74,7 @@ Door::~Door(){
 
 namespace Map{
   
-  Cell cells[globals::MAP_WIDTH][globals::MAP_HEIGHT];
+  Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
   
   void createMap(){
@@ -191,8 +191,8 @@ namespace Map{
 
   void cleanMap(){
     
-    for(int x = 0; x < globals::MAP_WIDTH; ++x){
-      for(int y = 0; y < globals::MAP_HEIGHT; ++y){
+    for(int x = 0; x < g::MAP_WIDTH; ++x){
+      for(int y = 0; y < g::MAP_HEIGHT; ++y){
 	cells[x][y].Reset();
 	cells[x][y].pos = P(x,y);
       }
@@ -202,8 +202,8 @@ namespace Map{
   }
 
   void clearVision(){
-    for(int x = 0; x < globals::MAP_WIDTH; ++x){
-      for(int y = 0; y < globals::MAP_HEIGHT; ++y){
+    for(int x = 0; x < g::MAP_WIDTH; ++x){
+      for(int y = 0; y < g::MAP_HEIGHT; ++y){
 	cells[x][y].isSeen = false;
 	cells[x][y].lightLevel = 0;
       }
@@ -237,7 +237,7 @@ namespace Map{
       cells[(int)ox][(int)oy].isExplored = true;
       if(cells[(int)ox][(int)oy]._block)
 	return;
-      if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1  ||
+      if((int)ox >= g::MAP_WIDTH-1 || (int)oy >= g::MAP_HEIGHT-1  ||
 	 (int)ox <= 0 || (int)oy <= 0)
 	return;
       ox+=x;
@@ -250,7 +250,7 @@ namespace Map{
       cells[(int)ox][(int)oy].isExplored = true;
       if(cells[(int)ox][(int)oy]._block)
 	return;
-      if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1 ||
+      if((int)ox >= g::MAP_WIDTH-1 || (int)oy >= g::MAP_HEIGHT-1 ||
 	 (int)ox <= 0 || (int)oy <= 0)
 	return;
       ox+=x;
@@ -264,7 +264,7 @@ namespace Map{
       if(cells[(int)ox][(int)oy]._block)
 	return;
 
-      if((int)ox >= globals::MAP_WIDTH-1 || (int)oy >= globals::MAP_HEIGHT-1 ||
+      if((int)ox >= g::MAP_WIDTH-1 || (int)oy >= g::MAP_HEIGHT-1 ||
 	 (int)ox <= 0 || (int)oy <= 0)
 	return;
       
@@ -275,8 +275,8 @@ namespace Map{
   }
   
   void renderMap(){
-    for(int x = 0; x < globals::MAP_WIDTH; x++){
-      for(int y = 0; y < globals::MAP_HEIGHT; y++){
+    for(int x = 0; x < g::MAP_WIDTH; x++){
+      for(int y = 0; y < g::MAP_HEIGHT; y++){
 	// Line of sight
 	cColor temp;
 	temp.r = 0;

@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 #include <string>
-namespace globals {
+namespace g {
   const int TILE_W = 16;
   const int TILE_H = 24;
   const int FONT_W = 16;

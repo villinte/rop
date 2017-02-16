@@ -30,7 +30,7 @@ void PlayerActor::Act(Entity &a) {
   }
   if(Has_Acted){
     Map::computeFov();
-    energy -= globals::TURN_COST;
+    energy -= g::TURN_COST;
   }
   // end of turn
 }
@@ -54,7 +54,7 @@ bool PlayerActor::Move(Entity &a, P p){
   }
   
   // Check collision with walls
-  if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
+  if(!Map::cells[p.x][p.y]._block && p.x < g::MAP_WIDTH && p.y < g::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
     a.pos.set(p);
     return true;
   }
@@ -97,7 +97,7 @@ void MonsterActor::Act(Entity &a) {
   else{ // wander
     Wander(a);
   }
-  energy -= globals::TURN_COST;
+  energy -= g::TURN_COST;
 }
 
 void MonsterActor::Wander(Entity &a){
@@ -126,7 +126,7 @@ void MonsterActor::Wander(Entity &a){
 void MonsterActor::Move(Entity &a, P p) {
 
   // Check collision with walls
-  if(!Map::cells[p.x][p.y]._block && p.x < globals::MAP_WIDTH && p.y < globals::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
+  if(!Map::cells[p.x][p.y]._block && p.x < g::MAP_WIDTH && p.y < g::MAP_HEIGHT && p.x >= 0 && p.y >= 0){
     a.pos.set(p);
   }
   

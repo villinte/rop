@@ -72,7 +72,7 @@ namespace Game{
     
     for(auto& a : actors){
       if(a->act){
-	while(a->act->energy >= globals::TURN_COST && !a->mortal->isDead()){
+	while(a->act->energy >= g::TURN_COST && !a->mortal->isDead()){
 	  a->Update();
 	}
       }
