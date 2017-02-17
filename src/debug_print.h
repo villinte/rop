@@ -10,7 +10,7 @@ namespace Debug{
   void Init(bool Active);
   
   void print(std::string str);
-  
+  void printf(std::string str);
 }
 
 #endif

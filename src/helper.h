@@ -242,6 +242,11 @@ public:
     {
         return ((p1 + p0) / 2);
     }
+    
+    P randPoint() const
+    {
+      return (P(Rng::randInt(p0.x,p1.x), Rng::randInt(p0.y,p1.y)));
+    }
 
     bool is_p_inside(const P& p) const
     {

@@ -1,13 +1,23 @@
 #include "game.h"
 #include "sdl_wrapper.h"
 #include "mainmenu.h"
-
+#include "debug_print.h"
 #include "data_load.h"
-
+#include <iostream>
 class GameState;
 
-int main(){
+int main(int argc, char *argv[]){
 
+  if(argc >= 2){
+    std::string debugFlag = argv[1];
+    if(debugFlag == "-d"){
+      Debug::Init(true);
+    }
+    else{
+      Debug::Init(false);
+    }
+  }
+  
   dataLoad::Init();
   
   io::Init();

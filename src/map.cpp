@@ -9,6 +9,7 @@
 #include "actor_factory.h"
 #include "gui.h"
 #include "map_gen.h"
+#include "debug_print.h"
 
 /*
  * Cell should be derived from entity... do smth about this.
@@ -76,8 +77,13 @@ namespace Map{
   
   Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
+  void nextLevel(){
+    Debug::print("nextLevel");
+    createMap();
+  }
   
   void createMap(){
+    cleanMap();
     std::string str =
       "1###############################################################################;"
       "########################.....................###################################;"
@@ -116,8 +122,11 @@ namespace Map{
 	  cells[x][y]._description = "a floor tile.";
 	}
 	else if(str.at(i) == 'L'){
+
 	  int randNr = Rng::randInt(0,100);
 	  std::unique_ptr<Entity> a = actor_factory::make((randNr > 50) ? "Troll" : "Orc", P(x,y));
+	  std::string str = "Spawned " + a->_name;
+	  Debug::print(str);
 	  Game::actors.emplace_back(std::move(a));
 	  
 	  cells[x][y]._glyph = '.';
@@ -147,8 +156,7 @@ namespace Map{
 	  cells[x][y]._glyph = '.';
 	  cells[x][y]._description = "a floor tile.";
 					 
-	}
-	
+	}	
 	else{
 	  cells[x][y]._glyph = str.at(i);
 	}
@@ -176,6 +184,15 @@ namespace Map{
 	  cells[x][y]._block = false;
 	  cells[x][y]._description = "a floor tile.";
 	}
+	if(str.at(i) == '<'){
+	  std::unique_ptr<Entity> stairs(new Entity(P(x,y), "Stairs",
+						    str.at(i), Gold));
+
+	  Game::actors.emplace_back(std::move(stairs));
+	  cells[x][y]._glyph = '.';
+	  cells[x][y]._description = "a floor tile.";
+	}
+	
 	x++;
       }
       else{

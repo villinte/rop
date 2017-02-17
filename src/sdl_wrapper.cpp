@@ -198,7 +198,8 @@ namespace io{
   Keys Input(){
 
     SDL_Event event;
-    SDL_WaitEvent(&event);
+
+    while(SDL_PollEvent(&event)){
     switch(event.type)
       {
       case SDL_QUIT:
@@ -250,6 +251,7 @@ namespace io{
 	break;
       }
 
+    }
     return K_UNKNOWN;
     
   } // Input

@@ -38,7 +38,8 @@ public:
 namespace Map{
 
   extern Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
-    
+
+  void nextLevel();
   void createMap();
   void createRandomMap();
   void cleanMap();

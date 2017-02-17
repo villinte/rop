@@ -9,6 +9,7 @@
 #include <memory>
 #include "f_mortal.h"
 #include "f_fighter.h"
+#include "debug_print.h"
 
 PlayerActor::PlayerActor(int speed) {
   this->speed = speed;
@@ -41,15 +42,20 @@ bool PlayerActor::Move(Entity &a, P p){
     Map::openDoor(p);
     return true;
   }
-
-  //Check for monsters to attack
+  
+  //Check for actors to interact with
   for(auto & t : Game::actors){
     
     if(t.get()->pos == p && t.get()->mortal && !(t.get()->mortal->isDead())){
       a.fighter->Attack(a, *t);
       return true;
     }
-    
+
+    if(t->pos == p && t->_glyph == '<'){
+      Debug::print("In stairs");
+      Map::nextLevel();
+      return true;
+    }
     
   }
   
@@ -58,6 +64,9 @@ bool PlayerActor::Move(Entity &a, P p){
     a.pos.set(p);
     return true;
   }
+
+
+  
   return false;
 }
 

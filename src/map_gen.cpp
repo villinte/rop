@@ -6,9 +6,10 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <iostream>
 
 // Values for bsp
-const int MAX_NODE_SIZE = 18;
+const int MAX_NODE_SIZE = 20;
 const int MIN_NODE_SIZE = 7;
 
 bsp::bsp(int x, int y, int w, int h){
@@ -63,10 +64,19 @@ namespace mapGen{
   
   char _map[g::MAP_WIDTH][g::MAP_HEIGHT];
   std::vector<R*> rooms;
-  std::vector<R*> connectors;
   std::list<bsp*> nodes;
+  
   void init(){
 
+    // clear all stuff
+    for (std::vector<R*>::iterator it = rooms.begin() ; it != rooms.end(); ++it){
+      delete (*it);
+    } 
+    rooms.clear();
+
+    while(!nodes.empty()) delete nodes.front(), nodes.pop_front();
+    
+    
     player_p = P(0,0);
     
     bsp* root = new bsp(1,1,g::MAP_WIDTH, g::MAP_HEIGHT);
@@ -105,15 +115,35 @@ namespace mapGen{
       fillRect(*i, '.');
     }
 
+    // Add some monsters
+    for(unsigned int i = 0; i < rooms.size(); ++i){
+      addMonster(rooms[i]->center());
+    }
+    
     // add player in a random room
-    int pStartRoom = Rng::randInt(0,rooms.size());
-    player_p = rooms[pStartRoom]->center();
+    int pStartRoom = 0;
+    while(pStartRoom == 0){
+      pStartRoom = Rng::randInt(0,rooms.size());
+      player_p = rooms[pStartRoom]->center();
+    }
     _map[player_p.x][player_p.y] = '@';
 
     // Add Doors
     addDoors();
+
+    // add stair to next level
+    bool stairsAdded = false;
+    while(!stairsAdded){
+      int roomId = Rng::randInt(0, rooms.size());
+      if(_map[rooms[roomId]->center().x][rooms[roomId]->center().y] != '@'){
+	_map[rooms[roomId]->center().x][rooms[roomId]->center().y] = '<';
+	stairsAdded = true;
+      }
+    }
+    if(Debug::debugEnabled)
+      drawMap();
     
-  }
+  } // init
   
   void createRooms(bsp *n){
     if(n->leftNode != nullptr || n->rightNode != nullptr){
@@ -136,11 +166,7 @@ namespace mapGen{
     
       R *tempRoom = new R(n->x + roomPos.x, n->y + roomPos.y, n->x + roomPos.x + roomSize.x,
 			  n->y + roomPos.y + roomSize.y);
-      
-
-      if(Rng::randInt(0,100) > 30)
-	addMonster(tempRoom->center());
-      
+           
       mapGen::rooms.push_back(tempRoom);
     }      
   
@@ -150,8 +176,14 @@ namespace mapGen{
     if(rooms.size() > 1){
       
       for(unsigned int i = 1; i < rooms.size(); ++i){
-	createHorizontalTunnel(rooms[i-1]->center(), rooms[i]->center());
-	createVerticalTunnel(rooms[i]->center(), rooms[i-1]->center());
+	createHorizontalTunnel(rooms[i-1]->randPoint(), rooms[i]->randPoint());
+	createVerticalTunnel(rooms[i]->randPoint(), rooms[i-1]->randPoint());
+
+	if(Rng::randInt(0,100) > 60 && i > 2){
+	  createHorizontalTunnel(rooms[i]->center(), rooms[i-2]->center());
+	  createVerticalTunnel(rooms[i-2]->center(), rooms[i]->center());
+	}
+	
       }
     }
   }
@@ -180,65 +212,65 @@ namespace mapGen{
   }
 
   void addDoors(){
-      for(int y = 0; y <= g::MAP_HEIGHT; ++y){
-	for(int x = 0; x <= g::MAP_WIDTH; ++x){
-	  if(_map[x][y] == '.'){
-	    if((_map[x+1][y] == '.' &&
-		_map[x-1][y] == '.' &&
-		_map[x+1][y+1] == '.' &&
-		_map[x+1][y-1] == '.' &&
-		(_map[x-1][y-1] == '.' || _map[x-1][y-1] == '#') &&
-		(_map[x-1][y+1] == '.' || _map[x-1][y+1] == '#') &&
-		_map[x][y-1] == '#' &&
-		_map[x][y+1] == '#')
-	       || (_map[x+1][y] == '#' &&
-		   _map[x-1][y] == '#' &&
-		   _map[x+1][y+1] == '.' &&
-		   (_map[x+1][y-1] == '.' || _map[x+1][y-1] == '#') &&
-		   (_map[x-1][y-1] == '.' || _map[x-1][y-1] == '#') &&
-		   _map[x-1][y+1] == '.' &&
-		   _map[x][y-1] == '.' &&
-		   _map[x][y+1] == '.')
-	       || (_map[x+1][y] == '.' &&
-		   _map[x-1][y] == '.' &&
-		   (_map[x+1][y+1] == '.' || _map[x+1][y+1] == '#') &&
-		   (_map[x+1][y-1] == '.' || _map[x+1][y-1] == '#') &&
-		   _map[x-1][y-1] == '.' &&
-		   _map[x-1][y+1] == '.' &&
-		   _map[x][y-1] == '#' &&
-		   _map[x][y+1] == '#')
-	       || (_map[x+1][y] == '#' &&
-		   _map[x-1][y] == '#' &&
-		   (_map[x+1][y+1] == '.' || _map[x+1][y+1] == '.') &&
-		   _map[x+1][y-1] == '.' &&
-		   _map[x-1][y-1] == '.' &&
-		   (_map[x-1][y+1] == '.' || _map[x-1][y+1] == '#') &&
-		   _map[x][y-1] == '.' &&
-		   _map[x][y+1] == '.')
+    for(int y = 0; y <= g::MAP_HEIGHT; ++y){
+      for(int x = 0; x <= g::MAP_WIDTH; ++x){
+	if(_map[x][y] == '.'){
+	  if((_map[x+1][y] == '.' &&
+	      _map[x-1][y] == '.' &&
+	      _map[x+1][y+1] == '.' &&
+	      _map[x+1][y-1] == '.' &&
+	      (_map[x-1][y-1] == '.' || _map[x-1][y-1] == '#') &&
+	      (_map[x-1][y+1] == '.' || _map[x-1][y+1] == '#') &&
+	      _map[x][y-1] == '#' &&
+	      _map[x][y+1] == '#')
+	     || (_map[x+1][y] == '#' &&
+		 _map[x-1][y] == '#' &&
+		 _map[x+1][y+1] == '.' &&
+		 (_map[x+1][y-1] == '.' || _map[x+1][y-1] == '#') &&
+		 (_map[x-1][y-1] == '.' || _map[x-1][y-1] == '#') &&
+		 _map[x-1][y+1] == '.' &&
+		 _map[x][y-1] == '.' &&
+		 _map[x][y+1] == '.')
+	     || (_map[x+1][y] == '.' &&
+		 _map[x-1][y] == '.' &&
+		 (_map[x+1][y+1] == '.' || _map[x+1][y+1] == '#') &&
+		 (_map[x+1][y-1] == '.' || _map[x+1][y-1] == '#') &&
+		 _map[x-1][y-1] == '.' &&
+		 _map[x-1][y+1] == '.' &&
+		 _map[x][y-1] == '#' &&
+		 _map[x][y+1] == '#')
+	     || (_map[x+1][y] == '#' &&
+		 _map[x-1][y] == '#' &&
+		 (_map[x+1][y+1] == '.' || _map[x+1][y+1] == '.') &&
+		 _map[x+1][y-1] == '.' &&
+		 _map[x-1][y-1] == '.' &&
+		 (_map[x-1][y+1] == '.' || _map[x-1][y+1] == '#') &&
+		 _map[x][y-1] == '.' &&
+		 _map[x][y+1] == '.')
 
-	       ){
+	     ){
 	    
-	      _map[x][y] = '+';
+	    _map[x][y] = '+';
 	    
-	    }
 	  }
 	}
+      }
 
       
-      }
-      // Remove some of the doors, for reasons...?
-      for(int y = 0; y < g::MAP_HEIGHT; ++y){
-	for(int x = 0; x < g::MAP_WIDTH; ++x){
-	  if(_map[x][y] == '+' && Rng::randInt(0,100) > 60){
-	    if(Rng::randInt(0,100) > 50){
-	      _map[x][y] = '/';
-	    }
-	    else{
-	      _map[x][y] = '.';
-	    }
+    }
+    // Remove some of the doors, for reasons...?
+    for(int y = 0; y < g::MAP_HEIGHT; ++y){
+      for(int x = 0; x < g::MAP_WIDTH; ++x){
+	if(_map[x][y] == '+' && Rng::randInt(0,100) > 60){
+	  if(Rng::randInt(0,100) > 50){
+	    _map[x][y] = '/';
+	  }
+	  else{
+	    _map[x][y] = '.';
 	  }
 	}
       }
+    }
       
   } // addDoors
 
@@ -256,14 +288,18 @@ namespace mapGen{
   }
 
   void addMonster(P p){
-    for(int i = 0; i < 3; ++i){
-      if(i < 2)
-	_map[p.x+i][p.y] = 'L';
-      else
-	_map[p.x][p.y+i] = 'L';
-    }
-    
+    _map[p.x][p.y] = 'L';
   }
+
+  void drawMap(){
+    for(int y = 0; y < g::MAP_HEIGHT; ++y){
+      for(int x = 0; x < g::MAP_WIDTH; ++x){
+	std::cout << _map[x][y];
+      }
+      std::cout << std::endl;
+    }
+  }
+  
   
 }
  

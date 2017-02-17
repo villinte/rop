@@ -16,5 +16,11 @@ namespace Debug{
     }
     
   }
+
+  void printf(std::string str){
+    if(debugEnabled){
+      std::cout << str;
+    }
+  }
   
 }
