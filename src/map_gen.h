@@ -38,7 +38,10 @@ namespace mapGen{
   void createVerticalTunnel(P p1, P p2);
   void addMonster(P p);
   void addDoors();
+  void addItem(P p);
   void drawMap();
+
+  bool isMapGood();
   std::string getMapStr();
   
   extern std::vector<R*> rooms;

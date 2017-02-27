@@ -106,6 +106,9 @@ namespace Gui{
     			"HP: ", White);
 
     renderStringAndInt(P(36, 36), "Turn:",Game::turnCounter, White);
+
+    // Render Dungeon Level
+    renderStringAndInt(P(36, 38), "Dungeon Level:", Map::dungeonLevel, White);
     
     io::flip();
   }

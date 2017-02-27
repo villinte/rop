@@ -7,6 +7,9 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <stack>
+
+#include "pathfinding.h"
 
 // Values for bsp
 const int MAX_NODE_SIZE = 20;
@@ -60,7 +63,9 @@ namespace mapGen{
 
   namespace {
     P player_p;
+    P stairs_p;
   }
+  
   
   char _map[g::MAP_WIDTH][g::MAP_HEIGHT];
   std::vector<R*> rooms;
@@ -123,7 +128,7 @@ namespace mapGen{
     // add player in a random room
     int pStartRoom = 0;
     while(pStartRoom == 0){
-      pStartRoom = Rng::randInt(0,rooms.size());
+      pStartRoom = Rng::randInt(1,rooms.size());
       player_p = rooms[pStartRoom]->center();
     }
     _map[player_p.x][player_p.y] = '@';
@@ -137,11 +142,23 @@ namespace mapGen{
       int roomId = Rng::randInt(0, rooms.size());
       if(_map[rooms[roomId]->center().x][rooms[roomId]->center().y] != '@'){
 	_map[rooms[roomId]->center().x][rooms[roomId]->center().y] = '<';
+	stairs_p = rooms[roomId]->center();
 	stairsAdded = true;
       }
     }
+    
+    // Throw in some random items
+    for(unsigned int i = 0; i < rooms.size(); ++i){
+      if(Rng::randInt(0,100) < 20){
+	addItem(rooms[i]->randPoint());
+      }
+    }
+    
     if(Debug::debugEnabled)
       drawMap();
+
+    if(!isMapGood())
+      init();
     
   } // init
   
@@ -291,6 +308,11 @@ namespace mapGen{
     _map[p.x][p.y] = 'L';
   }
 
+  void addItem(P p){
+    // TEMP
+    _map[p.x][p.y] = '!';
+  }
+  
   void drawMap(){
     for(int y = 0; y < g::MAP_HEIGHT; ++y){
       for(int x = 0; x < g::MAP_WIDTH; ++x){
@@ -299,7 +321,73 @@ namespace mapGen{
       std::cout << std::endl;
     }
   }
+
+  bool isMapGood(){
+
+    for(int y = 0; y < g::MAP_HEIGHT; ++y){
+      for(int x = 0; x < g::MAP_WIDTH; ++x){
+	if(_map[x][y] == '#'){
+	  PF::map[x][y] = 1;
+	}
+	else{
+	  PF::map[x][y] = 0;
+	}
+      }
+    }
+
+    P pA = player_p;
+    P pB = stairs_p;
+    
+    std::string route = PF::pathFind(pA, pB);
+    if(route == ""){
+      Debug::print("Failed to generate map");
+      return false;
+    }
+    if(route.length()>0)
+      {
+        int j = 0;
+	std::string str;
+	std::string::size_type sz;
+        int x = pA.x;
+        int y = pA.y;
+	PF::map[x][y]=2;
+        for(unsigned int i=0;i<route.length();i++)
+	  {
+            str = route.at(i);
+	    j = std::stoi(str, &sz);
+	    x = x + PF::dx[j];
+            y = y + PF::dy[j];
+	    PF::map[x][y] = 3;
+	  }
+	PF::map[x][y] = 4;
+
+	if(Debug::debugEnabled){
+	  // display the map with the route
+	  std::cout << std::endl;
+	  for(int y = 0; y < g::MAP_HEIGHT; y++){
+	    for(int x = 0; x < g::MAP_WIDTH; x++)
+		if(PF::map[x][y] == 0)
+		  std::cout << ".";
+		else if(PF::map[x][y] == 1)
+		  std::cout << "#";
+		else if(PF::map[x][y] == 2)
+		  std::cout << "@";
+		else if(PF::map[x][y] == 3)
+		  std::cout << "*";
+		else if(PF::map[x][y] == 4)
+		  std::cout << ">";
+	      std::cout << std::endl;
+	    }
+	}
+      }
+
+    return true;
+    
+  }
+
   
+
+ 
   
 }
  

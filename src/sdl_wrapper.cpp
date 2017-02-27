@@ -213,15 +213,54 @@ namespace io{
 	    break;
 	  case SDLK_RIGHT:
 	    return K_RIGHT;
-	    break;	
+	    break;
+	  case SDLK_KP_6:
+	    return K_RIGHT;
+	    break;
 	  case SDLK_LEFT:
+	    return K_LEFT;
+	    break;
+	  case SDLK_KP_4:
 	    return K_LEFT;
 	    break;
 	  case SDLK_UP:
 	    return K_UP;
 	    break;
+	  case SDLK_KP_8:
+	    return K_UP;
+	    break;
 	  case SDLK_DOWN:
 	    return K_DOWN;
+	    break;
+	  case SDLK_KP_2:
+	    return K_DOWN;
+	    break;
+	  case SDLK_KP_1:
+	    return K_KP_1;
+	    break;
+	  case SDLK_KP_3:
+	    return K_KP_3;
+	    break;
+	  case SDLK_KP_5:
+	    return K_KP_5;
+	    break;
+	  case SDLK_KP_9:
+	    return K_KP_9;
+	    break;
+	  case SDLK_KP_7:
+	    return K_KP_7;
+	    break;
+	  case SDLK_END:
+	    return K_END;
+	    break;
+	  case SDLK_PAGEDOWN:
+	    return K_PGDN;
+	    break;
+	  case SDLK_PAGEUP:
+	    return K_PGUP;
+	    break;
+	  case SDLK_HOME:
+	    return K_HOME;
 	    break;
 	  case SDLK_c:
 	    return K_c;

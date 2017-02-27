@@ -14,6 +14,7 @@ class Actor{
   virtual void Act(Entity &a) = 0;
   virtual ~Actor() {}
   virtual void newTurn() = 0;
+  virtual bool monsterInFov() = 0;
   int energy;
   int speed;
  protected:
@@ -25,6 +26,7 @@ class MonsterActor : public Actor {
   
   void Act(Entity &a);
   void newTurn();
+  bool monsterInFov(){ return false;}
  protected:
   void Wander(Entity &a);
   void Move(Entity &a, P p);
@@ -35,6 +37,8 @@ class PlayerActor : public Actor{
   int Level;
   PlayerActor(int speed);
   ~PlayerActor();
+
+  bool monsterInFov();
   
   void newTurn();
   void Act(Entity &a);

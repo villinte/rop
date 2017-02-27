@@ -39,6 +39,9 @@ namespace Map{
 
   extern Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
+  extern unsigned int dungeonLevel;
+
+  void Init();
   void nextLevel();
   void createMap();
   void createRandomMap();
@@ -46,7 +49,7 @@ namespace Map{
   void clearVision();
   void computeFov();
   void doFov(float x, float y);
-
+  
   void renderMap();
   
   // map interaction

@@ -1,6 +1,6 @@
 #include "menustate.h"
 #include "state.h"
-
+#include "instructions.h"
 MenuState::MenuState(){
   current = CONTINUE;
 }
@@ -15,6 +15,7 @@ void MenuState::Draw(){
 
 void MenuState::Update(){
   // Handle menu navigation
+  std::unique_ptr<State> InstructionState(new instrState());
   Keys key = io::Input();
   switch(key){
   case E_QUIT:
@@ -59,6 +60,7 @@ void MenuState::Update(){
       states::pop();
       break;
     case HELP:
+      states::push(std::move(InstructionState));
       break;
     case QUIT:
       Game::isRunning = false;

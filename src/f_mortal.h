@@ -12,6 +12,7 @@ class Mortal{
   int dodgeRating;
   std::string corpseName;
   unsigned int xp;
+  bool isAlive;
 
   Mortal(int maxHp, int armor, std::string corpseName, int xp);
   virtual  ~Mortal() {};

@@ -9,6 +9,7 @@ Mortal::Mortal(int maxHp, int armor, std::string corpseName, int xp) :
   maxHp(maxHp), armor(armor), corpseName(corpseName), xp(xp) {
   hp = maxHp;
   dodgeRating = 0; // this is a modifier from gear.
+  isAlive = true;
 }
 
 int Mortal::takeDmg(Entity &a, int dmg){
@@ -40,7 +41,7 @@ void Mortal::die(Entity &a){
   a._name = corpseName;
   a._block = false;
   a.act->energy = 0;
-  
+  this->isAlive = false;
 }
 
 MonsterMortal::MonsterMortal(int maxHp, int armor, std::string corpseName, int xp) :

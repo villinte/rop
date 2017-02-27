@@ -74,6 +74,21 @@ void PlayerActor::newTurn(){
   energy += speed;
 }
 
+bool PlayerActor::monsterInFov(){
+
+  for(auto &t : Game::actors){
+
+    if(t != Game::player && Map::cells[t->pos.x][t->pos.y].isSeen){
+      if(t->mortal){
+	if(t->mortal->isAlive == true)
+	  return true;
+      }
+    }
+    
+  }
+  return false;
+}
+
 MonsterActor::MonsterActor(int speed){
   this->energy = 0;
   this->speed = speed;

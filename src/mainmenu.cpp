@@ -1,6 +1,7 @@
 #include "mainmenu.h"
 #include "state.h"
 #include "player.h"
+#include "instructions.h"
 
 MainMenu::MainMenu(){
   current = LOAD_GAME;
@@ -19,7 +20,7 @@ void MainMenu::Update(){
   // newPlayerState
 
   std::unique_ptr<State> CreatePlayerState(new newPlayer());
-  
+  std::unique_ptr<State> InstructionState(new instrState());
   // Handle menu navigation
   Keys key = io::Input();
   switch(key){
@@ -75,7 +76,7 @@ void MainMenu::Update(){
       states::push(std::move(CreatePlayerState));    
       break;
     case HELP:
-      
+      states::push(std::move(InstructionState));
       break;
     case QUIT:
       states::pop();

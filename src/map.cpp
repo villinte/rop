@@ -77,8 +77,15 @@ namespace Map{
   
   Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
+  unsigned int dungeonLevel;
+
+  void Init(){
+    dungeonLevel = 1;
+  }
+  
   void nextLevel(){
     Debug::print("nextLevel");
+    dungeonLevel++;
     createMap();
   }
   
@@ -416,6 +423,7 @@ namespace Map{
     }
     Gui::ClearCmdMsg();
     return direction;
-  }	 
+  }
+
   
 }

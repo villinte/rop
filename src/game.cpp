@@ -29,7 +29,7 @@ namespace Game{
   std::vector<std::unique_ptr<Entity>> actors;
 
   void Init(){
-    
+    Map::Init();
     Map::cleanMap();
     Map::createMap();
     
@@ -53,7 +53,8 @@ namespace Game{
 	a->Render();
     }
     
-    player->Render();
+    if(player != nullptr)
+      player->Render();
 
     Gui::RenderGui();
     
@@ -106,6 +107,16 @@ namespace Game{
  
     Keys key = io::Input();
     switch(key){
+    case K_KP_5:
+      for(int i = 0; i < 5; i++){
+	if(player->act->monsterInFov()){
+	  Gui::LogMsg("Monster in sight.");
+	}
+	else{
+	  newTurn();
+	}
+      }
+      break;
     case K_UP:
       p_dy = -1;
       break;
@@ -118,6 +129,38 @@ namespace Game{
     case K_LEFT:
       p_dx = -1;
       break;
+    case K_HOME:
+      p_dx = -1;
+      p_dy = -1;
+      break;
+    case K_PGUP:
+      p_dx = 1;
+      p_dy = -1;
+      break;
+    case K_PGDN:
+      p_dx = 1;
+      p_dy = 1;
+      break;
+    case K_END:
+      p_dx = -1;
+      p_dy = 1;
+      break;
+    case K_KP_7:
+      p_dx = -1;
+      p_dy = -1;
+      break;
+    case K_KP_9:
+      p_dx = 1;
+      p_dy = -1;
+      break;
+    case K_KP_3:
+      p_dx = 1;
+      p_dy = 1;
+      break;
+    case K_KP_1:
+      p_dx = -1;
+      p_dy = 1;
+      break;	      
     case E_QUIT:
       isRunning = false;
       break;
@@ -138,6 +181,7 @@ namespace Game{
       states::push(std::move(inventoryState));
       break;
     case K_v:
+      Map::nextLevel();
       break;
     case K_g:
       {
