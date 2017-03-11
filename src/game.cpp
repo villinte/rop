@@ -181,7 +181,7 @@ namespace Game{
       states::push(std::move(inventoryState));
       break;
     case K_v:
-      Map::nextLevel();
+      Gui::viewMode();
       break;
     case K_g:
       {
@@ -195,34 +195,44 @@ namespace Game{
 	  }
 	}
       }
-	break;
-	default:
-	  break;
-      }
+      break;
+    default:
+      break;
+    }
 
   
     
-    } // handleInput
+  } // handleInput
 
-    void clearActors(){
-      actors.clear();
-    } // clearActors
+  void clearActors(){
+    actors.clear();
+  } // clearActors
 
+  std::string getEntityDescription(P p){
+
+    for(auto &e : Game::actors){
+      if(e->getP().x == p.x && e->getP().y == p.y){
+	return e->_description;
+      }
+    }
+    
+    return "No Entity";
+  }
   
-  } //namespace game
+} //namespace game
 
-  GameState::GameState(){
+GameState::GameState(){
 
-  }
+}
 
-  void GameState::Init(){
-    Game::Init();
-  }
+void GameState::Init(){
+  Game::Init();
+}
 
-  void GameState::Draw(){
-    Game::Render();
-  }
+void GameState::Draw(){
+  Game::Render();
+}
 
-  void GameState::Update(){
-    Game::Tick();
-  }
+void GameState::Update(){
+  Game::Tick();
+}

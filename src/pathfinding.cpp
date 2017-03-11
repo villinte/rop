@@ -1,5 +1,6 @@
 #include "pathfinding.h"
 #include <memory>
+#include "map.h"
 
 namespace PF{
 
@@ -9,6 +10,7 @@ namespace PF{
   int closed_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   int open_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   int dir_map[g::MAP_WIDTH][g::MAP_HEIGHT];
+
 
   std::string pathFind( const P & Start, const P & Finish){
     

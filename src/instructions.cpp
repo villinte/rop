@@ -29,7 +29,9 @@ void instrState::Draw(){
   io::printMsg("g: Grab item", 8, 16, 100, White);
   io::printMsg("i: Display Inventory", 8, 17, 100, White);
   io::printMsg("l: Display Message Log", 8, 18, 100, White);
+  io::printMsg("v: View map descriptions", 8, 18, 100, White);
   
+  io::printMsg("ESC is used to cancel a command", 8, 22, 100, White);
   
 }
 

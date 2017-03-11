@@ -48,7 +48,7 @@ namespace actor_factory{
     if(color == "UnknownAttribute")
       return nullptr;
     
-    std::unique_ptr<Entity> e(new Entity(p, mon_type, glyph[0], getColor(color)));
+    std::unique_ptr<Entity> e(new Entity(p, mon_type, glyph[0], getColor(color), description));
 
     // If mortal
     std::string s_mortal = dataLoad::getAttribute(mon_type, "flags", "mortal");

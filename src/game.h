@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include "state.h"
+#include "helper.h"
+#include <string>
 
 class Entity;
 class Fighter;
@@ -35,6 +37,8 @@ namespace Game{
   void newTurn();
 
   void clearActors();
+
+  std::string getEntityDescription(P p);
   
 }
 

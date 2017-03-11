@@ -15,7 +15,7 @@ class Item;
 
 class Entity{
  public:
-  Entity(P p, std::string name, char glyph, cColor c);
+  Entity(P p, std::string name, char glyph, cColor c, std::string des);
   ~Entity();
   
   void Render();
@@ -27,6 +27,8 @@ class Entity{
   bool operator < (const Entity& str) const{
     return (_name < str._name);
   }
+
+  P getP() {return pos;}
   
   //Components
   Actor *act;
@@ -41,6 +43,7 @@ class Entity{
   cColor _color;
   bool _block;
   bool _visible;
+  std::string _description;
   
  private:
   

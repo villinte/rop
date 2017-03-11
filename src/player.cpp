@@ -17,7 +17,7 @@ void newPlayer::Update(){
     nick = PlayerName::inputName();  
   }
   else{
-    std::unique_ptr<Entity> pEntity(new Entity(P(0,0), nick, '@', White));
+    std::unique_ptr<Entity> pEntity(new Entity(P(0,0), nick, '@', White, "yourself."));
     Game::player = std::move(pEntity);
     std::string corpseName = "dead " + nick;
     Game::player->act = new PlayerActor(10);

@@ -60,6 +60,15 @@ inline bool operator<(const node & a, const node & b)
   return a.getPriority() > b.getPriority();
 }
 
+struct pfNode{
+
+public:
+  P p;
+  bool Closed;
+  int Value;
+  
+};
+
 namespace PF{
   extern int n;
   extern int m;

@@ -142,7 +142,7 @@ namespace Map{
 
 	else if(str.at(i) == '!'){
 	  std::unique_ptr<Entity> potion(new Entity(P(x,y), "Healing Potion",
-						    str.at(i), Red));
+						    str.at(i), Red, "a healing potion."));
 	  
 	  Item* pHealing(new Healing(10, "You drank a healing potion."));
 	  
@@ -156,7 +156,7 @@ namespace Map{
 
 	else if(str.at(i) == '|'){
 	  std::unique_ptr<Entity> dagger(new Entity(P(x,y), "Dagger",
-						    str.at(i), Grey));
+						    str.at(i), Grey, "a dagger."));
 	  Item* pWeapon(new Weapon(3, "You wield a dagger."));
 	  dagger->item = pWeapon;
 	  Game::actors.emplace_back(std::move(dagger));
@@ -193,7 +193,7 @@ namespace Map{
 	}
 	if(str.at(i) == '<'){
 	  std::unique_ptr<Entity> stairs(new Entity(P(x,y), "Stairs",
-						    str.at(i), Gold));
+						    str.at(i), Gold, "stairs leading down."));
 
 	  Game::actors.emplace_back(std::move(stairs));
 	  cells[x][y]._glyph = '.';
@@ -341,7 +341,8 @@ namespace Map{
     if(cells[pos.x][pos.y]._glyph == '+'){
       cells[pos.x][pos.y]._glyph = '/';
       cells[pos.x][pos.y]._block = false;
-      Gui::LogMsg("Opened a door to the south.");
+      cells[pos.x][pos.y]._description = "an open door.";
+      Gui::LogMsg("Opened a door.");
     }
   }
 
@@ -353,6 +354,7 @@ namespace Map{
       if(cells[pos.x][pos.y+1]._glyph == '/'){
 	cells[pos.x][pos.y+1]._glyph = '+';
 	cells[pos.x][pos.y+1]._block = true;
+	cells[pos.x][pos.y]._description = "a closed door.";
 	Gui::LogMsg("Closed a door to the south.");
 	success = true;
       }
@@ -362,6 +364,7 @@ namespace Map{
       if(cells[pos.x][pos.y-1]._glyph == '/'){
 	cells[pos.x][pos.y-1]._glyph = '+';
 	cells[pos.x][pos.y-1]._block = true;
+	cells[pos.x][pos.y]._description = "a closed door.";
 	Gui::LogMsg("Closed a door to the north.");
 	success = true;
       }
@@ -371,6 +374,7 @@ namespace Map{
       if(cells[pos.x+1][pos.y]._glyph == '/'){
 	cells[pos.x+1][pos.y]._glyph = '+';
 	cells[pos.x+1][pos.y]._block = true;
+	cells[pos.x][pos.y]._description = "a closed door.";
       	Gui::LogMsg("Closed a door to the east.");
 	success = true;
       }
@@ -380,6 +384,7 @@ namespace Map{
       if(cells[pos.x-1][pos.y]._glyph == '/'){
 	cells[pos.x-1][pos.y]._glyph = '+';
 	cells[pos.x-1][pos.y]._block = true;
+	cells[pos.x][pos.y]._description = "a closed door.";
       	Gui::LogMsg("Closed a door to the west.");
 	success = true;
       }

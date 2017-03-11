@@ -160,7 +160,13 @@ namespace Gui{
 
       if(Map::cells[crosshair.x][crosshair.y].isSeen){
 	// Draw look msg
-	std::string msg = "You see " + Map::cells[crosshair.x][crosshair.y]._description;
+	std::string msg;
+	if(Game::getEntityDescription(P(crosshair)) == "No Entity"){
+	  msg = "You see " + Map::cells[crosshair.x][crosshair.y]._description;
+	}
+	else{
+	  msg = "You see " + Game::getEntityDescription(P(crosshair));
+	}
 	io::printMsg(msg, 2, g::SCREEN_HEIGHT/g::GLYPH_H+4, g::SCREEN_WIDTH/g::FONT_W, Green);
       }
       

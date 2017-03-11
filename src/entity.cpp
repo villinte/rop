@@ -5,9 +5,9 @@
 #include "f_fighter.h"
 #include "f_container.h"
 
-Entity::Entity(P p, std::string name, char glyph, cColor c) :
+Entity::Entity(P p, std::string name, char glyph, cColor c, std::string desc) :
   pos(p), _name(name), _glyph(glyph),
-  _color(c) {
+  _color(c), _description(desc) {
   act = nullptr;
   mortal = nullptr;
   fighter = nullptr;
