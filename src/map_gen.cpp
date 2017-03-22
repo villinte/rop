@@ -324,62 +324,9 @@ namespace mapGen{
 
   bool isMapGood(){
 
-    for(int y = 0; y < g::MAP_HEIGHT; ++y){
-      for(int x = 0; x < g::MAP_WIDTH; ++x){
-	if(_map[x][y] == '#'){
-	  PF::map[x][y] = 1;
-	}
-	else{
-	  PF::map[x][y] = 0;
-	}
-      }
-    }
-
-    P pA = player_p;
-    P pB = stairs_p;
-    
-    std::string route = PF::pathFind(pA, pB);
-    if(route == ""){
-      Debug::print("Failed to generate map");
+    std::vector<P> path = PF::findPath(player_p, stairs_p, false);
+    if(path.size() == 0)
       return false;
-    }
-    if(route.length()>0)
-      {
-        int j = 0;
-	std::string str;
-	std::string::size_type sz;
-        int x = pA.x;
-        int y = pA.y;
-	PF::map[x][y]=2;
-        for(unsigned int i=0;i<route.length();i++)
-	  {
-            str = route.at(i);
-	    j = std::stoi(str, &sz);
-	    x = x + PF::dx[j];
-            y = y + PF::dy[j];
-	    PF::map[x][y] = 3;
-	  }
-	PF::map[x][y] = 4;
-
-	if(Debug::debugEnabled){
-	  // display the map with the route
-	  std::cout << std::endl;
-	  for(int y = 0; y < g::MAP_HEIGHT; y++){
-	    for(int x = 0; x < g::MAP_WIDTH; x++)
-		if(PF::map[x][y] == 0)
-		  std::cout << ".";
-		else if(PF::map[x][y] == 1)
-		  std::cout << "#";
-		else if(PF::map[x][y] == 2)
-		  std::cout << "@";
-		else if(PF::map[x][y] == 3)
-		  std::cout << "*";
-		else if(PF::map[x][y] == 4)
-		  std::cout << ">";
-	      std::cout << std::endl;
-	    }
-	}
-      }
 
     return true;
     

@@ -10,6 +10,7 @@
 #include "f_mortal.h"
 #include "f_fighter.h"
 #include "debug_print.h"
+#include "pathfinding.h"
 
 PlayerActor::PlayerActor(int speed) {
   this->speed = speed;
@@ -105,13 +106,11 @@ void MonsterActor::Act(Entity &a) {
     //is player next too monster?
     int dx = Game::player->pos.x - a.pos.x;
     int dy = Game::player->pos.y - a.pos.y;
-    int stepdx = (dx > 0 ? 1:-1);
-    int stepdy = (dy > 0 ? 1:-1);
     float distance=sqrtf(dx*dx+dy*dy);
-    if ( distance >= 2 ) {
-      dx = (int)(round(dx/distance));
-      dy = (int)(round(dy/distance));
-      Move(a, P(a.pos.x + stepdx, a.pos.y + stepdy));
+    if ( distance >= 2 ) {      
+      std::vector<P> moves = PF::findPath(a.pos, Game::player->pos, true);
+      Move(a, moves.back());
+      
     }
     else if ( a.fighter ) {
       a.fighter->Attack(a,*Game::player);

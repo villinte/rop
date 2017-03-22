@@ -1,6 +1,9 @@
 #include "pathfinding.h"
 #include <memory>
 #include "map.h"
+#include "game.h"
+#include "entity.h"
+
 
 namespace PF{
 
@@ -12,14 +15,34 @@ namespace PF{
   int dir_map[g::MAP_WIDTH][g::MAP_HEIGHT];
 
 
-  std::string pathFind( const P & Start, const P & Finish){
+  std::vector<P> findPath(const P &Start, const P &Finish, bool actorsBlocking){
+
+    // If we want actors to be seen as non passable objects on the map.
+    if(actorsBlocking){
+      for(auto& a : Game::actors){
+	if(a->_block == true)
+	PF::map[a->pos.x][a->pos.y] = 1;
+      }
+    }
     
+    for(int y = 0; y < g::MAP_HEIGHT; ++y){
+      for(int x = 0; x < g::MAP_WIDTH; ++x){
+	if(Map::cells[x][y]._glyph == '#'){
+	  PF::map[x][y] = 1;
+	}
+	else{
+	  PF::map[x][y] = 0;
+	}
+      }
+    }
+
+    std::vector<P> returnVec;
+
     std::priority_queue<node> pq[2]; // list of open (not-yet-tried) nodes
     int pqi; // pq index
     std::unique_ptr<node> n0;
     std::unique_ptr<node> m0;
     int i, j, x, y, xdx, ydy;
-    char c;
     pqi=0;
 
     // reset the node maps
@@ -57,17 +80,15 @@ namespace PF{
       if(x == Finish.x && y == Finish.y){
 	// generate the path from finish to start
 	// by following the directions
-	std::string path="";
 	while(!(x == Start.x && y == Start.y)){
 	  j=dir_map[x][y];
-	  c='0'+(j+dir/2)%dir;
-	  path=c+path;
+	  returnVec.push_back(P(x,y));
 	  x+=dx[j];
 	  y+=dy[j];
 	}
 
 	while(!pq[pqi].empty()) pq[pqi].pop();        
-	return path;
+	return returnVec;
       }
 
       // generate moves (child nodes) in all possible directions
@@ -122,7 +143,10 @@ namespace PF{
       }
 	
     }
-    return ""; // no route found
+    return returnVec; // no route found
+    
+    
   }
+  
   
 }

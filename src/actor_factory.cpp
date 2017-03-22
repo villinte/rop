@@ -49,7 +49,7 @@ namespace actor_factory{
       return nullptr;
     
     std::unique_ptr<Entity> e(new Entity(p, mon_type, glyph[0], getColor(color), description));
-
+    e->_block = true;
     // If mortal
     std::string s_mortal = dataLoad::getAttribute(mon_type, "flags", "mortal");
 

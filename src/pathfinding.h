@@ -7,6 +7,7 @@
 #include <math.h>
 #include <ctime>
 #include <string>
+#include <vector>
 #include "globals.h"
 #include "helper.h"
 
@@ -78,7 +79,7 @@ namespace PF{
   extern int closed_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   extern int open_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   extern int dir_map[g::MAP_WIDTH][g::MAP_HEIGHT];
-  std::string pathFind( const P & Start, const P & Finish);
+  std::vector<P> findPath( const P &Start, const P &Finish, bool actorsBlocking);
 }
 
 
