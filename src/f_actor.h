@@ -30,6 +30,7 @@ class MonsterActor : public Actor {
  protected:
   void Wander(Entity &a);
   void Move(Entity &a, P p);
+  unsigned int aware;
 };
 
 class PlayerActor : public Actor{

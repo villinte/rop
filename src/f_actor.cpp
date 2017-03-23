@@ -93,6 +93,7 @@ bool PlayerActor::monsterInFov(){
 MonsterActor::MonsterActor(int speed){
   this->energy = 0;
   this->speed = speed;
+  this->aware = 0;
 }
 
 void MonsterActor::Act(Entity &a) {
@@ -102,7 +103,11 @@ void MonsterActor::Act(Entity &a) {
     }  
   // If player is in field of view
   if(Map::cells[a.pos.x][a.pos.y].isSeen){
-    //attack or move
+    aware = 5;
+  }
+  
+  
+  if(aware > 0){
     //is player next too monster?
     int dx = Game::player->pos.x - a.pos.x;
     int dy = Game::player->pos.y - a.pos.y;
@@ -110,7 +115,7 @@ void MonsterActor::Act(Entity &a) {
     if ( distance >= 2 ) {      
       std::vector<P> moves = PF::findPath(a.pos, Game::player->pos, true);
       Move(a, moves.back());
-      
+      aware--;
     }
     else if ( a.fighter ) {
       a.fighter->Attack(a,*Game::player);
