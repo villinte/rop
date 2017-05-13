@@ -76,7 +76,7 @@ namespace Game{
 	while(a->act->energy >= g::TURN_COST && !a->mortal->isDead()){
 	  a->Update();
 	}
-      }
+      }      
     }
     
     
@@ -87,13 +87,29 @@ namespace Game{
     for(auto& a : actors){
       if(a->act)
 	a->act->newTurn();
+      
+      if(a->mortal){
+	if(!a->mortal->isAlive){
+	  if(a->mortal->decayTimer == 0){
+	    a->pos.x = -1;
+	    a->pos.y = -1;
+	  }
+	  else{
+	    a->mortal->decayTimer--;
+	  }
+	}
+      }      
     }
+    
     turnCounter++;
     healCounter++;
+
     if(healCounter >= 20){
       player->mortal->Heal(1);
       healCounter = 0;
     }
+    
+    
   }
 
   void handleInput(){

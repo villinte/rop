@@ -10,24 +10,37 @@
 #include "entity.h"
 #include "f_mortal.h"
 #include "map.h"
+#include <algorithm>
+#include "debug_print.h"
+
 
 namespace Gui{
 
+  const int cmdStartY = g::SCREEN_HEIGHT/g::GLYPH_H + 13;
+  
   int logUpdate = 0;
   std::vector<std::string > msgLog;
 
-
   void Init(){
-    // Setup grid
-
-    
+    // Setup grid    
   }
 
   
   std::string cmdStr;
   void LogMsg(std::string str){
     msgLog.push_back(str);
+    Debug::print("Logging: " + msgLog[msgLog.size()-1]);
     logUpdate = 2;
+  }
+
+  void LogMsgBeforeLast(std::string str){
+
+    std::string lastMsg = msgLog.back();
+    msgLog.erase(msgLog.end());
+    msgLog.push_back(str);
+    Debug::print("Log before last: " + msgLog[msgLog.size()-1]); 
+    msgLog.push_back(lastMsg);
+     
   }
 
   void AddCmdMsg(std::string str){
@@ -73,44 +86,74 @@ namespace Gui{
 
   
   void RenderGui(){
-    // Draw lines, indicate GUI
-    // top line
-    io::DrawLine(P(g::FONT_W,g::MAP_HEIGHT*g::GLYPH_H+1), P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), White);
-    // Left line
-    io::DrawLine(P(g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), P(g::FONT_W, g::SCREEN_HEIGHT), White);
-    // right line
-    io::DrawLine(P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1), P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::SCREEN_HEIGHT), White);
 
-    // CMD msg Separator
-    int cmdSepx = g::MAP_WIDTH*g::FONT_W/2-5*g::FONT_W;
-    int cmdSepy = g::MAP_HEIGHT*g::GLYPH_H+1;
-    io::DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,g::SCREEN_HEIGHT), White);
-
-    // Draw cmd msg
-    io::printMsg(cmdStr, 2, g::SCREEN_HEIGHT/g::GLYPH_H+4, g::SCREEN_WIDTH/g::FONT_W, Green);
+    DrawOutlines();
     
+    DrawMsgLog();
+    
+    DrawStats();
 
-    // Render latest log msg
-    if(logUpdate > 0){
-      io::printMsg(msgLog.back(), 2, g::SCREEN_HEIGHT/g::GLYPH_H+6, 33, Orange);
-      logUpdate--;
+    io::flip();
+    
+  }
+
+  void DrawMsgLog(){
+    //    for(unsigned int i = 0; i < msgLog.size(); ++i){
+    // io::printMsg(msgLog[i], 1, g::SCREEN_HEIGHT/g::GLYPH_H+4-i, g::SCREEN_WIDTH-1, White);
+    //}
+    //    io::printMsg(msgLog.back(), 2, g::SCREEN_HEIGHT/g::GLYPH_H+6, 33, Orange);
+
+    int yPos = g::SCREEN_HEIGHT/g::GLYPH_H + 12;
+    unsigned int logWidth = 50;
+    unsigned int amountToShow = 9;
+    for(unsigned int i = 0; i < amountToShow; ++i){
+
+      if(msgLog.size() > i){
+	if(msgLog[msgLog.size()-i-1].size() > logWidth && i < amountToShow)
+	  i++;
+	
+	io::printMsg(msgLog[msgLog.size()-i-1], 2, yPos-i, logWidth, Orange);
+
+      }
+      
     }
-    if(logUpdate <= 0)
-      logUpdate = 0;
-
-
-    // Render Player Stats
-    // HP
     
-        renderComparedValue(P(36,34), Game::player->mortal->hp, Game::player->mortal->maxHp,
+    // Draw cmd msg
+    io::printMsg(cmdStr, 2, cmdStartY, logWidth, Green);
+  }
+
+  void DrawStats(){
+    // Render Player Stats
+    renderComparedValue(P(43,34), Game::player->mortal->hp, Game::player->mortal->maxHp,
     			"HP: ", White);
 
-    renderStringAndInt(P(36, 36), "Turn:",Game::turnCounter, White);
+    renderStringAndInt(P(43, 36), "Turn:",Game::turnCounter, White);
 
     // Render Dungeon Level
-    renderStringAndInt(P(36, 38), "Dungeon Level:", Map::dungeonLevel, White);
+    renderStringAndInt(P(43, 38), "Dungeon Level:", Map::dungeonLevel, White);
     
-    io::flip();
+  }
+
+  void DrawOutlines(){
+
+    // Draw lines, indicate GUI
+    // top line
+    io::DrawLine(P(g::FONT_W,g::MAP_HEIGHT*g::GLYPH_H+1),
+		 P(g::MAP_WIDTH*g::FONT_W-g::FONT_W,
+		   g::MAP_HEIGHT*g::GLYPH_H+1), White);
+    // Left line
+    io::DrawLine(P(g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1),
+		 P(g::FONT_W, g::SCREEN_HEIGHT), White);
+    // right line
+    io::DrawLine(P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::MAP_HEIGHT*g::GLYPH_H+1),
+		 P(g::MAP_WIDTH*g::FONT_W-g::FONT_W, g::SCREEN_HEIGHT), White);
+
+    
+    // Msg Log Separatorline
+    int cmdSepx = g::MAP_WIDTH*g::FONT_W/2-4*g::FONT_W + 6*g::FONT_W;
+    int cmdSepy = g::MAP_HEIGHT*g::GLYPH_H+1;
+    io::DrawLine(P(cmdSepx,cmdSepy), P(cmdSepx,g::SCREEN_HEIGHT), White);
+    
   }
 
   void renderStringAndInt(P p, std::string str, int num, cColor c){
@@ -167,7 +210,7 @@ namespace Gui{
 	else{
 	  msg = "You see " + Game::getEntityDescription(P(crosshair));
 	}
-	io::printMsg(msg, 2, g::SCREEN_HEIGHT/g::GLYPH_H+4, g::SCREEN_WIDTH/g::FONT_W, Green);
+	io::printMsg(msg, 2, cmdStartY, g::SCREEN_WIDTH/g::FONT_W, Green);
       }
       
       io::flip();

@@ -79,7 +79,14 @@ namespace PF{
   extern int closed_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   extern int open_nodes_map[g::MAP_WIDTH][g::MAP_HEIGHT];
   extern int dir_map[g::MAP_WIDTH][g::MAP_HEIGHT];
-  std::vector<P> findPath( const P &Start, const P &Finish, bool actorsBlocking);
+
+  // For passing in a reference map, mainly for map generation purposes. 
+  std::vector<P> findPath( const P &Start, const P &Finish,
+			   bool actorsBlocking, char refMap[g::MAP_WIDTH][g::MAP_HEIGHT]);
+
+  // For pathfinding when map already exist.
+  std::vector<P> findPath( const P &Start, const P &Finish,
+			   bool actorsBlocking);
 }
 
 

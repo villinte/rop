@@ -13,6 +13,8 @@ Entity::Entity(P p, std::string name, char glyph, cColor c, std::string desc) :
   fighter = nullptr;
   container = nullptr;
   item = nullptr;
+  _spawnUpperLimit = -1; // -1 indicates that entity can spawn on any floor
+  _spawnLowerLimit = -1;
   
   }
 

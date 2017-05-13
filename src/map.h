@@ -39,7 +39,7 @@ namespace Map{
 
   extern Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
-  extern unsigned int dungeonLevel;
+  extern int dungeonLevel;
 
   void Init();
   void nextLevel();

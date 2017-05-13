@@ -324,9 +324,10 @@ namespace mapGen{
 
   bool isMapGood(){
 
-    std::vector<P> path = PF::findPath(player_p, stairs_p, false);
-    if(path.size() == 0)
+    std::vector<P> path = PF::findPath(player_p, stairs_p, false, _map);
+    if(path.size() == 0){
       return false;
+    }
 
     return true;
     

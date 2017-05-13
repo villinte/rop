@@ -10,6 +10,7 @@
 #include "gui.h"
 #include "map_gen.h"
 #include "debug_print.h"
+#include <iostream>
 
 /*
  * Cell should be derived from entity... do smth about this.
@@ -77,7 +78,7 @@ namespace Map{
   
   Cell cells[g::MAP_WIDTH][g::MAP_HEIGHT];
 
-  unsigned int dungeonLevel;
+  int dungeonLevel;
 
   void Init(){
     dungeonLevel = 1;
@@ -130,12 +131,25 @@ namespace Map{
 	}
 	else if(str.at(i) == 'L'){
 
-	  int randNr = Rng::randInt(0,100);
-	  std::unique_ptr<Entity> a = actor_factory::make((randNr > 50) ? "Troll" : "Orc", P(x,y));
+	  int randNr = Rng::randInt(0,100); 	  
+
+	  std::unique_ptr<Entity> a
+	    = actor_factory::make((randNr > 50) ? "Troll" : "Orc", P(x,y));
+	  
+	  bool dowespawn = false;
+	  if(dungeonLevel >= a->_spawnUpperLimit && dungeonLevel <= a->_spawnLowerLimit ){
+	    dowespawn = true;
+	  }
+	  else{
+	    dowespawn = false;
+	  }
+
+	  
 	  std::string str = "Spawned " + a->_name;
 	  Debug::print(str);
-	  Game::actors.emplace_back(std::move(a));
-	  
+	  if(dowespawn){
+	    Game::actors.emplace_back(std::move(a));
+	  }
 	  cells[x][y]._glyph = '.';
 	  cells[x][y]._description = "a floor tile.";
 	}
@@ -342,7 +356,7 @@ namespace Map{
       cells[pos.x][pos.y]._glyph = '/';
       cells[pos.x][pos.y]._block = false;
       cells[pos.x][pos.y]._description = "an open door.";
-      Gui::LogMsg("Opened a door.");
+      Gui::LogMsg("I open a door.");
     }
   }
 
@@ -355,7 +369,7 @@ namespace Map{
 	cells[pos.x][pos.y+1]._glyph = '+';
 	cells[pos.x][pos.y+1]._block = true;
 	cells[pos.x][pos.y]._description = "a closed door.";
-	Gui::LogMsg("Closed a door to the south.");
+	Gui::LogMsg("I close a door.");
 	success = true;
       }
     }
@@ -365,7 +379,7 @@ namespace Map{
 	cells[pos.x][pos.y-1]._glyph = '+';
 	cells[pos.x][pos.y-1]._block = true;
 	cells[pos.x][pos.y]._description = "a closed door.";
-	Gui::LogMsg("Closed a door to the north.");
+	Gui::LogMsg("I close a door.");
 	success = true;
       }
     }
@@ -375,7 +389,7 @@ namespace Map{
 	cells[pos.x+1][pos.y]._glyph = '+';
 	cells[pos.x+1][pos.y]._block = true;
 	cells[pos.x][pos.y]._description = "a closed door.";
-      	Gui::LogMsg("Closed a door to the east.");
+	Gui::LogMsg("I close a door.");
 	success = true;
       }
     }
@@ -385,7 +399,7 @@ namespace Map{
 	cells[pos.x-1][pos.y]._glyph = '+';
 	cells[pos.x-1][pos.y]._block = true;
 	cells[pos.x][pos.y]._description = "a closed door.";
-      	Gui::LogMsg("Closed a door to the west.");
+	Gui::LogMsg("I close a door.");
 	success = true;
       }
     }

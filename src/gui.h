@@ -16,7 +16,7 @@ namespace Gui{
   void ClearCmdMsg();
   
   void LogMsg(std::string str);
-
+  void LogMsgBeforeLast(std::string str);
   void showMsgLog();
 
   void showKillScreen();
@@ -28,6 +28,12 @@ namespace Gui{
   void renderStringAndInt(P p, std::string str, int num, cColor c);
 
   void viewMode();
+
+  void DrawMsgLog();
+  
+  void DrawStats();
+  
+  void DrawOutlines();
 }
 
 

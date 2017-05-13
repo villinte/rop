@@ -37,6 +37,7 @@ int Mortal::Heal(int amount){
 
 void Mortal::die(Entity &a){
   a._glyph = '%';
+  this->decayTimer = 15;
   a._description = "a pile of dead " + a._name + ".";
   a._color = BloodRed;
   a._name = corpseName;

@@ -50,6 +50,17 @@ namespace actor_factory{
     
     std::unique_ptr<Entity> e(new Entity(p, mon_type, glyph[0], getColor(color), description));
     e->_block = true;
+
+    std::string s_upperLimit = dataLoad::getAttribute(mon_type,
+						      "dungeonlevel",
+						      "upper");
+    e->_spawnUpperLimit = std::stoi(s_upperLimit);
+    
+    std::string s_lowerLimit = dataLoad::getAttribute(mon_type,
+						      "dungeonlevel",
+						      "lower");
+    e->_spawnLowerLimit = std::stoi(s_lowerLimit);
+    
     // If mortal
     std::string s_mortal = dataLoad::getAttribute(mon_type, "flags", "mortal");
 

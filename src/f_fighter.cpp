@@ -5,6 +5,7 @@
 #include "gui.h"
 #include <iostream>
 #include "helper.h"
+#include "game.h"
 
 Fighter::Fighter(int atkR, int hitR) : atkRating(atkR), hitRating(hitR){
   hitMod = 0;
@@ -30,13 +31,26 @@ void Fighter::Attack(Entity &a, Entity &target){
       if( atkRating - (target.mortal->armor) > 0){
 	int dmg = target.mortal->takeDmg(target, atkRating);
 	if(!target.mortal->isDead()){
-	  std::string tempMsg = a_name + " attacks " + t_name + " for " + std::to_string(dmg) + " damage.";
+	  std::string tempMsg = " ";
+	  if(a_name == Game::player->_name){
+	    tempMsg = "You hit " +
+	      t_name + " for " + std::to_string(dmg) + " damage.";
+	  }
+	  else{
+	    tempMsg = a_name + " hits you for " + std::to_string(dmg) + " damage.";
+	  }
 	  Gui::LogMsg(tempMsg);
 	}
 	else{
-	  std::string tempMsg = a_name + " attacks " + t_name + " for " + std::to_string(dmg)
-	    + " damage, " + t_name + " dies.";
-	  Gui::LogMsg(tempMsg);
+	  std::string tempMsg = " ";
+	  if(a_name == Game::player->_name){
+	    tempMsg = "You hit " + t_name + " for " + std::to_string(dmg)
+	      + " damage.";
+	  }
+	  else{
+	    tempMsg = a_name + " hits you for " + std::to_string(dmg) + " damage.";
+	  }
+	  Gui::LogMsgBeforeLast(tempMsg);
 	}
       }
     }
@@ -45,18 +59,36 @@ void Fighter::Attack(Entity &a, Entity &target){
       if( atkRating+(atkRating/2) - (target.mortal->armor) > 0){
 	int dmg = target.mortal->takeDmg(target, atkRating);
 	if(!target.mortal->isDead()){
-	  std::string tempMsg = a_name + " attacks " + t_name + " for " + std::to_string(dmg) + " critical damage.";
+	  std::string tempMsg = " ";
+	  if(a_name == Game::player->_name){
+	    tempMsg = "You hit " + t_name + " for " + std::to_string(dmg) + " critical damage.";
+	  }
+	  else{
+	    tempMsg = a_name + " hits you for " + std::to_string(dmg) + " critical damage.";
+	  }
 	  Gui::LogMsg(tempMsg);
 	}
 	else{
-	  std::string tempMsg = a_name + " attacks " + t_name + " for " + std::to_string(dmg)
-	    + " damage, " + t_name + " dies.";
-	  Gui::LogMsg(tempMsg);
+	  std::string tempMsg = " ";
+	  if(a_name == Game::player->_name){
+	    tempMsg = "You hit " + t_name + " for " + std::to_string(dmg)
+	      + " damage.";
+	  }
+	  else{
+	    tempMsg = a_name + " hits you for " + std::to_string(dmg) + " damage.";
+	  }
+	  Gui::LogMsgBeforeLast(tempMsg);
 	}
       }
     }
     else if(hit < dodge){ // miss
-      std::string tempMsg = a_name + " attacks " + t_name + ", attack missed.";
+      std::string tempMsg = " ";
+      if(a_name == Game::player->_name){
+	tempMsg = "You try to hit " + t_name + ", attack missed.";
+      }
+      else{
+	tempMsg = a_name + " tries to hit you, attack missed.";
+      }
       Gui::LogMsg(tempMsg);
     }
     

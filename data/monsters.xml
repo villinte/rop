@@ -6,7 +6,14 @@
     <health now="10" max="10" armor="0"/>
     <look glyph="O" corpse="%" color="Green"/>
     <attack name="melee" power="3" hit="0"/>
+    <!-- actor: AI component, may roam the map
+	 mortal: death component, may be attacked
+         fighter: attack component, may attack other actors
+	 container: container component, can contain items.
+         item: item component, can be picked up and possibly used.-->
     <flags actor="1" mortal="1" fighter="1" container="1" item="0"/>
+    <!-- On which dungeon level may this monster spawn -->
+    <dungeonlevel upper="1" lower="30"/>
   </monster>
   
   <monster name="Troll">
@@ -15,5 +22,16 @@
     <look glyph="T" corpse="%" color="Brown"/>
     <attack name="melee" power="4" hit = "1"/>
     <flags actor="1" mortal="1" fighter="1" container="1" item="0"/>
+    <dungeonlevel upper="3" lower="30"/>
   </monster>
+
+  <monster name="Nidhogg">
+    <info description="a chaotic being" experience="500" energy="8"/>
+    <health now="120" max="120" armor="2"/>
+    <look glyph="S" corpse="%" color="Red"/>
+    <attack name="melee" power="15" hit = "1"/>
+    <flags actor="1" mortal="1" fighter="1" container="1" item="0"/>
+    <dungeonlevel upper="30" lower="30"/>
+  </monster>
+  
 </monsters>

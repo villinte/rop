@@ -43,6 +43,8 @@ class Entity{
   cColor _color;
   bool _block;
   bool _visible;
+  int _spawnUpperLimit;
+  int _spawnLowerLimit;
   std::string _description;
   
  private:

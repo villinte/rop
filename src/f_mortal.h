@@ -13,7 +13,9 @@ class Mortal{
   std::string corpseName;
   unsigned int xp;
   bool isAlive;
-
+  int decayTimer;
+  
+  
   Mortal(int maxHp, int armor, std::string corpseName, int xp);
   virtual  ~Mortal() {};
   inline bool isDead() {return hp <= 0; }
