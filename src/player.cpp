@@ -28,12 +28,10 @@ void newPlayer::Update(){
     std::unique_ptr<State> playState(new GameState());
     states::push(std::move(playState));
   }
-  
 }
 
 void newPlayer::Draw(){
-  
-  
+    
 }
 
 namespace PlayerName{
