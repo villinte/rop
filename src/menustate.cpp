@@ -6,11 +6,10 @@ MenuState::MenuState(){
 }
 
 void MenuState::Draw(){
+  io::clear();
   io::printMsg("Continue", 32, 18, 30, (current == CONTINUE) ? Green: Grey);
   io::printMsg("Help", 32, 20, 30, (current == HELP) ? Green: Grey);
   io::printMsg("Quit", 32, 22, 30, (current == QUIT) ? Green: Grey);
-  
-  io::flip();
 }
 
 void MenuState::Update(){

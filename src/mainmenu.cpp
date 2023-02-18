@@ -13,7 +13,6 @@ void MainMenu::Draw(){
   io::printMsg("Help", 32, 20, 30, (current == HELP) ? Green: Grey);
   io::printMsg("Quit", 32, 22, 30, (current == QUIT) ? Green: Grey);
   
-  io::flip();
 }
 
 void MainMenu::Update(){

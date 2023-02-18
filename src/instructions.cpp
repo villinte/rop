@@ -18,6 +18,7 @@ void instrState::Update(){
 }
 
 void instrState::Draw(){
+  io::clear();
   io::printMsg("Movement: ", 7, 7, 100, White);
   io::printMsg("7 8 9", 8, 9, 100, White);
   io::printMsg("\\ /", 9, 10, 100, White);

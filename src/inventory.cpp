@@ -40,7 +40,7 @@ void InventoryState::Init(){
 }
 
 void InventoryState::Draw(){
-
+  io::clear();
   SDL_Rect rect = {start_x, start_y, end_x, end_y};
   io::drawSquare(rect, Black);
   std::string temp = "Browsing Inventory";

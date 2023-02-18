@@ -36,6 +36,7 @@ void newPlayer::Draw(){
 
 namespace PlayerName{
   std::string inputName(){
+    io::clear();
     io::printMsg("Enter your name", 8, 8, 100, Green);
     std::string text;
   
@@ -56,7 +57,7 @@ namespace PlayerName{
 	  if(event.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0){
 	    text.back() = ' ';
 	    io::printMsg(text, 10, 10, 100, Green);
-	    io::flip();
+
 	    text.pop_back();
 	  }
 	  else if(event.key.keysym.sym == SDLK_RETURN){
